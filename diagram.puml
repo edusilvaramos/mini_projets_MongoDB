@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+
+package "MongoDB/mini_projets_MongoDB" {
+
+    class User {
+        
+    }
+
+    class Comment {
+        
+    }
+
+    class Post {
+        
+    }
+
+    class Like {
+        
+    }
+    
+    
+}
