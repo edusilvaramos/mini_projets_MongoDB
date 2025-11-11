@@ -49,3 +49,12 @@ https://www.mongodb.com/pt-br/docs/php-library/current/get-started/
 https://www.mongodb.com/pt-br/docs/php-library/current/connect/#std-label-php-connect
 https://www.mongodb.com/docs/drivers/php-frameworks/symfony/#std-label-php-symfony-integration
 https://www.youtube.com/watch?v=TXEZudz0s1E
+
+
+taches: 
+
+// criar o CRUD: 
+   // user 
+   // post 
+   // comment
+   // like. 
