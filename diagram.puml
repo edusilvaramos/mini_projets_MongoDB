@@ -5,20 +5,66 @@ skinparam classFontStyle bold
 package "MongoDB/mini_projets_MongoDB" {
 
     class User {
-        
+        - id: int
+        - firstname: string
+        - lastName: string
+        - email: string
+        - password: string
+        ---
+        + setId()
+        + setFirstname()
+        + setLastName()
+        + setEmail()
+        + setPassword()
+        + getId()
+        + getFirstName()
+        + getLastName()
+        + getEmail()
+        + getPassword()
     }
 
     class Comment {
-        
+        - id: int
+        - comment: string
+        - createdAt: datetime
+        - userId: User
+        - postId: Post
+        ---
+        + setId()
+        + setComment()
+        + setCreatedAt()
+        + setUserId()
+        + setPostId()
+        + getId()
+        + getComment()
+        + getCreatedAt()
+        + getUserId()
+        + getPostId()
     }
 
     class Post {
-        
+        id: int
+        title: string
+        content: string
+        createdAt: datetime
+        userId: User
+        ---
+        + setId()
+        + setTitle()
+        + setContent()
+        + setCreatedAt()
+        + setUserId()
+        + getId()
+        + getTitle()
+        + getContent()
+        + getCreatedAt()
+        + getUserId()
     }
 
-    class Like {
-        
-    }
-    
-    
+    User "1..n" -- "1..1" Post: create
+    User "1..n" -- "1..1" Comment: create
+    Post "1..n" -- "1..1" Comment: has
+
 }
+
+
