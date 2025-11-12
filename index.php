@@ -1,13 +1,21 @@
 <?php
-
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Connection\Connection;
-use MongoDB\BSON\UTCDateTime;
+session_start();
 
-$db  = new Connection();
-$colUser = $db->selectCollection('user');
+$ctrl   = $_GET['ctrl']   ?? 'home';
+$action = $_GET['action'] ?? 'index';
 
-echo "<pre>";
-print_r($colUser->find()->toArray());
-echo "</pre>";
+$controllerClass = "App\\Controller\\" . ucfirst($ctrl) . "Controller";
+
+if (!class_exists($controllerClass)) {
+    die("Controller $controllerClass not found");
+}
+
+$controller = new $controllerClass();
+
+if (!method_exists($controller, $action)) {
+    die("the action $action not found in $controllerClass");
+}
+
+$controller->$action();
