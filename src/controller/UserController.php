@@ -42,7 +42,7 @@ final class UserController extends BaseController
         $user = $this->userRepository->find($id);
         if (!$user) {
             http_response_code(404);
-            echo 'Usuário não encontrado';
+            echo 'user not found';
             return;
         }
         $this->render('user/edit', ['user' => $user]);
@@ -76,7 +76,7 @@ final class UserController extends BaseController
 
     public function login(): void
     {
-        $email = $_POST['email']    ?? '';
+        $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
         var_dump($_POST);

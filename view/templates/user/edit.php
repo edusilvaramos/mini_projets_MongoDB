@@ -1,6 +1,6 @@
 <h1>edit user</h1>
 <form method="post" action="index.php?ctrl=user&action=update">
-  <input type="hidden" name="_csrf" value="<?=$csrf?>">
+  {# <input type="hidden" name="_csrf" value="<?=$csrf?>"> #}
   <input type="hidden" name="id" value="<?=$user['_id']?>">
   <div>
     <label>First name</label>

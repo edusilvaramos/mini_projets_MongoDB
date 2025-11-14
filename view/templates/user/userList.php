@@ -1,3 +1,4 @@
+<?php if (isset($_SESSION['user'])): ?>
 <h1>users</h1>
 <p><a href="index.php?ctrl=user&action=createUser">new</a></p>
 
@@ -28,3 +29,6 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+<?php else: ?>
+  <p style:color:red>you need permissions to see this page </p>
+<?php endif; ?>

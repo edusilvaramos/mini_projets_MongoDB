@@ -23,7 +23,7 @@ package "MongoDB/mini_projets_MongoDB" {
         + getPassword()
     }
 
-    class Comment {
+    class Comments {
         - id: int
         - comment: string
         - createdAt: datetime
