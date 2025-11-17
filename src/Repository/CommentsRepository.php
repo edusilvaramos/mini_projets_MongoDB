@@ -33,6 +33,14 @@ final class CommentsRepository
         return new ObjectId($id);
     }
 
+     public function update(string $id, array $data): void
+    {
+        $set = [
+            'comment' => $data['comment'],
+        ];
+        $this->collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $set]);
+    }
+
     public function create(array $data): string
     {
         $res = $this->collection->insertOne([
@@ -51,7 +59,8 @@ final class CommentsRepository
         $this->collection->deleteOne(['_id' => new ObjectId($id)]);
     }
 
+    // add get repilies
 
+    // add likes 
 
-  
 }

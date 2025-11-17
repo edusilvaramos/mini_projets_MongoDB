@@ -32,12 +32,19 @@ final class UserRepository
         return $doc ? $doc->getArrayCopy() : null;
     }
 
+    public function findByUsername(string $username): ?array
+    {
+        $doc = $this->collection->findOne(['userName' => $username]);
+        return $doc ? $doc->getArrayCopy() : null;
+    }
+
 
     public function create(array $data): string
     {
         $res = $this->collection->insertOne([
             'firstname'    => $data['firstname'],
             'lastName'     => $data['lastName'],
+            'userName'     => $data['username'],
             'email'        => mb_strtolower(trim($data['email'])),
             'passwordHash' => password_hash($data['password'], PASSWORD_DEFAULT),
         ]);
