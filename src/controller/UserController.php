@@ -29,7 +29,6 @@ final class UserController extends BaseController
 
     public function newUser(): void
     {
-
         $data = [
             'firstname' => trim($_POST['firstname'] ?? ''),
             'lastName'  => trim($_POST['lastName'] ?? ''),

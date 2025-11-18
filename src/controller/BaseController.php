@@ -11,6 +11,11 @@ abstract class BaseController
 
         $header = $root . '/view/templates/layout/header.php';
         if (!is_file($header) && is_file($root . '/header.php')) $header = $root . '/header.php';
+        
+        $header = $root . '/view/templates/layout/header.php';
+        if (!is_file($header) && is_file($root . '/header.php')) $header = $root . '/header.php';
+
+
 
         $footer = $root . '/view/templates/layout/footer.php';
         if (!is_file($footer) && is_file($root . '/footer.php')) $footer = $root . '/footer.php';
