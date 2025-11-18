@@ -21,11 +21,15 @@ final class UserController extends BaseController
 
     public function createUser(): void
     {
+        if (isset($_SESSION['user'])) {
+            $this->redirect('ctrl=home&action=index');
+        }
         $this->render('user/newUser');
     }
 
     public function newUser(): void
     {
+
         $data = [
             'firstname' => trim($_POST['firstname'] ?? ''),
             'lastName'  => trim($_POST['lastName'] ?? ''),
@@ -53,6 +57,10 @@ final class UserController extends BaseController
 
     public function login(): void
     {
+
+        if (isset($_SESSION['user'])) {
+            $this->redirect('ctrl=home&action=index');
+        }
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
