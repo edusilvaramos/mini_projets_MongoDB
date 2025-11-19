@@ -1,63 +1,48 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/projet/assets/styles/reset.css" rel="stylesheet" />
-    <link href="/projet/assets/styles/styles.css" rel="stylesheet" />
-    <link href="/projet/assets/styles/typo.css" rel="stylesheet" />
-
-    <title>Home | PteroTalk Forum</title>
-</head>
-<body class="gridBody">
-    <?php include __DIR__ . "/components/nav.php";?>
-    <section class="main">
-        <div class="">    
-            <div class="flex spaceAround latestPosts">
-                <h2>Latest Posts</h2>
-                <button class="button secondaryButton">Create Post</button>
-            </div>
+<section class="main">
+    <div class="">
+        <div class="flex spaceAround latestPosts">
+            <h2>Latest Posts</h2>
+            <button class="button secondaryButton">Create Post</button>
+        </div>
+        <div class="flex spaceAround">
             <div class="flex spaceAround">
-                <div class="flex spaceAround">
-                    <span>Sort by</span>
-                    <div class="sortingOptions">
-                        <button class="sortingButton">Newest</button>
-                        <button class="sortingButton">Trending</button>
-                        <button class="sortingButton">Most Liked</button>
-                        <button class="sortingButton">Most Commented</button>
-                    </div>
+                <span>Sort by</span>
+                <div class="sortingOptions">
+                    <button class="sortingButton">Newest</button>
+                    <button class="sortingButton">Trending</button>
+                    <button class="sortingButton">Most Liked</button>
+                    <button class="sortingButton">Most Commented</button>
                 </div>
-                <button class="thinButton tertiaryButton">Filter</button>
             </div>
-            <div class="postsContainer">
-            <?php include __DIR__ . "/components/postPreview.php";?>
-            </div>
+            <button class="thinButton tertiaryButton">Filter</button>
+        </div>
+        <div class="postsContainer">
+            <?php include __DIR__ . "/components/postPreview.php"; ?>
+        </div>
+    </div>
+</section>
+<aside>
+    <section>
+        <h2>Tags</h2>
+        <div class="flex">
+            <button class="thinButton tertiaryButton">Animals</button>
+            <button class="thinButton tertiaryButton">Sports</button>
+            <button class="thinButton tertiaryButton">Music</button>
+            <button class="thinButton tertiaryButton">Movies</button>
+            <button class="thinButton tertiaryButton">Programming</button>
+            <button class="thinButton tertiaryButton">World Politics</button>
+            <button class="thinButton tertiaryButton">Theater</button>
+            <button class="thinButton tertiaryButton">Culture</button>
+            <button class="thinButton tertiaryButton">Tech</button>
+            <button class="thinButton tertiaryButton">Arts</button>
         </div>
     </section>
-    <aside>
-        <section>
-            <h2>Tags</h2>
-            <div class="flex">
-                <button class="thinButton tertiaryButton">Animals</button>
-                <button class="thinButton tertiaryButton">Sports</button>
-                <button class="thinButton tertiaryButton">Music</button>
-                <button class="thinButton tertiaryButton">Movies</button>
-                <button class="thinButton tertiaryButton">Programming</button>
-                <button class="thinButton tertiaryButton">World Politics</button>
-                <button class="thinButton tertiaryButton">Theater</button>
-                <button class="thinButton tertiaryButton">Culture</button>
-                <button class="thinButton tertiaryButton">Tech</button>
-                <button class="thinButton tertiaryButton">Arts</button>
-            </div>
-        </section>
-        <section>
-            <h2>Recent Online Users</h2>
-            <div class="flex recentOnlineUsers">
-                <?php include __DIR__ . "/components/onlineUsers.php";?>
-                <?php include __DIR__ . "/components/onlineUsers.php";?>
-                
-            </div>
-        </section>
-    </aside>
-</body>
-</html>
+    <section>
+        <h2>Recent Online Users</h2>
+        <div class="flex recentOnlineUsers">
+            <?php include __DIR__ . "/components/onlineUsers.php"; ?>
+            <?php include __DIR__ . "/components/onlineUsers.php"; ?>
+
+        </div>
+    </section>
+</aside>

@@ -51,7 +51,7 @@ final class UserController extends BaseController
 
     public function loginForm(): void
     {
-        $this->render('user/login');
+        $this->render('layout/login');
     }
 
     public function login(): void
@@ -72,7 +72,7 @@ final class UserController extends BaseController
 
         // if no user or password is wrong
         if (!$user || !password_verify($password, $user['passwordHash'])) {
-            $this->render('user/login', [
+            $this->render('/login', [
                 'error' => 'Email or password is not valid.',
                 'old'   => ['email' => $email],
             ]);

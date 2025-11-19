@@ -2,28 +2,33 @@
 
 namespace App\Controller;
 
+use App\Connection\Connection;
+
 abstract class BaseController
 {
+    protected Connection $connection;
+
+    public function __construct(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
     protected function render(string $view, array $params = []): void
     {
         $root = dirname(__DIR__, 2);
-        $viewFile = $root . '/view/templates/' . $view . '.php';
 
-        $header = $root . '/view/templates/layout/header.php';
-        if (!is_file($header) && is_file($root . '/header.php')) $header = $root . '/header.php';
-        
-        $header = $root . '/view/templates/layout/header.php';
-        if (!is_file($header) && is_file($root . '/header.php')) $header = $root . '/header.php';
+        $viewFile = $root . '/view/templates/layout/' . $view . '.php';
 
-
-
-        $footer = $root . '/view/templates/layout/footer.php';
-        if (!is_file($footer) && is_file($root . '/footer.php')) $footer = $root . '/footer.php';
+        if (!is_file($viewFile)) {
+            throw new \RuntimeException("View not found: $viewFile");
+        }
 
         extract($params, EXTR_SKIP);
-        if (is_file($header)) include $header;
+        ob_start();
         include $viewFile;
-        if (is_file($footer)) include $footer;
+
+
+        include $root . '/view/templates/base.php';
     }
 
     protected function redirect(string $route, array $query = []): void
