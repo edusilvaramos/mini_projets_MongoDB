@@ -1,7 +1,7 @@
 
     <img id="backgroundMotif" alt="background motif" src="assets/SVG/background.svg" />
     <section class="main signupLoginForm">
-        <img src="assets/SVG/logo_filled.svg" />
+        <img src="assets/SVG/logo_filled.svg" alt="logo" />
         <h1>Login into your account</h1>
         <form action="/login" method="post">
             <label for="email">Username or Email</label></br>

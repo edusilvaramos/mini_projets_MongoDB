@@ -8,7 +8,7 @@ final class HomeController extends BaseController
     {
         $posts = [];
 
-        $this->render('home', [
+        $this->render('components/home', [
             'title' => 'Home',
             'posts' => $posts,
         ]);

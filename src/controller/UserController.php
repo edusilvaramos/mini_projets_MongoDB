@@ -24,7 +24,7 @@ final class UserController extends BaseController
         if (isset($_SESSION['user'])) {
             $this->redirect('ctrl=home&action=index');
         }
-        $this->render('user/newUser');
+        $this->render('user/signup');
     }
 
     public function newUser(): void
@@ -49,12 +49,12 @@ final class UserController extends BaseController
         $this->redirect('ctrl=user&action=login');
     }
 
-    public function loginForm(): void
+    public function login(): void
     {
-        $this->render('layout/login');
+        $this->render('user/login');
     }
 
-    public function login(): void
+    public function loginForm(): void
     {
 
         if (isset($_SESSION['user'])) {
