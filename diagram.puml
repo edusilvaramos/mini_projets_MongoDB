@@ -10,6 +10,7 @@ package "MongoDB/mini_projets_MongoDB" {
         - lastName: string
         - email: string
         - password: string
+        - isActive: boolean
         ---
         + setId()
         + setFirstname()
@@ -25,7 +26,8 @@ package "MongoDB/mini_projets_MongoDB" {
 
     class Comments {
         - id: int
-        - comment: string
+        - title: string
+        - content: string
         - createdAt: datetime
         - userId: User
         - postId: Post
@@ -46,6 +48,10 @@ package "MongoDB/mini_projets_MongoDB" {
         id: int
         title: string
         content: string
+        authorId : int
+        likes: int
+        views: int
+        tags : Array(string)
         createdAt: datetime
         userId: User
         ---
@@ -59,7 +65,7 @@ package "MongoDB/mini_projets_MongoDB" {
         + getContent()
         + getCreatedAt()
         + getUserId()
-    }
+        }
 
     User "1..n" -- "1..1" Post: create
     User "1..n" -- "1..1" Comment: create

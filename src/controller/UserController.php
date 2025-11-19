@@ -85,6 +85,7 @@ final class UserController extends BaseController
             'firstname' => $user['firstname'],
             'email'     => $user['email'],
             'username'  => $user['userName'],
+            'isActive'  => true,
         ];
 
         // manda pra home ou lista de posts ou new post

@@ -36,7 +36,8 @@ final class CommentsRepository
      public function update(string $id, array $data): void
     {
         $set = [
-            'comment' => $data['comment'],
+            'title' => $data['title'],
+            'content' => $data['contnet'],
         ];
         $this->collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $set]);
     }
@@ -45,7 +46,8 @@ final class CommentsRepository
     {
         $res = $this->collection->insertOne([
 
-            "comment" => $data['comment'],
+            "title" => $data['title'],
+            "content" => $data['content'],
             "createdAt" => new UTCDateTime(),
             "userId" => new ObjectId($data['userId']),
             "postId" => new ObjectId($data['postId']),

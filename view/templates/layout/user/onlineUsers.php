@@ -1,3 +1,11 @@
+<?
+/* 
+TACHES
+- obtenir les infos de luser
+*/
+?>
+
+
 <div class="postCard__top">
     <div class="userProfilePhoto">J</div>
     <div>

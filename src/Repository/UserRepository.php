@@ -45,6 +45,7 @@ final class UserRepository
             'firstname'    => $data['firstname'],
             'lastName'     => $data['lastName'],
             'userName'     => $data['username'],
+            'isActive'     => false,
             'email'        => mb_strtolower(trim($data['email'])),
             'passwordHash' => password_hash($data['password'], PASSWORD_DEFAULT),
         ]);

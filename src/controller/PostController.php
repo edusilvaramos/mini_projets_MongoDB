@@ -1,10 +1,95 @@
-<?php 
+<?php
 
-function createPost($postCollection) {
-    $postCollection->insertOne([
-        "title" => $_POST("title"),
-        "content" => $_POST("content"),
-        "title" => $_POST("title"),
+namespace App\Controller;
+
+use App\Repository\PostRepository;
+use App\Repository\UserRepository;
+
+final class PostController extends BaseController
+{
+    /*
+        TÂCHES
+        + update a post 
+        + delete a post
+        + list posts
+        + sorting buttons
         
-    ]);
+        - go to post page
+        - filter by tag
+        - increase/decrease likes (connexion avec user)
+        - increase views
+        - increase commentsCounter
+        - Implementer si cest un brouillon ou publie
+     */
+    private PostRepository $postRepository;
+
+    public function __construct()
+    {
+        $this->postRepository = new PostRepository();
+        if (empty($_SESSION['user'])) {
+            $this->redirect('ctrl=user&action=login');
+        }
+    }
+
+    public function listPosts(): void
+    {
+        $sort = $_GET['sort'] ?? 'recent';
+        switch ($sort) {
+            case 'recent':
+                $posts = $this->postRepository->sortRecent();
+            case 'liked':
+                $posts = $this->postRepository->sortMostLiked();
+                break;
+            case 'views':
+                $posts = $this->postRepository->sortMostViewed();
+                break;
+            case 'comments':
+                $posts = $this->postRepository->sortMostCommented();
+                break;
+            default:
+                $posts = $this->postRepository->all();
+        }
+        if ($_GET['order'] === "decroissant"){
+            $posts = array_reverse($posts);
+        }
+        $this->render('home', ['post' => $posts]);
+        include __DIR__ . '/../../views/templates/components/home.php';
+    }
+
+    public function createPostPage(): void
+    {
+        if (!isset($_SESSION['user'])) {
+            $this->redirect('ctrl=home&action=index');
+        }
+        $this->render('post/createPostPage');
+    }
+    
+    public function add(): void
+    {
+        $data = [
+            'title' => trim($_POST['title'] ?? ''),
+            'content'  => trim($_POST['content'] ?? ''),
+            'authorId'  => $_SESSION['user']['id'],
+        ];
+        $this->postRepository->create($data);
+    }
+
+    public function delete(): void
+    {
+        $id = $_GET['id'] ?? ($_POST['id'] ?? '');
+        $this->postRepository->delete($id);
+        $this->redirect('ctrl=user&action=index');
+    }
+
+     public function edit(): void
+    {
+        $id = $_POST['id'] ?? '';
+
+        $data = [
+            'title' => trim($_POST['title'] ?? ''),
+            'content' => trim($_POST['content'] ?? ''),
+        ];
+        $this->postRepository->update($id, $data);
+        $this->redirect('ctrl=user&action=index');
+    }
 }

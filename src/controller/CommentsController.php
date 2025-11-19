@@ -29,7 +29,8 @@ class CommentsController extends BaseController
 
         $comentRepo = new CommentsRepository();
         $comentRepo->create([
-            'comment' => $_POST['comment'],
+            'title' => $_POST['title'],
+            'content' => $_POST['content'],
             'userId' => $_SESSION['user']['id'],
             // sperando a impelentacao do post
             // 'postId' => $_POST['postId']
@@ -38,12 +39,13 @@ class CommentsController extends BaseController
         $this->redirect('ctrl=post&action=index');
     }
 
-     public function edit(): void
+    public function edit(): void
     {
         $id = $_POST['id'] ?? '';
 
         $data = [
-            'comment' => trim($_POST['comment'] ?? ''),
+            'title' => trim($_POST['title'] ?? ''),
+            'content' => trim($_POST['content'] ?? ''),
         ];
         $this->commentRepository->update($id, $data);
         $this->redirect('ctrl=user&action=index');
