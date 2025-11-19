@@ -4,7 +4,7 @@
   <input type="hidden" name="id" value="<?=$user['_id']?>">
   <div>
     <label>First name</label>
-    <input name="firstname" value="<?=htmlspecialchars($user['firstname'] ?? '')?>" required>
+    <input name="firstName" value="<?=htmlspecialchars($user['firstName'] ?? '')?>" required>
   </div>
   <div>
     <label>Last name</label>

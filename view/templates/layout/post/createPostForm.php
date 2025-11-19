@@ -1,6 +1,6 @@
 <form>
-    <label for="username">Username</label></br>
-    <input type="text" name="username" id="username" placeholder="Your username here"  /></br>
+    <label for="userName">userName</label></br>
+    <input type="text" name="userName" id="userName" placeholder="Your userName here"  /></br>
     <label for="lastName">Password</label></br>
     <input type="text" name="password" id="password" placeholder="Type your password"  /></br>
     <div class="flex flexEnd">

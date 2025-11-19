@@ -14,7 +14,7 @@
   <tbody>
     <?php foreach ($users as $u): ?>
       <tr>
-        <td><?= htmlspecialchars($u['firstname'] ?? '') ?></td>
+        <td><?= htmlspecialchars($u['firstName'] ?? '') ?></td>
         <td><?= htmlspecialchars($u['lastName'] ?? '') ?></td>
         <td><?= htmlspecialchars($u['email'] ?? '') ?></td>
         <td>

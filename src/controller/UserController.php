@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\UserRepository;
 
+
 final class UserController extends BaseController
 {
     private UserRepository $userRepository;
@@ -30,15 +31,15 @@ final class UserController extends BaseController
     public function newUser(): void
     {
         $data = [
-            'firstname' => trim($_POST['firstname'] ?? ''),
+            'firstName' => trim($_POST['firstName'] ?? ''),
             'lastName'  => trim($_POST['lastName'] ?? ''),
-            'userName'  => trim($_POST['username'] ?? ''),
+            'userName'  => trim($_POST['userName'] ?? ''),
             'email' => trim($_POST['email'] ?? ''),
             'password'  => $_POST['password'] ?? '',
         ];
 
-        // create message if email or username already exists or return to form
-        if ($this->userRepository->findByEmail($data['email']) || $this->userRepository->findByUsername($data['userName'])) {
+        // create message if email or userName already exists or return to form
+        if ($this->userRepository->findByEmail($data['email']) || $this->userRepository->findByuserName($data['userName'])) {
             $this->render('user/newUser', [
                 'error' => 'Email already exists.',
             ]);
@@ -67,12 +68,12 @@ final class UserController extends BaseController
         $user = $this->userRepository->findByEmail($email);
 
         if (!$user) {
-            $user = $this->userRepository->findByUsername($email);
+            $user = $this->userRepository->findByuserName($email);
         }
 
         // if no user or password is wrong
         if (!$user || !password_verify($password, $user['passwordHash'])) {
-            $this->render('/login', [
+            $this->render('user/login', [
                 'error' => 'Email or password is not valid.',
                 'old'   => ['email' => $email],
             ]);
@@ -82,9 +83,9 @@ final class UserController extends BaseController
         // guarda infos básicas na sessão
         $_SESSION['user'] = [
             'id'        => (string) $user['_id'],
-            'firstname' => $user['firstname'],
+            'firstName' => $user['firstName'],
             'email'     => $user['email'],
-            'username'  => $user['userName'],
+            'userName'  => $user['userName'],
         ];
 
         // manda pra home ou lista de posts ou new post
@@ -120,9 +121,9 @@ final class UserController extends BaseController
         $id = $_POST['id'] ?? '';
 
         $data = [
-            'firstname' => trim($_POST['firstname'] ?? ''),
+            'firstName' => trim($_POST['firstName'] ?? ''),
             'lastName'  => trim($_POST['lastName'] ?? ''),
-            'userName'  => trim($_POST['username'] ?? ''),
+            'userName'  => trim($_POST['userName'] ?? ''),
             'email'     => trim($_POST['email'] ?? ''),
             'password'  => $_POST['password'] ?? '',
         ];

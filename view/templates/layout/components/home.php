@@ -1,3 +1,4 @@
+<div class="gridhome">
 <section class="main">
     <div class="">
         <div class="flex spaceAround latestPosts">
@@ -17,7 +18,7 @@
             <button class="thinButton tertiaryButton">Filter</button>
         </div>
         <div class="postsContainer">
-            <?php include __DIR__ . "/components/postPreview.php"; ?>
+            <?php include __DIR__ . "/../post/postPreview.php"; ?>
         </div>
     </div>
 </section>
@@ -40,9 +41,10 @@
     <section>
         <h2>Recent Online Users</h2>
         <div class="flex recentOnlineUsers">
-            <?php include __DIR__ . "/components/onlineUsers.php"; ?>
-            <?php include __DIR__ . "/components/onlineUsers.php"; ?>
+            <?php include __DIR__ . "/../user/onlineUsers.php"; ?>
+            <?php include __DIR__ . "/../user/onlineUsers.php"; ?>
 
         </div>
     </section>
 </aside>
+</div>

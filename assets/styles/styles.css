@@ -3,19 +3,11 @@
 body {
     font-family: "Inter", sans-serif;
     padding-bottom: 36px;
+    display: block;
+    
 }
 
-.gridBody {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-template-rows: auto;
-    grid-template-areas: 
-        "nav nav nav"
-        "main main aside";
-    gap: 36px;
-}
 nav {
-    grid-area: nav;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,6 +23,15 @@ nav div {
 
 nav .logo {
     width: 60px;
+}
+
+.gridhome {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-rows: auto;
+    grid-template-areas:
+        "main main aside";
+    gap: 36px;
 }
 
 .main {

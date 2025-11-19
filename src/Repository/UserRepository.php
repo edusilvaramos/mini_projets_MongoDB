@@ -32,9 +32,9 @@ final class UserRepository
         return $doc ? $doc->getArrayCopy() : null;
     }
 
-    public function findByUsername(string $username): ?array
+    public function findByuserName(string $userName): ?array
     {
-        $doc = $this->collection->findOne(['userName' => $username]);
+        $doc = $this->collection->findOne(['userName' => $userName]);
         return $doc ? $doc->getArrayCopy() : null;
     }
 
@@ -42,9 +42,9 @@ final class UserRepository
     public function create(array $data): string
     {
         $res = $this->collection->insertOne([
-            'firstname'    => $data['firstname'],
+            'firstName'    => $data['firstName'],
             'lastName'     => $data['lastName'],
-            'userName'     => $data['username'],
+            'userName'     => $data['userName'],
             'email'        => mb_strtolower(trim($data['email'])),
             'passwordHash' => password_hash($data['password'], PASSWORD_DEFAULT),
         ]);
@@ -54,8 +54,9 @@ final class UserRepository
     public function update(string $id, array $data): void
     {
         $set = [
-            'firstname' => $data['firstname'],
+            'firstName' => $data['firstName'],
             'lastName'  => $data['lastName'],
+            'userName'  => $data['userName'],
             'email'     => mb_strtolower(trim($data['email'])),
         ];
         if (!empty($data['password'])) {

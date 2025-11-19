@@ -23,9 +23,11 @@ abstract class BaseController
             throw new \RuntimeException("View not found: $viewFile");
         }
 
-        extract($params, EXTR_SKIP);
+        
         ob_start();
         include $viewFile;
+        $content = ob_get_clean(); 
+
 
 
         include $root . '/view/templates/base.php';
