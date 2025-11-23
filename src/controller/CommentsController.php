@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Repository\CommentsRepository;
+use App\Controller\UserController;
 
 class CommentsController extends BaseController
 {
-     private CommentsRepository $commentRepository;
+    private CommentsRepository $commentRepository;
 
     public function __construct()
     {
@@ -23,22 +24,20 @@ class CommentsController extends BaseController
 
     public function add()
     {
-        if (empty($_SESSION['user'])) {
-            $this->redirect('ctrl=user&action=login');
-        }
+        $secyrity = new UserController();
+        $secyrity->securityUser();
 
-        $comentRepo = new CommentsRepository();
-        $comentRepo->create([
+        $this->commentRepository->create([
             'comment' => $_POST['comment'],
             'userId' => $_SESSION['user']['id'],
             // sperando a impelentacao do post
-            // 'postId' => $_POST['postId']
+            'postId' => $_POST['postId']
         ]);
         // ou pra a pagina do post depois de criada...
         $this->redirect('ctrl=post&action=index');
     }
 
-     public function edit(): void
+    public function edit(): void
     {
         $id = $_POST['id'] ?? '';
 

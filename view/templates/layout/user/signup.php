@@ -1,20 +1,64 @@
-<title>Sign Up | PteroTalk Forum</title>
+<?php $user = $_SESSION['user'] ?? null;?>
 
+<title>Sign Up | PteroTalk Forum</title>
 <img id="backgroundMotif" alt="background motif" src="assets/SVG/background.svg" />
 <section class="main signupLoginForm formSpace">
     <img src="assets/SVG/logo_filled.svg" alt="logo" />
-    <h1>Create your account</h1>
-    <form action="index.php?ctrl=user&action=newUser" method="post">
+    <h1><?= isset($user) ? 'Update your profile' : 'Create your account' ?></h1>
+
+    <?php if (!empty($error)): ?>
+        <div class="alert alert-danger">
+            <?= ($error) ?>
+        </div>  
+    <?php endif; ?>
+
+    <form action="index.php?ctrl=user&action=<?= isset($user) ? 'update' : 'newUser' ?>" method="post">
+        <?php if (isset($user)): ?>
+            <input type="hidden" name="id" value="<?= $user['id'] ?>">
+        <?php endif; ?>
+
         <label for="firstName">First Name</label></br>
-        <input type="text" name="firstName" id="firstName" placeholder="Your name here" /></br>
+        
+        <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            value="<?= isset($user) ? $user['firstName']: '' ?>"
+            placeholder="Your name here" /></br>
+
         <label for="lastName">Last Name</label></br>
-        <input type="text" name="lastName" id="lastName" placeholder="Your last name here" /></br>
-        <label for="userName">userName</label></br>
-        <input type="text" name="userName" id="userName" placeholder="Create a unique userName" /></br>
+        <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            value="<?= isset($user) ?  $user['lastName'] : '' ?>"
+            placeholder="Your last name here" /></br>
+
+        <label for="userName">Username</label></br>
+        <input
+            type="text"
+            name="userName"
+            id="userName"
+            value="<?= isset($user) ?  $user['userName'] : '' ?>"
+            placeholder="Create a unique username" /></br>
+
         <label for="email">Email</label></br>
-        <input type="text" name="email" id="email" placeholder="Your name here" /></br>
-        <label for="password">Password</label></br>
-        <input type="text" name="password" id="password" placeholder="Your name here" /></br>
-        <button class="button primaryButton" id="buttonExtend">Sign up</button></br>
+        <input
+            type="email"
+            name="email"
+            id="email"
+            value="<?= isset($user) ?  $user['email'] : '' ?>"
+            placeholder="Your email here" /></br>
+
+        <label for="passwordHash">Password</label></br>
+        <input
+            type="password"
+            name="passwordHash"
+            id="passwordHash"
+            placeholder="<?= isset($user) ? 'Leave blank to keep current password' : 'Choose a strong password' ?>" /></br>
+
+        <button class="button primaryButton" id="buttonExtend">
+            <?= isset($user) ? 'Update' : 'Sign up' ?>
+        </button></br>
     </form>
 </section>
