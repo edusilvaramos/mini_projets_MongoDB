@@ -1,7 +1,4 @@
 <?php
-// Se ainda não foi feito em outro lugar
-// session_start();
-
 $user = $_SESSION['user'] ?? null;
 ?>
 
