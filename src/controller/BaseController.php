@@ -23,14 +23,12 @@ abstract class BaseController
             throw new \RuntimeException("View not found: $viewFile");
         }
 
-        
         ob_start();
-        include $viewFile;
-        $content = ob_get_clean(); 
-
-
-
+         if (!empty($params)) {
+            extract($params, EXTR_SKIP);
+        }
         include $root . '/view/templates/base.php';
+        include $viewFile;
     }
 
     protected function redirect(string $route, array $query = []): void
