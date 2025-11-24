@@ -32,7 +32,13 @@
                     <a href="index.php?ctrl=user&action=logout" class="logout-link">Logout</a>
                 </div>
             </div>
+            <?php if (($_SESSION['user']['role']) === 'ROLE_ADMIN'): ?>
+                <a href="index.php?ctrl=admin&action=index">
+                    <button class="button secondaryButton">Admin</button>
+                </a>
+            <?php endif; ?>
+
         </div>
     <?php endif; ?>
-    
+
 </nav>

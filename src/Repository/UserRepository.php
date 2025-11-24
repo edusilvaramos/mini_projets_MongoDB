@@ -15,7 +15,7 @@ final class UserRepository
     {
         $this->collection = $connection->selectCollection('user');
     }
-    
+
     private function hydrateUser($doc): User
     {
         $user = new User(
@@ -23,7 +23,10 @@ final class UserRepository
             $doc['lastName'],
             $doc['userName'],
             $doc['email'],
-            $doc['passwordHash'] ?? ''
+            $doc['passwordHash'] ?? '',
+            $doc['role'] ?? 'ROLE_USER',
+            $doc['conectedAt'],
+            $doc['isConnected']
         );
         $user->id = (string) $doc['_id'];
 
@@ -77,6 +80,9 @@ final class UserRepository
             'userName'     => $data['userName'],
             'email'        => mb_strtolower(trim($data['email'])),
             'passwordHash' => password_hash($data['passwordHash'], PASSWORD_DEFAULT),
+            'role'         => $data['role'] ?? 'ROLE_USER',
+            'conectedAt'   => date('d/m/Y H:i'),
+            'isConnected'  => false
         ]);
 
         $insertedId = $res->getInsertedId();
@@ -108,5 +114,38 @@ final class UserRepository
     public function delete(string $id): void
     {
         $this->collection->deleteOne(['_id' => new ObjectId($id)]);
+    }
+    public function updateConnection(string $id, bool $isConnected): void
+    {
+        $set = ['isConnected' => $isConnected,];
+        if ($isConnected) { $set['conectedAt'] = date('d/m/Y H:i');}
+
+        $this->collection->updateOne(
+            ['_id' => new ObjectId($id)],
+            ['$set' => $set]
+        );
+    }
+
+    // make one admin user
+    public function ensureAdminUser(): void
+    {
+        $doc = $this->collection->findOne(['role' => 'ROLE_ADMIN']);
+        if ($doc) {
+            return;
+        }
+
+        $email = 'admin';
+        $password = 'admin';
+
+        $this->collection->insertOne([
+            'firstName'    => 'Admin',
+            'lastName'     => 'User',
+            'userName'     => 'admin',
+            'email'        => mb_strtolower(trim($email)),
+            'passwordHash' => password_hash($password, PASSWORD_DEFAULT),
+            'role'         => 'ROLE_ADMIN',
+            'conectedAt'   => date('d/m/Y H:i'),
+            'isConnected'  => false
+        ]);
     }
 }

@@ -75,12 +75,21 @@ final class UserController extends BaseController
             return;
         }
 
+        $user->isConnected = true;
+        $user->conectedAt = date('d/m/Y H:i');
+        $this->userRepository->updateConnection($user->id, true);
+
+
         $_SESSION['user'] = [
             'id'        => $user->id,
             'firstName' => $user->firstName,
             'lastName'  => $user->lastName,
             'email'     => $user->email,
             'userName'  => $user->userName,
+            'role'      => $user->role,
+            'isConnected' => $user->isConnected,
+            'conectedAt' => $user->conectedAt
+
         ];
 
         // go to home
@@ -89,6 +98,10 @@ final class UserController extends BaseController
 
     public function logout(): void
     {
+        $user = $this->userRepository->findByID($_SESSION['user']['id']);
+        $user->isConnected = false;
+        $this->userRepository->updateConnection($user->id, false);
+
         $this->securityUser();
         unset($_SESSION['user']);
         session_regenerate_id(true);
