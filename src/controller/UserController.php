@@ -58,23 +58,17 @@ final class UserController extends BaseController
 
     public function loginForm(): void
     {
+        $login = (isset($_POST['email']) ? $_POST['email'] : (isset($_POST['userName']) ? $_POST['userName'] : ''));
 
-        $login = $_POST['email']    ?? '';
-        $password = $_POST['passwordHash'] ?? '';
+        $password = isset($_POST['passwordHash']) ? $_POST['passwordHash'] : '';
 
         // email ou userName
         $user = $this->userRepository->findByEmail($login);
         if (!$user) {
             $user = $this->userRepository->findByuserName($login);
         }
-        if (
-            !$user
-            || !password_verify($password, $user->passwordHash)
-        ) {
-            $this->render('user/login', [
-                'error' => 'Email/username ou senha inválidos.',
-                'old'   => ['email' => $login],
-            ]);
+        if (!$user || !password_verify($password, $user->passwordHash)) {
+            $this->render('user/login');
             return;
         }
 
@@ -136,15 +130,15 @@ final class UserController extends BaseController
             $this->render('user/profil', [
                 'user' => $user
             ]);
-        }else {
-              $id = $_SESSION['user']['id'];
-        $user = $this->userRepository->findByID($id);
-        $this->render('user/profil', [
-            'user' => $user
-        ]);
-    }
+        } else {
+            $id = $_SESSION['user']['id'];
+            $user = $this->userRepository->findByID($id);
+            $this->render('user/profil', [
+                'user' => $user
+            ]);
         }
-      
+    }
+
 
     public function edit(): void
     {
