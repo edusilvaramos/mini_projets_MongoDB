@@ -33,7 +33,7 @@
                 </div>
             </div>
             <?php if (($_SESSION['user']['role']) === 'ROLE_ADMIN'): ?>
-                <a href="index.php?ctrl=admin&action=index">
+                <a href="index.php?ctrl=admin&action=userList">
                     <button class="button secondaryButton">Admin</button>
                 </a>
             <?php endif; ?>

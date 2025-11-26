@@ -48,13 +48,14 @@
             value="<?= isset($user) ?  $user->email : '' ?>"
             placeholder="Your email here" /></br>
 
-        <label for="passwordHash">Password</label></br>
-        <input
-            type="password"
-            name="passwordHash"
-            id="passwordHash"
-            placeholder="<?= isset($user) ? 'Leave blank to keep current password' : 'Choose a strong password' ?>" /></br>
-
+        <?php if (!$_SESSION['user']['role'] === 'ROLE_ADMIN'): ?>
+            <label for="passwordHash">Password</label></br>
+            <input
+                type="password"
+                name="passwordHash"
+                id="passwordHash"
+                placeholder="<?= isset($user) ? 'Leave blank to keep current password' : 'Choose a strong password' ?>" /></br>
+        <?php endif; ?>
         <button class="button primaryButton" id="buttonExtend">
             <?= isset($user) ? 'Update' : 'Sign up' ?>
         </button></br>

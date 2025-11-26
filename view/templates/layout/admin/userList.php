@@ -35,10 +35,11 @@
               <td><?= $u->email ?></td>
               <td>
                 <div class="table-actions">
-                   <a
-                    href="index.php?ctrl=user&action=profil&id=<?= $u->id ?>"
+                  <a
+                    href="index.php?ctrl=admin&action=userProfile&id=<?= $u->id ?>"
                     class="button thinButton secondaryButton link-as-button">
-                    Voir
+                    Voir le profil
+
                   </a>
                   <a
                     href="index.php?ctrl=admin&action=adminEdit&id=<?= $u->id ?>"
