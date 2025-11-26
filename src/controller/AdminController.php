@@ -1,5 +1,4 @@
 <?php
-// src/Controller/AdminController.php
 namespace App\Controller;
 
 use App\Connection\Connection;
@@ -18,29 +17,41 @@ class AdminController extends BaseController
         $this->userRepository  = new UserRepository($connection);
     }
 
-    public function index(): void
-    {
-        $users = $this->userRepository->findAllUsers();
-        $selectedUserId = $_GET['userId'] ?? null;
-
-        $topics = [];
-        $nbParticipants = 0;
-
-        if ($selectedUserId) {
-        }
-
-        $this->render('admin/index', [
-            'users'          => $users,
-            'selectedUserId' => $selectedUserId,
-            'topics'         => $topics,
-            'nbParticipants' => $nbParticipants,
-            // add plus de infos 
-        ]);
-    }
-    public function userList(): void
+     public function userList(): void
     {
         $users = $this->userRepository->findAllUsers();
         $this->render('admin/userList', ['users' => $users]);
+    }
+    
+    public function userProfile(): void
+    {
+        // só admin pode entrar aqui
+        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'ROLE_ADMIN') {
+            $this->redirect('ctrl=home&action=index');
+        }
+
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            $this->redirect('ctrl=admin&action=userList');
+        }
+
+        $user = $this->userRepository->findById($id);
+        if (!$user) {
+            $this->redirect('ctrl=admin&action=userList');
+        }
+
+        $globalStats = $this->adminRepository->userGlobalStats($id);
+        $postsStats = $this->adminRepository->userPostsStats($id);
+        // relazer a logica mongo
+        $allPostsStats = $this->adminRepository->postsStats();
+
+        $this->render('admin/userProfile', [
+            'user' => $user,
+            'globalStats' => $globalStats,
+            'postsStats' => $postsStats,
+            'allPostsStats' => $allPostsStats
+        ]);
     }
 
     public function adminDelete(): void
