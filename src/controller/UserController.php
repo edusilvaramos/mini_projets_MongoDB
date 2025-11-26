@@ -14,11 +14,6 @@ final class UserController extends BaseController
     {
         $this->userRepository = new UserRepository($connection);
     }
-    public function index(): void
-    {
-        $users = $this->userRepository->findAllUsers();
-        $this->render('user/userList', ['users' => $users]);
-    }
 
     public function createUser(): void
     {
@@ -45,7 +40,15 @@ final class UserController extends BaseController
         }
 
         $this->userRepository->createUser($data);
-        $this->redirect('ctrl=user&action=login');
+        $id = $_SESSION['user']['id'];
+        if ($id) {
+            $currentUser = $this->userRepository->findByID($id);
+            if ($currentUser->role == 'ROLE_ADMIN') {
+                $this->redirect('ctrl=admin&action=userList');
+            }
+        } else {
+            $this->redirect('ctrl=user&action=profil');
+        }
     }
 
     public function login(): void
@@ -98,18 +101,17 @@ final class UserController extends BaseController
 
     public function logout(): void
     {
-        $user = $this->userRepository->findByID($_SESSION['user']['id']);
-        $user->isConnected = false;
+        $id = $_SESSION['user']['id'];
+        $user = $this->userRepository->findByID($id);
         $this->userRepository->updateConnection($user->id, false);
 
-        $this->securityUser();
         unset($_SESSION['user']);
         session_regenerate_id(true);
 
         $this->redirect('ctrl=home&action=index');
     }
 
-    public function delete(): void
+    public function deleteSelf(): void
     {
         $this->userRepository->delete($_SESSION['user']['id']);
         unset($_SESSION['user']);
@@ -128,18 +130,35 @@ final class UserController extends BaseController
     public function profil(): void
     {
         $this->securityUser();
-        $this->render('user/profil');
+        $idLook = $idLook = isset($_GET['id']) ? $_GET['id'] : null;
+        if ($idLook) {
+            $user = $this->userRepository->findByID($idLook);
+            $this->render('user/profil', [
+                'user' => $user
+            ]);
+        }else {
+              $id = $_SESSION['user']['id'];
+        $user = $this->userRepository->findByID($id);
+        $this->render('user/profil', [
+            'user' => $user
+        ]);
     }
+        }
+      
 
     public function edit(): void
     {
         $this->securityUser();
-        $this->render('user/signup');
+        $id = $_SESSION['user']['id'];
+        $user = $this->userRepository->findByID($id);
+        $this->render('user/signup', [
+            'user' => $user
+        ]);
     }
 
     public function update(): void
     {
-        $id = $_SESSION['user']['id'];
+        $id = $_POST['id'];
 
         $data = [
             'firstName' => trim($_POST['firstName'] ?? ''),
@@ -150,6 +169,12 @@ final class UserController extends BaseController
         ];
 
         $this->userRepository->update($id, $data);
-        $this->redirect('ctrl=user&action=index');
+        $id = $_SESSION['user']['id'];
+        $currentUser = $this->userRepository->findByID($id);
+        if ($currentUser->role == 'ROLE_ADMIN') {
+            $this->redirect('ctrl=admin&action=userList');
+        } else {
+            $this->redirect('ctrl=user&action=profil');
+        }
     }
 }

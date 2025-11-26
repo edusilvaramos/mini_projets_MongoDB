@@ -10,7 +10,7 @@
             <?= ($error) ?>
         </div>  
     <?php endif; ?>
-    <form action="index.php?ctrl=user&action=<?= isset($user) ? 'update' : 'newUser' ?>" method="post">
+    <form action="index.php?ctrl=admin&action=" method="post">
         <?php if (isset($user)): ?>
             <input type="hidden" name="id" value="<?= $user->id ?>">
         <?php endif; ?>

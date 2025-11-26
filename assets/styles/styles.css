@@ -327,3 +327,59 @@ section input {
 .commentContainer {
   margin-left: 36px;
 }
+
+/* page admin */
+
+.admin-page {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.admin-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.simple-table th,
+.simple-table td {
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.simple-table th {
+  background-color: #f5f5f5;
+}
+
+.notice {
+  margin-top: 8px;
+  color: #555;
+}
+
+.notice-error {
+  color: #b00020;
+}
+
+.table-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.link-as-button {
+  text-decoration: none;
+}
