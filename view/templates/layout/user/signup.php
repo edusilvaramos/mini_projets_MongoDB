@@ -1,4 +1,3 @@
-
 <title>Sign Up | PteroTalk Forum</title>
 <img id="backgroundMotif" alt="background motif" src="assets/SVG/background.svg" />
 <section class="main signupLoginForm formSpace">
@@ -8,7 +7,7 @@
     <?php if (!empty($error)): ?>
         <div class="alert alert-danger">
             <?= ($error) ?>
-        </div>  
+        </div>
     <?php endif; ?>
     <form action="index.php?ctrl=user&action=<?= isset($user) ? 'update' : 'newUser' ?>" method="post">
         <?php if (isset($user)): ?>
@@ -16,7 +15,7 @@
         <?php endif; ?>
 
         <label for="firstName">First Name</label></br>
-        
+
         <input
             type="text"
             name="firstName"
@@ -48,7 +47,13 @@
             value="<?= isset($user) ?  $user->email : '' ?>"
             placeholder="Your email here" /></br>
 
-        <?php if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'ROLE_ADMIN'): ?>
+        <?php
+        // show password if: not logged in OR editing own profile
+        $showPassword = !isset($_SESSION['user']) ||
+            !isset($user) ||
+            (isset($user) && $user->id === $_SESSION['user']['id']);
+        if ($showPassword):
+        ?>
             <label for="passwordHash">Password</label></br>
             <input
                 type="password"

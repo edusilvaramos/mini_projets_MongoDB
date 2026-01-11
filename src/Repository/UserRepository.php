@@ -98,9 +98,8 @@ final class UserRepository
             'lastName'  => $data['lastName'],
             'userName'  => $data['userName'],
             'email'     => mb_strtolower(trim($data['email'])),
-            'passwordHash'  => $data['passwordHash'] ?? '',
         ];
-
+        // get new password if not empty
         if (!empty($data['passwordHash'])) {
             $set['passwordHash'] = password_hash($data['passwordHash'], PASSWORD_DEFAULT);
         }
