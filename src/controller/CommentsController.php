@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\CommentsRepository;
 use App\Controller\UserController;
+use App\Connection\Connection;
 
 class CommentsController extends BaseController
 {
@@ -24,14 +25,20 @@ class CommentsController extends BaseController
 
     public function add()
     {
-        $secyrity = new UserController();
+        $connection = new Connection();
+        $secyrity = new UserController($connection);
         $secyrity->securityUser();
 
+        // Obter dados do POST e SESSION
+        $comment = $_POST['comment'] ?? '';
+        $postId = $_POST['postId'] ?? '';
+        $userId = $_SESSION['user']['id'] ?? '';
+
         $this->commentRepository->create([
-            'comment' => $_POST['comment'],
-            'userId' => $_SESSION['user']['id'],
+            'comment' => $comment,
+            'userId' => $userId,
             // sperando a impelentacao do post
-            'postId' => $_POST['postId']
+            'postId' => $postId
         ]);
         // ou pra a pagina do post depois de criada...
         $this->redirect('ctrl=post&action=index');

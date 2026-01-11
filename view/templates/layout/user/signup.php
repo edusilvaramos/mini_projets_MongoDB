@@ -48,7 +48,7 @@
             value="<?= isset($user) ?  $user->email : '' ?>"
             placeholder="Your email here" /></br>
 
-        <?php if (!$_SESSION['user']['role'] === 'ROLE_ADMIN'): ?>
+        <?php if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'ROLE_ADMIN'): ?>
             <label for="passwordHash">Password</label></br>
             <input
                 type="password"
