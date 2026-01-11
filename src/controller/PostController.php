@@ -81,7 +81,7 @@ final class PostController extends BaseController
         $this->redirect('ctrl=user&action=index');
     }
 
-     public function edit(): void
+    public function edit(): void
     {
         $id = $_POST['id'] ?? '';
 

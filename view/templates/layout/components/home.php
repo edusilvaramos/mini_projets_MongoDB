@@ -2,7 +2,9 @@
     <div class="">
         <div class="flex spaceAround latestPosts">
             <h2>Latest Posts</h2>
-            <button class="button secondaryButton">Create Post</button>
+            <a href="index.php?ctrl=post&action=createPostPage">
+                <button class="button secondaryButton">Create Post</button>
+            </a>
         </div>
         <div class="flex spaceAround">
             <div class="flex spaceAround">
@@ -15,8 +17,8 @@
                 </div>
             </div>
             <?php 
-                if ($_GET['order'] === "decroissant"){
-                    echo "<a href='?order=decroissant' class='thinButton tertiaryButton'>Ordre Décroissante</a>";
+                if (isset($_GET['order']) && $_GET['order'] === "croissant"){
+                    echo "<a href='?order=decroissant' class='thinButton tertiaryButton'>Ordre Décoissante</a>";
                 }
                 else  {
                     echo "<a href='?order=croissant' class='thinButton tertiaryButton'>Ordre Croissante</a>";
@@ -42,7 +44,7 @@
     <section>
         <h2>Tags</h2>
         <div class="flex">
-                <?php include __DIR__ . "/components/tags.php"; ?>
+                <?php include __DIR__ . "/tags.php"; ?>
         </div>
     </section>
     <section>

@@ -13,7 +13,7 @@
     <?php include './components/nav.php'?>
     <section class="main">
             <div class="postsContainer">
-            <?php include __DIR__ . "/post.php";?>
+                <?php include __DIR__ . "/post.php";?>
                 <h2>Comments</h2>
                 <div class="postCard">
                     <h3 class="leaveComment">Leave a Comment</h3>

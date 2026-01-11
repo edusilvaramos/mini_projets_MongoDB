@@ -15,7 +15,7 @@
                 <label for="email">Email</label></br>
                 <input type="text" name="email" id="email" placeholder="Your name here"  /></br>
                 <label for="password">Password</label></br>
-                <input type="text" name="password" id="password" placeholder="Your name here"  /></br>
+                <input type="password" name="password" id="password" placeholder="Your name here"  /></br>
                 <button class="button primaryButton" id="buttonExtend">Sign up</button></br>
         </form>
     </section>
