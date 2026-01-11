@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "675200000000000000000001"
+  },
+  "firstName": "admin",
+  "lastName": "admin",
+  "userName": "admin",
+  "email": "admin@forum.test",
+  "passwordHash": "$2y$12$T6QtJUxpliiCMvD38BZv5.pDbGJgvo/9V602KMDu7dYR7IQQ1mP5O",
+  "role": "ROLE_ADMIN",
+  "conectedAt": "11/01/2026 16:39",
+  "isConnected": true
+},
+{
+  "_id": {
+    "$oid": "675200000000000000000002"
+  },
+  "firstName": "Mod",
+  "lastName": "Erator",
+  "userName": "moderator",
+  "email": "moderator@forum.test",
+  "passwordHash": "$2y$12$tWzamEiN3UPHqw.vVpKuAeY1dK44mjOen879damhiV4C2wPDuQ/Dy",
+  "role": "ROLE_MODERATOR",
+  "conectedAt": null,
+  "isConnected": false
+},
+{
+  "_id": {
+    "$oid": "675200000000000000000003"
+  },
+  "firstName": "Eduardo",
+  "lastName": "Ramos",
+  "userName": "edward",
+  "email": "edward@forum.test",
+  "passwordHash": "$2y$12$VMAVCefsdiOyE8FiB.Sxv.y6TWWmr11kpsKUk.qzbmqnlOy0B6uzK",
+  "role": "ROLE_USER",
+  "conectedAt": null,
+  "isConnected": false
+},
+{
+  "_id": {
+    "$oid": "675200000000000000000004"
+  },
+  "firstName": "Alice",
+  "lastName": "Doe",
+  "userName": "alice",
+  "email": "alice@forum.test",
+  "passwordHash": "$2y$12$oiERxmJmMJzUa/Ru.aqMK.yU6.7c9CP1jFKCzsP4V3H1jGkWbhz9i",
+  "role": "ROLE_USER",
+  "conectedAt": null,
+  "isConnected": false
+},
+{
+  "_id": {
+    "$oid": "675200000000000000000005"
+  },
+  "firstName": "Bob",
+  "lastName": "Smith",
+  "userName": "bob",
+  "email": "bob@forum.test",
+  "passwordHash": "$2y$12$trDpYw7zeSOrgnPwcQV6MezMpco9LOF9eBSGzBNyPB4K9LmJcjOZG",
+  "role": "ROLE_USER",
+  "conectedAt": null,
+  "isConnected": false
+},
+{
+  "_id": {
+    "$oid": "675200000000000000000006"
+  },
+  "firstName": "Carol",
+  "lastName": "Jones",
+  "userName": "carol",
+  "email": "carol@forum.test",
+  "passwordHash": "$2y$12$.YODx/kXr2KaH2BVWIfrR.T1dp/i3snFPnWqttEA8561Gtj8fHQ2G",
+  "role": "ROLE_USER",
+  "conectedAt": null,
+  "isConnected": false
+},
+{
+  "_id": {
+    "$oid": "675200000000000000000007"
+  },
+  "firstName": "Guest",
+  "lastName": "User",
+  "userName": "guest",
+  "email": "guest@forum.test",
+  "passwordHash": "$2y$12$FIjRfOi889kAGfaY.yrm1OU5o9W31FV7t.3Hwq9o9RNodIseVsnoK",
+  "role": "ROLE_USER",
+  "conectedAt": null,
+  "isConnected": false
+}]
