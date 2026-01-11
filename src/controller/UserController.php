@@ -8,6 +8,10 @@ use App\Model\User;
 
 final class UserController extends BaseController
 {
+    // add constants by sonarqube recommendation
+    private const TEMPLATE_SIGNUP = 'user/signup';
+    private const REDIRECT_HOME = 'ctrl=home&action=index';
+
     private UserRepository $userRepository;
 
     public function __construct(Connection $connection)
@@ -17,7 +21,7 @@ final class UserController extends BaseController
 
     public function createUser(): void
     {
-        $this->render('user/signup');
+        $this->render(self::TEMPLATE_SIGNUP);
     }
 
     public function newUser(): void
@@ -33,7 +37,7 @@ final class UserController extends BaseController
 
         // look if email or userName already exists
         if ($this->userRepository->findByEmail($data['email']) || $this->userRepository->findByuserName($data['userName'])) {
-            $this->render('user/signup', [
+            $this->render(self::TEMPLATE_SIGNUP, [
                 'error' => 'Email/user name already exists.',
             ]);
             return;
@@ -90,14 +94,14 @@ final class UserController extends BaseController
         ];
 
         // go to home
-        $this->redirect('ctrl=home&action=index');
+        $this->redirect(self::REDIRECT_HOME);
     }
 
     public function logout(): void
     {
         $id = $_SESSION['user']['id'] ?? null;
         if (!$id) {
-            $this->redirect('ctrl=home&action=index');
+            $this->redirect(self::REDIRECT_HOME);
             return;
         }
         $user = $this->userRepository->findByID($id);
@@ -106,7 +110,7 @@ final class UserController extends BaseController
         unset($_SESSION['user']);
         session_regenerate_id(true);
 
-        $this->redirect('ctrl=home&action=index');
+        $this->redirect(self::REDIRECT_HOME);
     }
 
     public function deleteSelf(): void
@@ -117,7 +121,7 @@ final class UserController extends BaseController
         }
         unset($_SESSION['user']);
         session_regenerate_id(true);
-        $this->redirect('ctrl=home&action=index');
+        $this->redirect(self::REDIRECT_HOME);
     }
 
     // to evite user without login 
@@ -160,7 +164,7 @@ final class UserController extends BaseController
             return;
         }
         $user = $this->userRepository->findByID($id);
-        $this->render('user/signup', [
+        $this->render(self::TEMPLATE_SIGNUP, [
             'user' => $user
         ]);
     }
