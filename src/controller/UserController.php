@@ -40,7 +40,7 @@ final class UserController extends BaseController
         }
 
         $this->userRepository->createUser($data);
-        $id = $_SESSION['user']['id'];
+        $id = $_SESSION['user']['id'] ?? null;
         if ($id) {
             $currentUser = $this->userRepository->findByID($id);
             if ($currentUser->role == 'ROLE_ADMIN') {
@@ -58,9 +58,9 @@ final class UserController extends BaseController
 
     public function loginForm(): void
     {
-        $login = (isset($_POST['email']) ? $_POST['email'] : (isset($_POST['userName']) ? $_POST['userName'] : ''));
+        $login = $_POST['email'] ?? $_POST['userName'] ?? '';
 
-        $password = isset($_POST['passwordHash']) ? $_POST['passwordHash'] : '';
+        $password = $_POST['passwordHash'] ?? '';
 
         // email ou userName
         $user = $this->userRepository->findByEmail($login);
@@ -95,7 +95,11 @@ final class UserController extends BaseController
 
     public function logout(): void
     {
-        $id = $_SESSION['user']['id'];
+        $id = $_SESSION['user']['id'] ?? null;
+        if (!$id) {
+            $this->redirect('ctrl=home&action=index');
+            return;
+        }
         $user = $this->userRepository->findByID($id);
         $this->userRepository->updateConnection($user->id, false);
 
@@ -107,7 +111,10 @@ final class UserController extends BaseController
 
     public function deleteSelf(): void
     {
-        $this->userRepository->delete($_SESSION['user']['id']);
+        $id = $_SESSION['user']['id'] ?? null;
+        if ($id) {
+            $this->userRepository->delete($id);
+        }
         unset($_SESSION['user']);
         session_regenerate_id(true);
         $this->redirect('ctrl=home&action=index');
@@ -131,7 +138,11 @@ final class UserController extends BaseController
                 'user' => $user
             ]);
         } else {
-            $id = $_SESSION['user']['id'];
+            $id = $_SESSION['user']['id'] ?? null;
+            if (!$id) {
+                $this->redirect('ctrl=user&action=login');
+                return;
+            }
             $user = $this->userRepository->findByID($id);
             $this->render('user/profil', [
                 'user' => $user
@@ -143,7 +154,11 @@ final class UserController extends BaseController
     public function edit(): void
     {
         $this->securityUser();
-        $id = $_SESSION['user']['id'];
+        $id = $_SESSION['user']['id'] ?? null;
+        if (!$id) {
+            $this->redirect('ctrl=user&action=login');
+            return;
+        }
         $user = $this->userRepository->findByID($id);
         $this->render('user/signup', [
             'user' => $user
@@ -152,7 +167,11 @@ final class UserController extends BaseController
 
     public function update(): void
     {
-        $id = $_POST['id'];
+        $id = $_POST['id'] ?? null;
+        if (!$id) {
+            $this->redirect('ctrl=user&action=profil');
+            return;
+        }
 
         $data = [
             'firstName' => trim($_POST['firstName'] ?? ''),
@@ -163,8 +182,12 @@ final class UserController extends BaseController
         ];
 
         $this->userRepository->update($id, $data);
-        $id = $_SESSION['user']['id'];
-        $currentUser = $this->userRepository->findByID($id);
+        $currentUserId = $_SESSION['user']['id'] ?? null;
+        if (!$currentUserId) {
+            $this->redirect('ctrl=user&action=login');
+            return;
+        }
+        $currentUser = $this->userRepository->findByID($currentUserId);
         if ($currentUser->role == 'ROLE_ADMIN') {
             $this->redirect('ctrl=admin&action=userList');
         } else {
