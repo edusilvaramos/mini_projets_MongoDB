@@ -1,3 +1,4 @@
+<body class="gridBody">
 <section class="main">
     <div class="">
         <div class="flex spaceAround latestPosts">
@@ -64,3 +65,4 @@
         </div>
     </section>
 </aside>
+</body>

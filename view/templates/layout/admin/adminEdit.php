@@ -1,3 +1,4 @@
+
 <title>Sign Up | PteroTalk Forum</title>
 <img id="backgroundMotif" alt="background motif" src="assets/SVG/background.svg" />
 <section class="main signupLoginForm formSpace">
@@ -7,15 +8,15 @@
     <?php if (!empty($error)): ?>
         <div class="alert alert-danger">
             <?= ($error) ?>
-        </div>
+        </div>  
     <?php endif; ?>
-    <form action="index.php?ctrl=user&action=<?= isset($user) ? 'update' : 'newUser' ?>" method="post">
+    <form action="index.php?ctrl=admin&action=" method="post">
         <?php if (isset($user)): ?>
             <input type="hidden" name="id" value="<?= $user->id ?>">
         <?php endif; ?>
 
         <label for="firstName">First Name</label></br>
-
+        
         <input
             type="text"
             name="firstName"
@@ -47,20 +48,13 @@
             value="<?= isset($user) ?  $user->email : '' ?>"
             placeholder="Your email here" /></br>
 
-        <?php
-        // show password if: not logged in OR editing own profile
-        $showPassword = !isset($_SESSION['user']) ||
-            !isset($user) ||
-            (isset($user) && $user->id === $_SESSION['user']['id']);
-        if ($showPassword):
-        ?>
-            <label for="passwordHash">Password</label></br>
-            <input
-                type="password"
-                name="passwordHash"
-                id="passwordHash"
-                placeholder="<?= isset($user) ? 'Leave blank to keep current password' : 'Choose a strong password' ?>" /></br>
-        <?php endif; ?>
+        <label for="passwordHash">Password</label></br>
+        <input
+            type="password"
+            name="passwordHash"
+            id="passwordHash"
+            placeholder="<?= isset($user) ? 'Leave blank to keep current password' : 'Choose a strong password' ?>" /></br>
+
         <button class="button primaryButton" id="buttonExtend">
             <?= isset($user) ? 'Update' : 'Sign up' ?>
         </button></br>

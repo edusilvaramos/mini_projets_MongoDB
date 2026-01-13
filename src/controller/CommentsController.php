@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Repository\CommentsRepository;
+use App\Controller\UserController;
+use App\Connection\Connection;
 
 class CommentsController extends BaseController
 {
-     private CommentsRepository $commentRepository;
+    private CommentsRepository $commentRepository;
 
     public function __construct()
     {
@@ -23,17 +25,20 @@ class CommentsController extends BaseController
 
     public function add()
     {
-        if (empty($_SESSION['user'])) {
-            $this->redirect('ctrl=user&action=login');
-        }
+        $connection = new Connection();
+        $secyrity = new UserController($connection);
+        $secyrity->securityUser();
 
-        $comentRepo = new CommentsRepository();
-        $comentRepo->create([
-            'title' => $_POST['title'],
-            'content' => $_POST['content'],
-            'userId' => $_SESSION['user']['id'],
+        // Obter dados do POST e SESSION
+        $comment = $_POST['comment'] ?? '';
+        $postId = $_POST['postId'] ?? '';
+        $userId = $_SESSION['user']['id'] ?? '';
+
+        $this->commentRepository->create([
+            'comment' => $comment,
+            'userId' => $userId,
             // sperando a impelentacao do post
-            // 'postId' => $_POST['postId']
+            'postId' => $postId
         ]);
         // ou pra a pagina do post depois de criada...
         $this->redirect('ctrl=post&action=index');
@@ -44,8 +49,7 @@ class CommentsController extends BaseController
         $id = $_POST['id'] ?? '';
 
         $data = [
-            'title' => trim($_POST['title'] ?? ''),
-            'content' => trim($_POST['content'] ?? ''),
+            'comment' => trim($_POST['comment'] ?? ''),
         ];
         $this->commentRepository->update($id, $data);
         $this->redirect('ctrl=user&action=index');
@@ -54,7 +58,6 @@ class CommentsController extends BaseController
     // sow time, ex: 5 days ago, 7 months ago
 
     // editar
-    
     // delete comment onli author or admin
     public function delete(): void
     {

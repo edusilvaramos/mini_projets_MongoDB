@@ -58,3 +58,8 @@ taches:
    // post 
    // comment
    // like. 
+
+
+topic == post da coleção posts.
+Category = tipo de topic / seção em que o topic está.
+Tags = palavras-chave livres, várias por topic, para busca e filtro.

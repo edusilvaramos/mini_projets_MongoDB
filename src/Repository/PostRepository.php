@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Connection\Connection;
 use MongoDB\BSON\ObjectId;
 use \MongoDB\Collection as Collection;
+use App\Model\Post;
 
 final class PostRepository
 {
@@ -16,9 +17,9 @@ final class PostRepository
      */
     private Collection $collection;
 
-    public function __construct()
+    public function __construct(Connection $connection)
     {
-        $this->collection = (new Connection())->selectCollection('post');
+        $this->collection = $connection->selectCollection('post');
         $this->collection->createIndex(['authorId' => 1, 'createdAt' => -1]);
     }
 
@@ -44,12 +45,15 @@ final class PostRepository
         $res = $this->collection->insertOne([
             'title' => $data['title'],
             'content' => $data['content'],
+            'category' => $data['category'],
             'authorId' => new ObjectId($data['authorId']),
-            'createdAt' => new UTCDateTime(),
+            'createdAt' => date('d/m/Y H:i'),
+            'isPublished' => true,
             'likes' => 0,
             'views' => 0,
             'commentsCounter' => 0,
-            //falta as tags
+
+            //falta as tags e fazer rascunho
         ]);
         return (string)$res->getInsertedId();
     }

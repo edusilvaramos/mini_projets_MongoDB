@@ -6,19 +6,19 @@ package "MongoDB/mini_projets_MongoDB" {
 
     class User {
         - id: int
-        - firstname: string
+        - firstName: string
         - lastName: string
         - email: string
         - password: string
         - isActive: boolean
         ---
         + setId()
-        + setFirstname()
+        + setfirstName()
         + setLastName()
         + setEmail()
         + setPassword()
         + getId()
-        + getFirstName()
+        + getfirstName()
         + getLastName()
         + getEmail()
         + getPassword()

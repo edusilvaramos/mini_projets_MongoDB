@@ -5,68 +5,146 @@ namespace App\Repository;
 use App\Connection\Connection;
 use MongoDB\BSON\ObjectId;
 use \MongoDB\Collection as Collection;
+use App\Model\User;
 
 final class UserRepository
 {
     private Collection $collection;
 
-    public function __construct()
+    public function __construct(Connection $connection)
     {
-        $this->collection = (new Connection())->selectCollection('user');
+        $this->collection = $connection->selectCollection('user');
     }
 
-    public function all(): array
+    private function hydrateUser($doc): User
     {
-        return $this->collection->find([])->toArray();
+        $user = new User(
+            $doc['firstName'] ?? '',
+            $doc['lastName'] ?? '',
+            $doc['userName'] ?? '',
+            $doc['email'] ?? '',
+            $doc['passwordHash'] ?? '',
+            $doc['role'] ?? 'ROLE_USER',
+            $doc['conectedAt'] ?? null,
+            $doc['isConnected'] ?? false,
+        );
+        $user->id = (string) $doc['_id'];
+
+        return $user;
     }
 
-    public function find(string $id): ?array
+    public function findAllUsers(): array
+    {
+        $users = $this->collection->find([]);
+        $userList = [];
+        // cada user no mongo e um objeto do tipo user
+        foreach ($users as $doc) {
+            $userList[] = $this->hydrateUser($doc);
+        }
+
+        return $userList;
+    }
+
+    public function findByID(string $id): ?User
     {
         $doc = $this->collection->findOne(['_id' => new ObjectId($id)]);
-        return $doc ? $doc->getArrayCopy() : null;
+        if (!$doc) {
+            return null;
+        }
+        return $this->hydrateUser($doc);
     }
 
-    public function findByEmail(string $email): ?array
+    public function findByEmail(string $email): ?User
     {
         $doc = $this->collection->findOne(['email' => mb_strtolower($email)]);
-        return $doc ? $doc->getArrayCopy() : null;
+        if (!$doc) {
+            return null;
+        }
+        return $this->hydrateUser($doc);
     }
 
-    public function findByUsername(string $username): ?array
+    public function findByuserName(string $userName): ?User
     {
-        $doc = $this->collection->findOne(['userName' => $username]);
-        return $doc ? $doc->getArrayCopy() : null;
+        $doc = $this->collection->findOne(['userName' => $userName]);
+        if (!$doc) {
+            return null;
+        }
+        return $this->hydrateUser($doc);
     }
 
-
-    public function create(array $data): string
+    public function createUser(array $data): User
     {
         $res = $this->collection->insertOne([
-            'firstname'    => $data['firstname'],
+            'firstName'    => $data['firstName'],
             'lastName'     => $data['lastName'],
-            'userName'     => $data['username'],
-            'isActive'     => false,
+            'userName'     => $data['userName'],
             'email'        => mb_strtolower(trim($data['email'])),
-            'passwordHash' => password_hash($data['password'], PASSWORD_DEFAULT),
+            'passwordHash' => password_hash(trim((string)$data['passwordHash']), PASSWORD_DEFAULT),
+            'role'         => $data['role'] ?? 'ROLE_USER',
+            'conectedAt'   => date('d/m/Y H:i'),
+            'isConnected'  => false
         ]);
-        return (string)$res->getInsertedId();
+
+        $insertedId = $res->getInsertedId();
+        $doc = $this->collection->findOne(['_id' => $insertedId]);
+
+        return $this->hydrateUser($doc);
     }
 
     public function update(string $id, array $data): void
     {
         $set = [
-            'firstname' => $data['firstname'],
+            'firstName' => $data['firstName'],
             'lastName'  => $data['lastName'],
+            'userName'  => $data['userName'],
             'email'     => mb_strtolower(trim($data['email'])),
         ];
-        if (!empty($data['password'])) {
-            $set['passwordHash'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        // get new password if not empty
+        if (!empty($data['passwordHash'])) {
+            $set['passwordHash'] = password_hash($data['passwordHash'], PASSWORD_DEFAULT);
         }
-        $this->collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $set]);
+
+        $this->collection->updateOne(
+            ['_id' => new ObjectId($id)],
+            ['$set' => $set]
+        );
     }
 
     public function delete(string $id): void
     {
         $this->collection->deleteOne(['_id' => new ObjectId($id)]);
+    }
+    public function updateConnection(string $id, bool $isConnected): void
+    {
+        $set = ['isConnected' => $isConnected,];
+        if ($isConnected) { $set['conectedAt'] = date('d/m/Y H:i');}
+
+        $this->collection->updateOne(
+            ['_id' => new ObjectId($id)],
+            ['$set' => $set]
+        );
+    }
+
+    // make one admin user
+    public function ensureAdminUser(): void
+    {
+        $doc = $this->collection->findOne(['role' => 'ROLE_ADMIN']);
+        if ($doc) {
+            return;
+        }
+
+        $email = 'admin';
+        $password = 'admin';
+
+        $this->collection->insertOne([
+            'firstName'    => 'Admin',
+            'lastName'     => 'User',
+            'userName'     => 'admin',
+            'email'        => mb_strtolower(trim($email)),
+            'passwordHash' => password_hash($password, PASSWORD_DEFAULT),
+            'role'         => 'ROLE_ADMIN',
+            'conectedAt'   => date('d/m/Y H:i'),
+            'isConnected'  => false
+        ]);
     }
 }

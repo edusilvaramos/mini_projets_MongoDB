@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
+use Dba\Connection;
 
 final class PostController extends BaseController
 {
@@ -23,9 +24,9 @@ final class PostController extends BaseController
      */
     private PostRepository $postRepository;
 
-    public function __construct()
+    public function __construct($connection)
     {
-        $this->postRepository = new PostRepository();
+        $this->postRepository = new PostRepository($connection);
         if (empty($_SESSION['user'])) {
             $this->redirect('ctrl=user&action=login');
         }
@@ -63,15 +64,38 @@ final class PostController extends BaseController
         }
         $this->render('post/createPostPage');
     }
+
+    public function readPost($postID): void
+    {
+        $id = $postID;
+        if (!$id) {
+            $this->redirect('ctrl=user&action=login');
+            return;
+        }
+
+        $post = $this->postRepository->find($id);
+        
+        if (!$post) {
+            $this->redirect('ctrl=user&action=signup');
+            return;
+        }
+
+        $this->render('post/readPost', [
+            'post' => $post,
+        ]);
+    }
     
     public function add(): void
     {
         $data = [
             'title' => trim($_POST['title'] ?? ''),
             'content'  => trim($_POST['content'] ?? ''),
+            'category' => trim($_POST['category'] ?? ''),
             'authorId'  => $_SESSION['user']['id'],
         ];
-        $this->postRepository->create($data);
+        $postID = $this->postRepository->create($data);
+        $this->readPost($postID);
+        exit;
     }
 
     public function delete(): void
