@@ -1,0 +1,176 @@
+[{
+  "_id": {
+    "$oid": "696770070da21378cc07ccd2"
+  },
+  "id": 1,
+  "name": "Inscription",
+  "description": "Création de compte utilisateur",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccd3"
+  },
+  "id": 2,
+  "name": "Connexion",
+  "description": "Connexion par e-mail ou username",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccd4"
+  },
+  "id": 3,
+  "name": "Déconnexion",
+  "description": "Fermeture de session",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccd5"
+  },
+  "id": 4,
+  "name": "Profil personnel",
+  "description": "Consultation du profil",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Fonctionnalités personnelles"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccd6"
+  },
+  "id": 5,
+  "name": "Profil utilisateur (admin)",
+  "description": "Consultation d'autres profils",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Fonctionnalités personnelles"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccd7"
+  },
+  "id": 6,
+  "name": "Modification du profil",
+  "description": "Édition des informations",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Fonctionnalités personnelles"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccd8"
+  },
+  "id": 7,
+  "name": "Suppression du compte",
+  "description": "Suppression du compte personnel",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Fonctionnalités personnelles"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccd9"
+  },
+  "id": 8,
+  "name": "Authentification",
+  "description": "Gestion sessions et des accès",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccda"
+  },
+  "id": 9,
+  "name": "Liste des utilisateurs",
+  "description": "Affichage de tous les utilisateurs",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Fonctionnalités personnelles"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccdb"
+  },
+  "id": 10,
+  "name": "Modification utilisateur(admin)",
+  "description": "Modifier un utilisateur",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Fonctionnalités personnelles"
+},
+{
+  "_id": {
+    "$oid": "696770070da21378cc07ccdc"
+  },
+  "id": 11,
+  "name": "Suppression utilisateur(admin)",
+  "description": "Supprimer un utilisateur",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Fonctionnalités personnelles"
+},
+{
+  "_id": {
+    "$oid": "696774515002dc33fb0c6b32"
+  },
+  "id": 14,
+  "name": "Statistiques globales",
+  "description": "montrez les chiffres",
+  "author": "Eduardo",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": {
+    "$oid": "6967746ef7b9d7ab6c01d583"
+  },
+  "id": 15,
+  "name": "affichages",
+  "description": "affichages différents de la même page",
+  "author": "-",
+  "status": "Non développée",
+  "category": "Attendues dans le sujet -Pour les plus avancés"
+},
+{
+  "_id": {
+    "$oid": "696774a65002dc33fb0c6b33"
+  },
+  "id": 16,
+  "name": "Statistiques posts par utilisateur",
+  "description": "Analyse par utilisateur - Vu la complexité des requêtes, celles-ci ont été créées et testées dans MongoDB Compass, puis implémentées dans le repository PHP.",
+  "author": "Eduardo",
+  "status": "Partielle",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": {
+    "$oid": "69677f4d0da21378cc07cce0"
+  },
+  "id": 17,
+  "name": "Statistiques par utilisateur",
+  "description": "Analyse global par utilisateur -  aussi créées et testées dans MongoDB Compass",
+  "author": "Eduardo",
+  "category": "expected_not_developed",
+  "status": "Partielle"
+},
+{
+  "_id": {
+    "$oid": "696781260ac495d0c70dc602"
+  },
+  "id": 18,
+  "name": "Ajouter une fonctionnalité",
+  "description": "Page dédiée au professeur",
+  "author": "Eduardo et Henrique",
+  "category": "personal",
+  "status": "Finalisée"
+}]

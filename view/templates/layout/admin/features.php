@@ -58,7 +58,7 @@
     </thead>
     <tbody>
       <?php foreach ($features as $feature): ?>
-        <tr>
+        <tr <?php if ($feature['name'] === 'Ajouter une fonctionnalité') echo 'style="background-color: #e0e0e0;"'; ?>>
           <td><?= $feature['id'] ?></td>
           <td><?= htmlspecialchars($feature['name']) ?></td>
           <td><?= htmlspecialchars($feature['description']) ?></td>
