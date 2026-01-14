@@ -1,0 +1,53 @@
+MINI-PROJET MongoDB – FORUM
+Binôme : Eduardo Ramos / Henrique Aragão
+Sujet choisi : Forum
+Architecture : MVC
+Base de données : MongoDB
+===============================================================================================
+ATTENDUES DANS LE SUJET
+- Inscription
+- Connexion
+- Déconnexion
+- Authentification
+- Création de sujets (topics)
+- Commentaires / réponses
+- Consultation des fils de discussion
+- Statistiques globales
+- Statistiques posts par utilisateur
+- Affichages différents de la même page
+
+--------------------------------------------------
+
+FONCTIONNALITÉS PERSONNELLES
+- Profil personnel
+- Profil utilisateur (admin)
+- Modification du profil
+- Suppression du compte
+- Liste des utilisateurs
+- Modification utilisateur (admin)
+- Suppression utilisateur (admin)
+- Panneau d’administration
+- Ajouter une fonctionnalité
+
+--------------------------------------------------
+
+NIVEAU DE FINALISATION DES FONCTIONNALITÉS
+- Inscription : Finalisée
+- Connexion : Finalisée
+- Déconnexion : Finalisée
+- Authentification : Finalisée
+- Création de sujets : Finalisée
+- Commentaires / réponses : Finalisée
+- Consultation des fils de discussion : Finalisée
+- Statistiques globales : Finalisée
+- Statistiques posts par utilisateur : Partielle
+- Affichages différents de la même page : Non développée
+- Profil personnel : Finalisée
+- Profil utilisateur (admin) : Finalisée
+- Modification du profil : Finalisée
+- Suppression du compte : Finalisée
+- Liste des utilisateurs : Finalisée
+- Modification utilisateur (admin) : Finalisée
+- Suppression utilisateur (admin) : Finalisée
+- Panneau d’administration : Finalisée
+- Ajouter une fonctionnalité : Finalisée
