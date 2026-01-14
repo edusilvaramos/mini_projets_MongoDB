@@ -4,23 +4,31 @@ namespace App\Controller;
 use App\Connection\Connection;
 use App\Repository\AdminRepository;
 use App\Repository\UserRepository;
+use App\Repository\FeaturesRepository;
 
 class AdminController extends BaseController
 {
     private AdminRepository $adminRepository;
     private UserRepository $userRepository;
+    private FeaturesRepository $featuresRepository;
 
     public function __construct()
     {
         $connection = new Connection();
         $this->adminRepository = new AdminRepository($connection);
         $this->userRepository  = new UserRepository($connection);
+        $this->featuresRepository = new FeaturesRepository($connection);
     }
 
      public function userList(): void
     {
         $users = $this->userRepository->findAllUsers();
-        $this->render('admin/userList', ['users' => $users]);
+        $globalStats = $this->adminRepository->getGlobalStats();
+        
+        $this->render('admin/userList', [
+            'users' => $users,
+            'globalStats' => $globalStats
+        ]);
     }
     
     public function userProfile(): void
@@ -43,14 +51,12 @@ class AdminController extends BaseController
 
         $globalStats = $this->adminRepository->userGlobalStats($id);
         $postsStats = $this->adminRepository->userPostsStats($id);
-        // relazer a logica mongo
-        $allPostsStats = $this->adminRepository->postsStats();
-
+    
+        
         $this->render('admin/userProfile', [
             'user' => $user,
             'globalStats' => $globalStats,
             'postsStats' => $postsStats,
-            'allPostsStats' => $allPostsStats
         ]);
     }
 
@@ -97,5 +103,46 @@ class AdminController extends BaseController
 
         $this->userRepository->update($id, $data);
         $this->redirect('ctrl=admin&action=userList');
+    }
+
+    // features management for admin (prof)
+    public function features(): void
+    {        
+        $features = $this->featuresRepository->findAll();
+
+        $this->render('admin/features', ['features' => $features]);
+    }
+
+    public function featureCreate(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->redirect('ctrl=admin&action=features');
+        }
+
+        $data = [
+            'name' => trim($_POST['name'] ?? ''),
+            'description' => trim($_POST['description'] ?? ''),
+            'author' => trim($_POST['author'] ?? 'Eduardo'),
+            'category' => $_POST['category'] ?? '',
+            'status' => $_POST['status'] ?? 'Non développée',
+        ];
+
+        $this->featuresRepository->create($data);
+        $this->redirect('ctrl=admin&action=features');
+    }
+
+    public function featureDelete(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->redirect('ctrl=admin&action=features');
+        }
+
+        $id = (int)($_POST['id'] ?? 0);
+        
+        if ($id > 0) {
+            $this->featuresRepository->delete($id);
+        }
+
+        $this->redirect('ctrl=admin&action=features');
     }
 }

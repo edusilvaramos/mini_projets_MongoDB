@@ -5,11 +5,19 @@
     <div class="admin-actions">
       <h1 class="admin-title">Utilisateurs</h1>
 
-      <a
-        href="index.php?ctrl=user&action=createUser"
-        class="button secondaryButton link-as-button">
-        Créer un utilisateur
-      </a>
+      <div style="display: flex; gap: 1rem;">
+        <a
+          href="index.php?ctrl=user&action=createUser"
+          class="button secondaryButton link-as-button">
+          Créer un utilisateur
+        </a>
+        <a
+          href="index.php?ctrl=admin&action=features"
+          class="button secondaryButton link-as-button"
+          style="background: #474747; color: white;">
+          Fonctionnalités du projet
+        </a>
+      </div>
     </div>
 
     <?php if (empty($users)): ?>
@@ -66,6 +74,37 @@
 
     <?php endif; ?>
 
+    
+    <div class="global-stats" style="margin-top: 2rem; padding: 1.5rem; background: #f5f5f5; border-radius: 8px;">
+      <h2 >Statistiques globales</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div  >
+           <div>
+            <?= $globalStats['totalUsers'] ?? 0 ?>
+          </div>
+           <div>Utilisateurs</div>
+        </div>
+        <div  >
+           <div>
+            <?= $globalStats['totalPosts'] ?? 0 ?>
+          </div>
+           <div >Posts</div>
+        </div>
+        <div  >
+           <div>
+            <?= $globalStats['totalComments'] ?? 0 ?>
+          </div>
+           <div >Commentaires</div>
+        </div>
+        <div  >
+           <div>
+            <?= $globalStats['totalLikes'] ?? 0 ?>
+          </div>
+           <div >Likes</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 <?php else: ?>
@@ -73,5 +112,6 @@
   <div class="admin-page">
     <p class="notice notice-error">You need permissions to see this page.</p>
   </div>
+  
 
 <?php endif; ?>
