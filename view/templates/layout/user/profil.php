@@ -7,7 +7,7 @@
                 <?= htmlspecialchars($user->firstName . ' ' . $user->lastName) ?>
             </p>
             <p><strong>Username:</strong>
-                <?= $user->userName ?>
+                <?= $user->username ?>
             </p>
             <p><strong>Email:</strong>
                 <?= $user->email ?>
