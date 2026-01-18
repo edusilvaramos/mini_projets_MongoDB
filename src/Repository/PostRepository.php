@@ -119,12 +119,6 @@ final class PostRepository
         return $results;
     }
 
-    //Methode de Filtrage
-    public function findByTag() 
-    {
-
-    }
-
     //Incrementation 
     public function incrementValue($id, $field)
     {

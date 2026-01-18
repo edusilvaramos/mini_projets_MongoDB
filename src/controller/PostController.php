@@ -88,7 +88,7 @@ final class PostController extends BaseController
             'content'  => trim($_POST['content'] ?? ''),
             'category' => trim($_POST['category'] ?? ''),
             'authorId'  => $_SESSION['user']['id'],
-            'tags' => $_POST['tags'] ?? [],
+            'category' => $_POST['category'] ?? [],
         ];
         if ($data['title'] === '' || $data['content'] === '') {
             $this->redirect('/posts/create');
@@ -175,20 +175,20 @@ final class PostController extends BaseController
         $sort = $_GET['sort'] ?? 'recent';
         $order = $_GET['order'] ?? 'descending';
         $direction = ($order === 'ascending') ? 1 : -1;
-        $tag = $_GET['tag'] ?? 'all';
+        $category = $_GET['category'] ?? 'all';
 
         switch ($sort) {
             case 'recent':
-                $posts = $this->postRepository->sortBy('createdAt', $direction, $tag);
+                $posts = $this->postRepository->sortBy('createdAt', $direction, $category);
                 break;
             case 'liked':
-                $posts = $this->postRepository->sortBy('likes', $direction, $tag);
+                $posts = $this->postRepository->sortBy('likes', $direction, $category);
                 break;
             case 'views':
-                $posts = $this->postRepository->sortBy('views', $direction, $tag);
+                $posts = $this->postRepository->sortBy('views', $direction, $category);
                 break;
             case 'comments':
-                $posts = $this->postRepository->sortBy('commentsCounter', $direction, $tag);
+                $posts = $this->postRepository->sortBy('commentsCounter', $direction, $category);
                 break;
             default:
                 $posts = $this->postRepository->all();
@@ -198,7 +198,7 @@ final class PostController extends BaseController
             'posts' => $posts,
             'sort'  => $sort,
             'order' => $order,
-            'tag' => $tag,
+            'category' => $category,
         ]);
     }
     

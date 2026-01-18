@@ -14,14 +14,6 @@ class HomeController extends BaseController
     }
     public function index(): void
     {
-        $tag = $_GET['tag'] ?? null;
-
-        if ($tag) {
-            $posts = $this->postRepository->findByTag($tag);
-        } else {
-            $posts = $this->postRepository->sortBy('createdAt', -1);
-        }
-
-        $this->redirect('ctrl=post&action=listPosts&sort=recent&order=descending&tag=all');
+        $this->redirect('ctrl=post&action=listPosts&sort=recent&order=descending&category=all');
     }
 }

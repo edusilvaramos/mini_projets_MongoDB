@@ -16,13 +16,13 @@
                 <div class="flex spaceAround">
                     <span>Sort by</span>
                     <div class="sortingOptions">
-                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=recent&order=<?= $currentOrder ?>&tag=<?= $tag ?>">Newest</a>
-                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=views&order=<?= $currentOrder ?>&tag=<?= $tag ?>">Trending</a>
-                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=liked&order=<?= $currentOrder ?>&tag=<?= $tag ?>">Most Liked</a>
-                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=comments&order=<?= $currentOrder ?>&tag=<?= $tag ?>">Most Commented</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=recent&order=<?= $currentOrder ?>&category=<?= $category ?>">Newest</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=views&order=<?= $currentOrder ?>&category=<?= $category ?>">Trending</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=liked&order=<?= $currentOrder ?>&category=<?= $category ?>">Most Liked</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=comments&order=<?= $currentOrder ?>&category=<?= $category ?>">Most Commented</a>
                     </div>
                 </div>
-                <a href="index.php?ctrl=post&action=listPosts&sort=<?= $sort ?>&order=<?= $nextOrder ?>&tag=<?= $tag ?>" class="thinButton tertiaryButton">
+                <a href="index.php?ctrl=post&action=listPosts&sort=<?= $sort ?>&order=<?= $nextOrder ?>&category=<?= $category ?>" class="thinButton tertiaryButton">
                     <?= ucfirst($currentOrder); ?> Order
                 </a>
 
@@ -45,12 +45,12 @@
         <section>
             <h2>Categories</h2>
             <div class="flex">
-                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=announcement">Announcement</a>
-                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=backend">Backend</a>
-                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=frontend">Frontend</a>
-                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=offtopic">Off topic</a>
-                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=devops">Devops</a>
-                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=feedback">Feedback</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&category=announcement">Announcement</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&category=backend">Backend</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&category=frontend">Frontend</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&category=offtopic">Off topic</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&category=devops">Devops</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&category=feedback">Feedback</a>
             </div>
         </section>
         <section>
