@@ -3,50 +3,56 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use App\Connection\Connection;
+use App\Model\User;
 
 final class UserController extends BaseController
 {
+    // add constants by sonarqube recommendation
+    private const TEMPLATE_SIGNUP = 'user/signup';
+    private const REDIRECT_HOME = 'ctrl=home&action=index';
+
     private UserRepository $userRepository;
 
-    public function __construct()
+    public function __construct(Connection $connection)
     {
-        $this->userRepository = new UserRepository();
-    }
-
-    public function index(): void
-    {
-        $users = $this->userRepository->all();
-        $this->render('user/userList', ['users' => $users]);
+        $this->userRepository = new UserRepository($connection);
     }
 
     public function createUser(): void
     {
-        if (isset($_SESSION['user'])) {
-            $this->redirect('ctrl=home&action=index');
-        }
-        $this->render('user/signup');
+        $this->render(self::TEMPLATE_SIGNUP);
     }
 
     public function newUser(): void
     {
+
         $data = [
-            'firstname' => trim($_POST['firstname'] ?? ''),
+            'firstName' => trim($_POST['firstName'] ?? ''),
             'lastName'  => trim($_POST['lastName'] ?? ''),
-            'userName'  => trim($_POST['username'] ?? ''),
+            'username'  => trim($_POST['username'] ?? ''),
             'email' => trim($_POST['email'] ?? ''),
-            'password'  => $_POST['password'] ?? '',
+            'passwordHash'  => $_POST['passwordHash'] ?? '',
         ];
 
-        // create message if email or username already exists or return to form
-        if ($this->userRepository->findByEmail($data['email']) || $this->userRepository->findByUsername($data['userName'])) {
-            $this->render('user/newUser', [
-                'error' => 'Email already exists.',
+        // look if email or Username already exists
+        if ($this->userRepository->findByEmail($data['email']) || $this->userRepository->findByUsername($data['username'])) {
+            $this->render(self::TEMPLATE_SIGNUP, [
+                'error' => 'Email/user name already exists.',
             ]);
             return;
         }
 
-        $this->userRepository->create($data);
-        $this->redirect('ctrl=user&action=login');
+        $this->userRepository->createUser($data);
+        $id = $_SESSION['user']['id'] ?? null;
+        if ($id) {
+            $currentUser = $this->userRepository->findByID($id);
+            if ($currentUser->role == 'ROLE_ADMIN') {
+                $this->redirect('ctrl=admin&action=userList');
+            }
+        } else {
+            $this->redirect('ctrl=user&action=profil');
+        }
     }
 
     public function login(): void
@@ -56,97 +62,140 @@ final class UserController extends BaseController
 
     public function loginForm(): void
     {
+        $login = $_POST['email'] ?? $_POST['username'] ?? '';
 
-        if (isset($_SESSION['user'])) {
-            $this->redirect('ctrl=home&action=index');
-        }
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+        $password = $_POST['passwordHash'] ?? '';
 
-        // email or user name 
-        $user = $this->userRepository->findByEmail($email);
-
+        // email ou username
+        $user = $this->userRepository->findByEmail($login);
         if (!$user) {
-            $user = $this->userRepository->findByUsername($email);
+            $user = $this->userRepository->findByUsername($login);
         }
-
-        // if no user or password is wrong
-        if (!$user || !password_verify($password, $user['passwordHash'])) {
-            $this->render('/login', [
-                'error' => 'Email or password is not valid.',
-                'old'   => ['email' => $email],
-            ]);
+        if (!$user || !password_verify($password, $user->passwordHash)) {
+            $this->render('user/login');
             return;
         }
 
-        // guarda infos básicas na sessão
+        $user->isConnected = true;
+        $user->conectedAt = date('d/m/Y H:i');
+        $this->userRepository->updateConnection($user->id, true);
+
+
         $_SESSION['user'] = [
-            'id'        => (string) $user['_id'],
-            'firstname' => $user['firstname'],
-            'email'     => $user['email'],
-            'username'  => $user['userName'],
-            'isActive'  => true,
+            'id'        => $user->id,
+            'firstName' => $user->firstName,
+            'lastName'  => $user->lastName,
+            'email'     => $user->email,
+            'username'  => $user->username,
+            'role'      => $user->role,
+            'isConnected' => $user->isConnected,
+            'conectedAt' => $user->conectedAt
+
         ];
 
-        // manda pra home ou lista de posts ou new post
-        $this->redirect('ctrl=home&action=index');
+        // go to home
+        $this->redirect(self::REDIRECT_HOME);
     }
-
-
 
     public function logout(): void
     {
-        $this->securityUser();
-        unset($_SESSION['user']);
-        session_regenerate_id(true); // segurança
-
-        $this->redirect('ctrl=home&action=index');
-    }
-
-
-    public function edit(): void
-    {
-        $this->securityUser();
-        $id = $_GET['id'] ?? '';
-        $user = $this->userRepository->find($id);
-        if (!$user) {
-            http_response_code(404);
-            echo 'user not found';
+        $id = $_SESSION['user']['id'] ?? null;
+        if (!$id) {
+            $this->redirect(self::REDIRECT_HOME);
             return;
         }
-        $this->render('user/edit', ['user' => $user]);
+        $user = $this->userRepository->findByID($id);
+        $this->userRepository->updateConnection($user->id, false);
+
+        unset($_SESSION['user']);
+        session_regenerate_id(true);
+
+        $this->redirect(self::REDIRECT_HOME);
     }
 
-    public function update(): void
+    public function deleteSelf(): void
     {
-        $this->securityUser();
-        $id = $_POST['id'] ?? '';
-
-        $data = [
-            'firstname' => trim($_POST['firstname'] ?? ''),
-            'lastName'  => trim($_POST['lastName'] ?? ''),
-            'userName'  => trim($_POST['username'] ?? ''),
-            'email'     => trim($_POST['email'] ?? ''),
-            'password'  => $_POST['password'] ?? '',
-        ];
-
-        $this->userRepository->update($id, $data);
-        $this->redirect('ctrl=user&action=index');
-    }
-
-    public function delete(): void
-    {
-        $this->securityUser();
-        $id = $_GET['id'] ?? ($_POST['id'] ?? '');
-        $this->userRepository->delete($id);
-        $this->redirect('ctrl=user&action=index');
+        $id = $_SESSION['user']['id'] ?? null;
+        if ($id) {
+            $this->userRepository->delete($id);
+        }
+        unset($_SESSION['user']);
+        session_regenerate_id(true);
+        $this->redirect(self::REDIRECT_HOME);
     }
 
     // to evite user without login 
     public function securityUser(): void
     {
         if (!isset($_SESSION['user'])) {
-            $this->redirect('ctrl=home&action=login');
+            $this->redirect('ctrl=user&action=login');
+        }
+    }
+
+    public function profil(): void
+    {
+        $this->securityUser();
+        $idLook = $idLook = isset($_GET['id']) ? $_GET['id'] : null;
+        if ($idLook) {
+            $user = $this->userRepository->findByID($idLook);
+            $this->render('user/profil', [
+                'user' => $user
+            ]);
+        } else {
+            $id = $_SESSION['user']['id'] ?? null;
+            if (!$id) {
+                $this->redirect('ctrl=user&action=login');
+                return;
+            }
+            $user = $this->userRepository->findByID($id);
+            $this->render('user/profil', [
+                'user' => $user
+            ]);
+        }
+    }
+
+
+    public function edit(): void
+    {
+        $this->securityUser();
+        $id = $_SESSION['user']['id'] ?? null;
+        if (!$id) {
+            $this->redirect('ctrl=user&action=login');
+            return;
+        }
+        $user = $this->userRepository->findByID($id);
+        $this->render(self::TEMPLATE_SIGNUP, [
+            'user' => $user
+        ]);
+    }
+
+    public function update(): void
+    {
+        $id = $_POST['id'] ?? null;
+        if (!$id) {
+            $this->redirect('ctrl=user&action=profil');
+            return;
+        }
+
+        $data = [
+            'firstName' => trim($_POST['firstName'] ?? ''),
+            'lastName'  => trim($_POST['lastName'] ?? ''),
+            'username'  => trim($_POST['username'] ?? ''),
+            'email'     => trim($_POST['email'] ?? ''),
+            'passwordHash'  => $_POST['passwordHash'] ?? '',
+        ];
+
+        $this->userRepository->update($id, $data);
+        $currentUserId = $_SESSION['user']['id'] ?? null;
+        if (!$currentUserId) {
+            $this->redirect('ctrl=user&action=login');
+            return;
+        }
+        $currentUser = $this->userRepository->findByID($currentUserId);
+        if ($currentUser->role == 'ROLE_ADMIN') {
+            $this->redirect('ctrl=admin&action=userList');
+        } else {
+            $this->redirect('ctrl=user&action=profil');
         }
     }
 }

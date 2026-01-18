@@ -7,7 +7,7 @@ class User
     public ?string $id = null;
     public string $firstName;
     public string $lastName;
-    public string $userName;
+    public string $username;
     public string $email;
     public string $passwordHash;
     public string $role;
@@ -17,7 +17,7 @@ class User
     public function __construct(
         string $firstName,
         string $lastName,
-        string $userName,
+        string $username,
         string $email,
         string $passwordHash,
         string $role = "ROLE_USER",
@@ -26,7 +26,7 @@ class User
     ) {
         $this->firstName   = $firstName;
         $this->lastName    = $lastName;
-        $this->userName    = $userName;
+        $this->username    = $username;
         $this->email       = $email;
         $this->passwordHash = $passwordHash;
         $this->role        = $role;

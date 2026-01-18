@@ -19,14 +19,14 @@ final class UserRepository
     private function hydrateUser($doc): User
     {
         $user = new User(
-            $doc['firstName'] ?? '',
-            $doc['lastName'] ?? '',
-            $doc['userName'] ?? '',
-            $doc['email'] ?? '',
+            $doc['firstName'],
+            $doc['lastName'],
+            $doc['username'],
+            $doc['email'],
             $doc['passwordHash'] ?? '',
             $doc['role'] ?? 'ROLE_USER',
-            $doc['conectedAt'] ?? null,
-            $doc['isConnected'] ?? false,
+            $doc['conectedAt'],
+            $doc['isConnected']
         );
         $user->id = (string) $doc['_id'];
 
@@ -63,9 +63,9 @@ final class UserRepository
         return $this->hydrateUser($doc);
     }
 
-    public function findByuserName(string $userName): ?User
+    public function findByUsername(string $username): ?User
     {
-        $doc = $this->collection->findOne(['userName' => $userName]);
+        $doc = $this->collection->findOne(['username' => $username]);
         if (!$doc) {
             return null;
         }
@@ -77,9 +77,9 @@ final class UserRepository
         $res = $this->collection->insertOne([
             'firstName'    => $data['firstName'],
             'lastName'     => $data['lastName'],
-            'userName'     => $data['userName'],
+            'username'     => $data['username'],
             'email'        => mb_strtolower(trim($data['email'])),
-            'passwordHash' => password_hash(trim((string)$data['passwordHash']), PASSWORD_DEFAULT),
+            'passwordHash' => password_hash($data['passwordHash'], PASSWORD_DEFAULT),
             'role'         => $data['role'] ?? 'ROLE_USER',
             'conectedAt'   => date('d/m/Y H:i'),
             'isConnected'  => false
@@ -96,7 +96,7 @@ final class UserRepository
         $set = [
             'firstName' => $data['firstName'],
             'lastName'  => $data['lastName'],
-            'userName'  => $data['userName'],
+            'username'  => $data['username'],
             'email'     => mb_strtolower(trim($data['email'])),
         ];
         // get new password if not empty
@@ -139,7 +139,7 @@ final class UserRepository
         $this->collection->insertOne([
             'firstName'    => 'Admin',
             'lastName'     => 'User',
-            'userName'     => 'admin',
+            'username'     => 'admin',
             'email'        => mb_strtolower(trim($email)),
             'passwordHash' => password_hash($password, PASSWORD_DEFAULT),
             'role'         => 'ROLE_ADMIN',

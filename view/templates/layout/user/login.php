@@ -3,7 +3,7 @@
     <section class="main signupLoginForm">
         <img src="assets/SVG/logo_filled.svg" alt="logo" />
         <h1>Login into your account</h1>
-        <form action="/login" method="post">
+        <form action="index.php?ctrl=user&action=loginForm" method="post">
             <label for="email">Username or Email</label></br>
             <input type="text" name="email" id="username" placeholder="Your username or email here" /></br>
             <label for="lastName">Password</label></br>
