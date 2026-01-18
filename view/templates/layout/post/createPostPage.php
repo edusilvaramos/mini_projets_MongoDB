@@ -9,7 +9,11 @@
         <section>
             <h2>Your Posts</h2>
             <div class="postsContainer">
-            <?php include __DIR__ . "/yourPosts.php";?>
+            <?php 
+                foreach ($userPosts as $userPost) {
+                    include __DIR__ . "/yourPosts.php";
+                }
+            ?>
             </div>
         </section>
         <section>

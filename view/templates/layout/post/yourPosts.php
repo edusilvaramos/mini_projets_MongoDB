@@ -1,25 +1,23 @@
 <div class="postCard">
     <div class="title">
-        <h3 class="yourPostsTitle">Whats the best beginner- friendly pet...</h3>
+        <a href="index.php?ctrl=post&action=show&id=<?= (string)$userPost['_id'] ?>">
+            <h3 class="yourPostsTitle"><?=$userPost['title']?></h3>
+        </a>
         <div class="flex ">
-            <div class="userProfilePhoto smallUserProfilePhoto">J</div>
-            <span class="datePosted">7 months ago</span>
+            <span class="datePosted"><?= $userPost['createdAt']->toDateTime()->format('d/m/Y') ?></span>
         </div>
     </div>
-    <p class="yourPostsContent">Hi everyone! I’m thinking about getting my first pet, but I live in a small apartment and want to... </p>
+    <p class="yourPostsContent"><?=$userPost['content']?></p>
     <div class="flex flexSpaceBetween">
         <div class="flex postCard__bottom">
             <div class="flex">
                 <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
-                <span>4</span>
+                <span><?= $userPost['likes'] ?></span>
             </div>
             <div class="flex">
                 <object type="image/svg+xml" data="/projet/assets/SVG/comment_outline.svg"></object>
-                <span class="active">5</span>
+                <span class="active"><?= $userPost['commentsCounter'] ?></span>
             </div>
-        </div>
-        <div>
-            <span class="activeStatus">Published ●</span>
         </div>
         
     </div>

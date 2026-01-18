@@ -75,7 +75,11 @@ final class PostController extends BaseController
     public function create(): void
     {
         $this->ensureLoggedIn();
-        $this->render('post/createPostPage');
+
+        $userId = (string) $_SESSION['user']['id'];
+        $userPosts = $this->postRepository->findByAuthor($userId);
+        
+        $this->render('post/createPostPage', ['userPosts' => $userPosts]);
     }
 
     //Aditionner à la base de donnees
