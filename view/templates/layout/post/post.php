@@ -19,7 +19,7 @@
     <div class="flex flexSpaceBetween">
         <div class="flex postCard__bottom">
             <div class="flex">
-                <a href="index.php?ctrl=post&action=likePost&id=<?= $post['_id'] ?>">
+                <a href="index.php?ctrl=post&action=like&id=<?= $post['_id'] ?>">
                     <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
                     <span><?= htmlspecialchars($post["likes"]) ?> Likes</span>
                 </a>

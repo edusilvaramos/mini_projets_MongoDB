@@ -81,20 +81,22 @@ final class PostController extends BaseController
         $this->redirect('/posts/' . $id);
     }
 
-    public function like($id) {
+    public function like() 
+    {
         $this->ensureLoggedIn();
-
+        $id = $_GET['id'] ?? null;
         if (!$id) {
             $this->redirect('ctrl=home&action=index');
             return;
         }
         $this->postRepository->incrementLike($id);
 
-        $this->redirect('/posts/' . $id);
+        $this->redirect('ctrl=post&action=show&id='.$id);
     }
 
-    public function unlike(string $id): void
+    public function unlike(): void
     {
+        $id = $_GET['id'] ?? null;
         $this->ensureLoggedIn();
 
         if (!$id) {
