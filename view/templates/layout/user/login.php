@@ -6,7 +6,7 @@
         <label for="email">Username or Email</label></br>
         <input type="text" name="email" id="email" placeholder="Your username or email here" /></br>
         <label type="text" for="passwordHash">Password</label></br>
-        <input type="text" name="passwordHash" id="passwordHash" placeholder="Type your password" /></br>
+        <input type="password" name="passwordHash" id="passwordHash" placeholder="Type your password" /></br>
         <div>
             <button class="button secondaryButton" action="index.php?ctrl=user&action=createUser"><a href="index.php?ctrl=user&action=createUser">Don't have an account? Create one here </a></button>
 

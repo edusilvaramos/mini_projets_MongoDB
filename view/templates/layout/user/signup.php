@@ -34,9 +34,9 @@
         <label for="userName">Username</label></br>
         <input
             type="text"
-            name="userName"
-            id="userName"
-            value="<?= isset($user) ?  $user->userName : '' ?>"
+            name="username"
+            id="username"
+            value="<?= isset($user) ?  $user->username : '' ?>"
             placeholder="Create a unique username" /></br>
 
         <label for="email">Email</label></br>
