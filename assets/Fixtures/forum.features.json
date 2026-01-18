@@ -157,4 +157,157 @@
   "description": "Page dédiée au professeur",
   "category": "personal",
   "status": "Finalisée"
-}]
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccd3" },
+  "id": 19,
+  "name": "Création de posts",
+  "description": "Permet aux utilisateurs de créer de nouveaux posts avec titre, contenu et métadonnées.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccd4" },
+  "id": 20,
+  "name": "Tri des posts",
+  "description": "Tri des posts par date de création, nombre de likes, de vues et de commentaires.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccd5" },
+  "id": 21,
+  "name": "Ordre de tri",
+  "description": "Possibilité de trier les posts en ordre ascendant ou descendant.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccd6" },
+  "id": 22,
+  "name": "Filtrage par catégorie",
+  "description": "Filtrage des posts selon leur catégorie (tag).",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccd7" },
+  "id": 23,
+  "name": "Ajout de catégories aux posts",
+  "description": "Ajout et gestion de catégories associées aux posts.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccd8" },
+  "id": 24,
+  "name": "Création de commentaires",
+  "description": "Permet aux utilisateurs d’ajouter des commentaires sur les posts.",
+  "status": "Partiel / Bug",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccd9" },
+  "id": 25,
+  "name": "Comptage des commentaires par post",
+  "description": "Affichage du nombre de commentaires associés à chaque post.",
+  "status": "Partiel / Bug",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccda" },
+  "id": 26,
+  "name": "Affichage de la liste des posts",
+  "description": "Affichage paginé de l’ensemble des posts disponibles.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccdb" },
+  "id": 27,
+  "name": "Affichage des posts d’un utilisateur",
+  "description": "Affichage des posts créés par un utilisateur spécifique.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccdc" },
+  "id": 28,
+  "name": "Affichage d’un post individuel",
+  "description": "Affichage détaillé d’un post sur une page dédiée.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccdd" },
+  "id": 29,
+  "name": "Association post-auteur",
+  "description": "Association automatique d’un post à son auteur.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccde" },
+  "id": 30,
+  "name": "Gestion du statut des posts",
+  "description": "Gestion des statuts des posts (publié ou brouillon).",
+  "status": "Partiel",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07ccdf" },
+  "id": 31,
+  "name": "Affichage de la date de création",
+  "description": "Affichage de la date de création de chaque post.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07cce0" },
+  "id": 32,
+  "name": "Comptage des vues",
+  "description": "Enregistrement et affichage du nombre de vues d’un post.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07cce1" },
+  "id": 33,
+  "name": "Incrémentation des vues",
+  "description": "Incrémentation automatique du nombre de vues lors de l’ouverture d’un post.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07cce2" },
+  "id": 34,
+  "name": "Gestion des likes (ajout)",
+  "description": "Ajout d’un like sur un post par un utilisateur.",
+  "status": "Finalisée",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07cce3" },
+  "id": 35,
+  "name": "Gestion des likes (retrait)",
+  "description": "Retrait d’un like précédemment ajouté par un utilisateur.",
+  "status": "Partiel / Bug",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07cce4" },
+  "id": 36,
+  "name": "Comptage global des commentaires",
+  "description": "Synchronisation et affichage du nombre total de commentaires par post.",
+  "status": "Partiel / Bug",
+  "category": "Attendues dans le sujet"
+},
+{
+  "_id": { "$oid": "696770070da21378cc07cce5" },
+  "id": 37,
+  "name": "Suppression et modification d’un post",
+  "description": "Permet à un utilisateur de modifier ou supprimer un post existant, sous réserve des droits d’accès.",
+  "status": "Partiel / Bug",
+  "category": "Attendues dans le sujet"
+}
+]
