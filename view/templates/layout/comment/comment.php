@@ -1,22 +1,19 @@
+<?php
+/*
 <div class="postCard">
     <div class="postCard__top comments">
         <div class="userProfilePhoto">J</div>
         <div class="">
-            <span class="name">John Smith</span></br>
-            <span class="datePosted">12/05/2025</span>
+            <span class="name"><?=  $authorName ?></span></br>
+            <span class="datePosted"><?= date('d-m-Y H:i', $comment['createdAt']['$date']['$numberLong'] / 1000) ?></span>
         </div>
     </div> </br>
-    <h1 class="postTitle">Whats the best beginner- friendly pet...</h1>
-    <p>Hi everyone! I’m thinking about getting my first pet, but I live in a small apartment and want to... </p>
+    <p><?=htmlspecialchars($comment['content'])?></p>
     <div class="flex flexSpaceBetween">
         <div class="flex postCard__bottom">
             <div class="flex">
                 <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
-                <span>4 Likes</span>
-            </div>
-            <div class="flex">
-                <object type="image/svg+xml" data="/projet/assets/SVG/comment_outline.svg"></object>
-                <span class="active">5 Comments</span>
+                <span><?=htmlspecialchars($comment['likes'])?> Likes</span>
             </div>
         </div>
         <div class="flex">
@@ -25,3 +22,5 @@
         </div>
     </div>
 </div>
+*/
+?>

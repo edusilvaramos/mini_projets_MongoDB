@@ -9,19 +9,20 @@ class Comment
     public string $postId;
     public string $userId;
     public string $createdAt;
-    public ?string $updatedAt;
+    public int $likes;
 
     public function __construct(
         string $content,
         string $postId,
         string $userId,
+        int $likes,
         ?string $createdAt = null,
-        ?string $updatedAt = null
+        
     ) {
         $this->content   = $content;
         $this->postId    = $postId;
         $this->userId    = $userId;
+        $this->likes = $likes;
         $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
     }
 }

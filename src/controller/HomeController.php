@@ -19,11 +19,9 @@ class HomeController extends BaseController
         if ($tag) {
             $posts = $this->postRepository->findByTag($tag);
         } else {
-            $posts = $this->postRepository->sortBy('createdAt', -1); // default: recent posts
+            $posts = $this->postRepository->sortBy('createdAt', -1);
         }
 
-        $this->render('components/home', [
-            'posts' => $posts,
-        ]);
+        $this->redirect('ctrl=post&action=listPosts&sort=recent&order=descending&tag=all');
     }
 }

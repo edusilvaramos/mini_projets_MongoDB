@@ -43,9 +43,14 @@
     </section>
     <aside>
         <section>
-            <h2>Tags</h2>
+            <h2>Categoris</h2>
             <div class="flex">
-                    <?php include __DIR__ . "/tags.php"; ?>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=announcement">Announcement</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=backend">Backend</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=frontend">Frontend</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=offtopic">Off topic</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=devops">Devops</a>
+                <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=feedback">Feedback</a>
             </div>
         </section>
         <section>

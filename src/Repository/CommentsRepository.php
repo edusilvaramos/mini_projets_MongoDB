@@ -11,9 +11,9 @@ final class CommentsRepository
 {
     private Collection $collection;
 
-    public function __construct()
+    public function __construct(Connection $connection)
     {
-        $this->collection = (new Connection())->selectCollection('comments');
+        $this->collection = $connection->selectCollection('comments');
         $this->collection->createIndex(['postId' => 1]);
     }
 
@@ -26,6 +26,12 @@ final class CommentsRepository
     {
         $doc = $this->collection->findOne(['_id' => new ObjectId($id)]);
         return $doc ? $doc->getArrayCopy() : null;
+    }
+
+    public function findByPost(string $postId)
+    {
+        $comments = $this->collection->find(['postId' => new ObjectId($postId)])->toArray();;
+        return $comments;
     }
 
     public function userId(string $id): ObjectId
@@ -42,19 +48,24 @@ final class CommentsRepository
         $this->collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $set]);
     }
 
-    public function create(array $data): string
+    public function create(): string
     {
         $res = $this->collection->insertOne([
-
-            "title" => $data['title'],
-            "content" => $data['content'],
+            "content" => $_POST['content'],
             "createdAt" => new UTCDateTime(),
-            "userId" => new ObjectId($data['userId']),
-            "postId" => new ObjectId($data['postId']),
-
+            "userId" => new ObjectId($_POST['userId']),
+            "postId" => new ObjectId($_POST['postId']),
+            'parentId' => isset($_POST['parentId']) ? new ObjectId($_POST['parentId']) : null,
+            'likes' => 0,
         ]);
         return (string)$res->getInsertedId();
     }
+
+    public function like(string $id): void
+    {
+        $this->collection->updateOne(['_id' => new ObjectId($id)], ['$inc' => ['likes' => 1]]);
+    }
+
     // fix somente autor pode deletar ou editar 
     public function delete(string $id): void
     {

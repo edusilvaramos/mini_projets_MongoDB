@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\PostRepository;
+use App\Repository\CommentsRepository;
 use App\Repository\UserRepository;
 use App\Connection\Connection;
 
@@ -23,10 +24,12 @@ final class PostController extends BaseController
         - Implementer si cest un brouillon ou publie
      */
     private PostRepository $postRepository;
+    private CommentsRepository $commentsRepository;
 
     public function __construct($connection)
     {
         $this->postRepository = new PostRepository($connection);
+        $this->commentsRepository = new CommentsRepository($connection);
     }
 
     //Show one post (GET /posts/{id})
@@ -44,14 +47,28 @@ final class PostController extends BaseController
 
         // Post + author
         $post = $this->postRepository->findWithAuthor($id);
-
         if (!$post) {
             $this->redirect('ctrl=home&action=index');
         }
 
+        $recentPosts = $this->postRepository->sortBy('createdAt', -1);
+
+        /*$comments = $this->commentsRepository->findByPost($id);
+        $nestedComments = [];
+        
+        foreach ($comments as $comment) {
+            $parent = $this->oidToString($comment['parentId'] ?? null);
+            $nestedComments[$parent][] = $comment;
+        }*/
+
         $this->render('post/readPost', [
-            'post' => $post
+            'post' => $post,
+            'recentPosts' => $recentPosts
+            //'comments' => $nestedComments
         ]);
+        
+
+
     }
 
     //Page de creation de post
@@ -158,19 +175,20 @@ final class PostController extends BaseController
         $sort = $_GET['sort'] ?? 'recent';
         $order = $_GET['order'] ?? 'descending';
         $direction = ($order === 'ascending') ? 1 : -1;
+        $tag = $_GET['tag'] ?? 'all';
 
         switch ($sort) {
             case 'recent':
-                $posts = $this->postRepository->sortBy('createdAt', $direction);
+                $posts = $this->postRepository->sortBy('createdAt', $direction, $tag);
                 break;
             case 'liked':
-                $posts = $this->postRepository->sortBy('likes', $direction);
+                $posts = $this->postRepository->sortBy('likes', $direction, $$tag);
                 break;
             case 'views':
-                $posts = $this->postRepository->sortBy('views', $direction);
+                $posts = $this->postRepository->sortBy('views', $direction, $tag);
                 break;
             case 'comments':
-                $posts = $this->postRepository->sortBy('commentsCounter', $direction);
+                $posts = $this->postRepository->sortBy('commentsCounter', $direction, $tag);
                 break;
             default:
                 $posts = $this->postRepository->all();
@@ -199,5 +217,15 @@ final class PostController extends BaseController
         if (empty($_SESSION['user'])) {
             $this->redirect('ctrl=user&action=login');
         }
+    }
+
+    function oidToString($value): ?string {
+        if ($value instanceof MongoDB\BSON\ObjectId) {
+            return (string) $value;
+        }
+        if (is_array($value) && isset($value['$oid'])) {
+            return $value['$oid'];
+        }
+        return null;
     }
 }

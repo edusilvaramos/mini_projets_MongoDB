@@ -81,10 +81,23 @@ final class PostRepository
         //aggregation com os commentarios;
     }
    
-    //Methodes de Triage
-    public function sortBy(string $sortingChoice, int $direction = -1)
+    //Methode de Triage et Filtrage
+    public function sortBy(string $sortingChoice, int $direction = -1, string $tag = 'all')
     {
-        $pipeline = [
+        $pipeline = [];
+
+        if ($tag !== 'all') {
+            $pipeline[] = [
+                '$match' => [
+                    'tags' => $tag
+                ]
+            ];
+        }
+
+        $pipeline[] = ['$sort' => [$sortingChoice => $direction]];
+
+
+        $pipeline = array_merge($pipeline, [
             ['$sort' => [$sortingChoice => $direction]],
             [
                 '$lookup' => [
@@ -100,7 +113,7 @@ final class PostRepository
                     'preserveNullAndEmptyArrays' => true
                 ]
             ]
-        ];
+        ]);
         $results = $this->collection->aggregate($pipeline)->toArray();
 
         return $results;

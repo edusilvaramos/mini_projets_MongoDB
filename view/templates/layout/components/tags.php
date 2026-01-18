@@ -8,3 +8,4 @@
 <button class="thinButton tertiaryButton">Culture</button>
 <button class="thinButton tertiaryButton">Tech</button>
 <button class="thinButton tertiaryButton">Arts</button>
+

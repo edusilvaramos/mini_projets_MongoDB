@@ -23,25 +23,23 @@ class CommentsController extends BaseController
         $this->render('comment/formComment');
     }
 
-    public function add()
+    public function create()
     {
         $connection = new Connection();
-        $secyrity = new UserController($connection);
-        $secyrity->securityUser();
+        $security = new UserController($connection);
+        $security->securityUser();
 
-        // Obter dados do POST e SESSION
-        $comment = $_POST['comment'] ?? '';
         $postId = $_POST['postId'] ?? '';
-        $userId = $_SESSION['user']['id'] ?? '';
 
         $this->commentRepository->create([
-            'comment' => $comment,
-            'userId' => $userId,
-            // sperando a impelentacao do post
-            'postId' => $postId
+            'postId' => $postId,
+            'content' => $_POST['content'] ?? '',
+            'userId' => $_SESSION['user']['id'] ?? '',
+            'parentId' => $_POST['parentId'] ?? null
         ]);
-        // ou pra a pagina do post depois de criada...
-        $this->redirect('ctrl=post&action=index');
+
+        $this->redirect("index.php?ctrl=post&action=show&id=$postId");
+
     }
 
     public function edit(): void
