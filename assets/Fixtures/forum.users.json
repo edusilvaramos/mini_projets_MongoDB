@@ -1,16 +1,94 @@
 [
   {
     "_id": {
-      "$oid": "6963af826da322826f0f2772"
+      "$oid": "675200000000000000000002"
     },
-    "firstName": "Admin",
-    "lastName": "User",
-    "username": "admin",
-    "email": "admin",
-    "passwordHash": "$2y$10$pz8Hjm6hBuejmNyeTqyGkexB7MKnUTSzB/gx5ashlD5.UWcNorjQi",
-    "role": "ROLE_ADMIN",
-    "conectedAt": "12/01/2026 21:27",
+    "firstName": "Mod",
+    "lastName": "Erator",
+    "username": "moderator",
+    "email": "moderator@forum.test",
+    "passwordHash": "$2y$12$tWzamEiN3UPHqw.vVpKuAeY1dK44mjOen879damhiV4C2wPDuQ/Dy",
+    "role": "ROLE_MODERATOR",
+    "conectedAt": null,
     "isConnected": false
+  },
+  {
+    "_id": {
+      "$oid": "675200000000000000000003"
+    },
+    "firstName": "Eduardo",
+    "lastName": "Ramos",
+    "username": "edward",
+    "email": "edward@forum.test",
+    "passwordHash": "$2y$12$VMAVCefsdiOyE8FiB.Sxv.y6TWWmr11kpsKUk.qzbmqnlOy0B6uzK",
+    "role": "ROLE_USER",
+    "conectedAt": null,
+    "isConnected": false
+  },
+  {
+    "_id": {
+      "$oid": "675200000000000000000004"
+    },
+    "firstName": "Alice",
+    "lastName": "Doe",
+    "username": "alice",
+    "email": "alice@forum.test",
+    "passwordHash": "$2y$12$oiERxmJmMJzUa/Ru.aqMK.yU6.7c9CP1jFKCzsP4V3H1jGkWbhz9i",
+    "role": "ROLE_USER",
+    "conectedAt": "11/01/2026 17:10",
+    "isConnected": false
+  },
+  {
+    "_id": {
+      "$oid": "675200000000000000000005"
+    },
+    "firstName": "Bob",
+    "lastName": "Smith",
+    "username": "bob",
+    "email": "bob@forum.test",
+    "passwordHash": "$2y$12$trDpYw7zeSOrgnPwcQV6MezMpco9LOF9eBSGzBNyPB4K9LmJcjOZG",
+    "role": "ROLE_USER",
+    "conectedAt": null,
+    "isConnected": false
+  },
+  {
+    "_id": {
+      "$oid": "675200000000000000000006"
+    },
+    "firstName": "Carol",
+    "lastName": "Jones",
+    "username": "carol",
+    "email": "carol@forum.test",
+    "passwordHash": "$2y$12$.YODx/kXr2KaH2BVWIfrR.T1dp/i3snFPnWqttEA8561Gtj8fHQ2G",
+    "role": "ROLE_USER",
+    "conectedAt": null,
+    "isConnected": false
+  },
+  {
+    "_id": {
+      "$oid": "675200000000000000000007"
+    },
+    "firstName": "Guest",
+    "lastName": "User",
+    "username": "guest",
+    "email": "guest@forum.test",
+    "passwordHash": "$2y$12$FIjRfOi889kAGfaY.yrm1OU5o9W31FV7t.3Hwq9o9RNodIseVsnoK",
+    "role": "ROLE_USER",
+    "conectedAt": null,
+    "isConnected": false
+  },
+  {
+    "_id": {
+      "$oid": "6963d79430dffb734d055852"
+    },
+    "firstName": "admin",
+    "lastName": "admin",
+    "username": "admin",
+    "email": "admin@forum.test",
+    "passwordHash": "$2y$10$x/DXdcFG18fBPWmt6boYjuYdyFA3CmF2Wyz2lvBQBTkIPclmw18Wq",
+    "role": "ROLE_ADMIN",
+    "conectedAt": "13/01/2026 18:34",
+    "isConnected": true
   },
   {
     "_id": {"$oid": "64d7e101f1a5c1a1b0000011"},

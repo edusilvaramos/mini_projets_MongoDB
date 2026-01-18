@@ -42,7 +42,6 @@ final class UserController extends BaseController
             ]);
             return;
         }
-
         $this->userRepository->createUser($data);
         $id = $_SESSION['user']['id'] ?? null;
         if ($id) {
