@@ -182,10 +182,6 @@ final class PostController extends BaseController
             'order' => $order
         ]);
     }
-
-
-    
-    
     
 
     public function delete($id): void
@@ -197,10 +193,6 @@ final class PostController extends BaseController
 
         $this->redirect('posts');
     }
-
-    
-
-    
 
     private function ensureLoggedIn(): void
     {
