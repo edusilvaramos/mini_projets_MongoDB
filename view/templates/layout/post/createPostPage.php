@@ -1,9 +1,10 @@
-<body class="gridBody">
-    <section class="main">
+</br>
+<div class="gridhome">
+    <main class="main">
         <div class="">
             <h2>Create Post</h2>
             <?php include __DIR__ . "/createPostForm.php";?>
-    </section>
+    </main>
     <aside>
         <section>
             <h2>Your Posts</h2>
@@ -19,4 +20,4 @@
             </div>
         </section>
     </aside>
-</body>
+</div>

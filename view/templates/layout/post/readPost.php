@@ -2,43 +2,44 @@
 require __DIR__ . '/../comment/comment.php';
 ?>
 
-<body class="gridBody">
-    <section class="main">
-            <div class="postsContainer">
-                <?php include __DIR__ . "/post.php";?>
-                <h2>Comments</h2>
-                <div class="postCard">
-                    <h3 class="leaveComment">Leave a Comment</h3>
-                    <?php include __DIR__ . "/../comment/leaveCommentForm.php";?>
-                </div>
-                <div id="comments" class="commentContainer postsContainer">
-                    <div class="commentContainer">
-                    <?php 
-                        /*.*var_dump(array_keys($comments));
-                        
-                        function renderComments($comments, $usersById, $parentId = null) {
-                            if (!isset($comments[$parentId])) return;
-                    
-                            foreach ($comments[$parentId] as $comment) {
-                                $author = $usersById[$comment['authorId']] ?? ['firstName'=>'Anonymous','lastName'=>''];
-                                $authorName = htmlspecialchars($author['firstName'] . ' ' . $author['lastName']);
-                                $timestamp = dateToTimestamp($comment['createdAt']);
-                    
-                                //$author = $usersById[(string) $comment['userId']];
-                                include __DIR__ . '/../comment/comment.php';
-                            
-                                // recursive call for replies
-                                renderComments($comments, $usersById, oidToString($comment['_id']));
-                            }
-                        }
-
-                        renderComments($nestedComments, $usersById);*/
-                    ?>
-
-                    </div>
-                </div> 
+</br>
+<div class="gridhome">
+    <main class="main">
+        <div class="postsContainer">
+            <?php include __DIR__ . "/post.php";?>
+            <h2>Comments</h2>
+            <div class="postCard">
+                <h3 class="leaveComment">Leave a Comment</h3>
+                <?php include __DIR__ . "/../comment/leaveCommentForm.php";?>
             </div>
-    </section>
+            <div id="comments" class="commentContainer postsContainer">
+                <div class="commentContainer">
+                <?php 
+                    /*.*var_dump(array_keys($comments));
+                    
+                    function renderComments($comments, $usersById, $parentId = null) {
+                        if (!isset($comments[$parentId])) return;
+                
+                        foreach ($comments[$parentId] as $comment) {
+                            $author = $usersById[$comment['authorId']] ?? ['firstName'=>'Anonymous','lastName'=>''];
+                            $authorName = htmlspecialchars($author['firstName'] . ' ' . $author['lastName']);
+                            $timestamp = dateToTimestamp($comment['createdAt']);
+                
+                            //$author = $usersById[(string) $comment['userId']];
+                            include __DIR__ . '/../comment/comment.php';
+                        
+                            // recursive call for replies
+                            renderComments($comments, $usersById, oidToString($comment['_id']));
+                        }
+                    }
+
+                    renderComments($nestedComments, $usersById);*/
+                ?>
+
+                </div>
+            </div> 
+        </div>
+    </main>
     <aside>
         <section>
             <h2>Recent Posts</h2>
@@ -67,10 +68,9 @@ require __DIR__ . '/../comment/comment.php';
             <h2>Recent Online Users</h2>
             <div class="flex recentOnlineUsers">
                 <?php 
-                    include __DIR__ . "/components/onlineUsers.php";
+                    include __DIR__ . "/../user/onlineUsers.php";
                 ?>
             </div>
         </section>
     </aside>
-</body>
-</html>
+</div>

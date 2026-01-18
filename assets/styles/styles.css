@@ -6,6 +6,16 @@ body {
   display: block;
 }
 
+.gridBody {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: auto;
+  grid-template-areas: 
+      "nav nav nav"
+      "main main aside";
+  gap: 36px;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -13,6 +23,7 @@ nav {
   padding: 24px 48px 24px 48px;
   border-bottom: solid #c6c6c6 1px;
   background-color: white;
+  margin-bottom: 32px;
 }
 
 nav div {

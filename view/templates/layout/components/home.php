@@ -2,30 +2,30 @@
     $currentOrder = $order ?? 'descending';
     $nextOrder = ($currentOrder === 'ascending') ? 'descending' : 'ascending';
 ?>
-
-<body class="gridBody">
-    <section class="main">
-        <div class="">
+</br>
+<div class="gridhome">
+    <main class="main">
+        <div>
             <div class="flex spaceAround latestPosts">
                 <h2>Latest Posts</h2>
                 <a class="button secondaryButton" href="index.php?ctrl=post&action=create">
-                   Create Post
+                    Create Post
                 </a>
             </div>
             <div class="flex spaceAround">
                 <div class="flex spaceAround">
                     <span>Sort by</span>
                     <div class="sortingOptions">
-                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=recent&order=<?= $currentOrder ?>">Newest</a>
-                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=views&order=<?= $currentOrder ?>">Trending</a>
-                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=liked&order=<?= $currentOrder ?>">Most Liked</a>
-                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=comments&order=<?= $currentOrder ?>">Most Commented</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=recent&order=<?= $currentOrder ?>&tag=<?= $tag ?>">Newest</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=views&order=<?= $currentOrder ?>&tag=<?= $tag ?>">Trending</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=liked&order=<?= $currentOrder ?>&tag=<?= $tag ?>">Most Liked</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=comments&order=<?= $currentOrder ?>&tag=<?= $tag ?>">Most Commented</a>
                     </div>
                 </div>
-                <a href="index.php?ctrl=post&action=listPosts&sort=<?= $sort ?>&order=<?= $nextOrder ?>" class="thinButton tertiaryButton">
+                <a href="index.php?ctrl=post&action=listPosts&sort=<?= $sort ?>&order=<?= $nextOrder ?>&tag=<?= $tag ?>" class="thinButton tertiaryButton">
                     <?= ucfirst($currentOrder); ?> Order
                 </a>
-    
+
             </div>
             <div class="postsContainer">
                 <?php
@@ -40,10 +40,10 @@
                 ?>
             </div>
         </div>
-    </section>
-    <aside>
+    </main>
+    <aside class="aside">
         <section>
-            <h2>Categoris</h2>
+            <h2>Categories</h2>
             <div class="flex">
                 <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=announcement">Announcement</a>
                 <a class="thinButton tertiaryButton" href="index.php?ctrl=post&action=listPosts&sort=<?= $sort?>&order=<?= $currentOrder ?>&tag=backend">Backend</a>
@@ -66,8 +66,7 @@
                         echo "<p>Aucune personne à voir ici</p>";
                     }
                 ?>
-
             </div>
         </section>
     </aside>
-</body>
+</div>

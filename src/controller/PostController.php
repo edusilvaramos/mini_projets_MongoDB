@@ -182,7 +182,7 @@ final class PostController extends BaseController
                 $posts = $this->postRepository->sortBy('createdAt', $direction, $tag);
                 break;
             case 'liked':
-                $posts = $this->postRepository->sortBy('likes', $direction, $$tag);
+                $posts = $this->postRepository->sortBy('likes', $direction, $tag);
                 break;
             case 'views':
                 $posts = $this->postRepository->sortBy('views', $direction, $tag);
@@ -197,7 +197,8 @@ final class PostController extends BaseController
         $this->render('components/home', [
             'posts' => $posts,
             'sort'  => $sort,
-            'order' => $order
+            'order' => $order,
+            'tag' => $tag,
         ]);
     }
     
