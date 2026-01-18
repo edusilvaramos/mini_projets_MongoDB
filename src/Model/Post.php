@@ -8,12 +8,10 @@ class Post
     public ?string $id = null;
     public string $title;
     public string $content;
-    public string $category;
-    public array $tags;
-    public string $status;
     public string $authorId;
+    public array $category;
+    public string $status;
     public ?string $createdAt;
-    public ?string $updatedAt;
     public int $likes;
     public int $views;
     public int $commentsCounter;
@@ -21,24 +19,21 @@ class Post
     public function __construct(
         string $title,
         string $content,
-        string $category,
         string $authorId,
-        array $tags = [],
+        array $category = [],
+        string $status,
+        ?string $createdAt = null,
         int $likes,
         int $views,
         int $commentsCounter,
-        string $isPublished = true,
-        ?string $createdAt = null,
-        ?string $updatedAt = null
+        
     ) {
         $this->title = $title;
-        $this->content = $content;
-        $this->category = $category;
+        $this->content = $content;  
         $this->authorId = $authorId;
-        $this->tags = $tags;
+        $this->category = $category;
         $this->status = $status;
         $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
         $this->likes = $likes;
         $this->views = $views;
         $this->commentsCounter = $commentsCounter;

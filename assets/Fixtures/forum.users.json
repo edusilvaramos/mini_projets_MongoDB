@@ -1,108 +1,181 @@
 [
-    {
-      "_id": { "$oid": "64d7e101f1a5c1a1b0000011" },
-      "username": "alice123",
-      "email": "alice@example.com",
-      "password": "password1",
-      "createdAt": { "$date": "2025-12-01T08:00:00Z" }
+  {
+    "_id": {
+      "$oid": "6963af826da322826f0f2772"
     },
-    {
-      "_id": { "$oid": "64d7e102f1a5c1a1b0000012" },
-      "username": "bob456",
-      "email": "bob@example.com",
-      "password": "password2",
-      "createdAt": { "$date": "2025-12-02T09:15:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e103f1a5c1a1b0000013" },
-      "username": "charlie789",
-      "email": "charlie@example.com",
-      "password": "password3",
-      "createdAt": { "$date": "2025-12-03T10:30:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e104f1a5c1a1b0000014" },
-      "username": "diana321",
-      "email": "diana@example.com",
-      "password": "password4",
-      "createdAt": { "$date": "2025-12-04T11:45:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e105f1a5c1a1b0000015" },
-      "username": "edward654",
-      "email": "edward@example.com",
-      "password": "password5",
-      "createdAt": { "$date": "2025-12-05T12:00:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e106f1a5c1a1b0000016" },
-      "username": "fiona987",
-      "email": "fiona@example.com",
-      "password": "password6",
-      "createdAt": { "$date": "2025-12-06T13:15:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e107f1a5c1a1b0000017" },
-      "username": "george111",
-      "email": "george@example.com",
-      "password": "password7",
-      "createdAt": { "$date": "2025-12-07T14:30:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e108f1a5c1a1b0000018" },
-      "username": "hannah222",
-      "email": "hannah@example.com",
-      "password": "password8",
-      "createdAt": { "$date": "2025-12-08T15:45:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e109f1a5c1a1b0000019" },
-      "username": "ian333",
-      "email": "ian@example.com",
-      "password": "password9",
-      "createdAt": { "$date": "2025-12-09T16:00:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e10af1a5c1a1b000001a" },
-      "username": "julia444",
-      "email": "julia@example.com",
-      "password": "password10",
-      "createdAt": { "$date": "2025-12-10T17:15:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e10bf1a5c1a1b000001b" },
-      "username": "kevin555",
-      "email": "kevin@example.com",
-      "password": "password11",
-      "createdAt": { "$date": "2025-12-11T18:30:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e10cf1a5c1a1b000001c" },
-      "username": "lisa666",
-      "email": "lisa@example.com",
-      "password": "password12",
-      "createdAt": { "$date": "2025-12-12T19:45:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e10df1a5c1a1b000001d" },
-      "username": "michael777",
-      "email": "michael@example.com",
-      "password": "password13",
-      "createdAt": { "$date": "2025-12-13T20:00:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e10ef1a5c1a1b000001e" },
-      "username": "nina888",
-      "email": "nina@example.com",
-      "password": "password14",
-      "createdAt": { "$date": "2025-12-14T21:15:00Z" }
-    },
-    {
-      "_id": { "$oid": "64d7e10ff1a5c1a1b000001f" },
-      "username": "oliver999",
-      "email": "oliver@example.com",
-      "password": "password15",
-      "createdAt": { "$date": "2025-12-15T22:30:00Z" }
-    }
-  ]
+    "firstName": "Admin",
+    "lastName": "User",
+    "username": "admin",
+    "email": "admin",
+    "passwordHash": "$2y$10$pz8Hjm6hBuejmNyeTqyGkexB7MKnUTSzB/gx5ashlD5.UWcNorjQi",
+    "role": "ROLE_ADMIN",
+    "conectedAt": "12/01/2026 21:27",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e101f1a5c1a1b0000011"},
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "username": "alice123",
+    "email": "alice@example.com",
+    "passwordHash": "password1",
+    "role": "user",
+    "conectedAt": "2025-12-01T08:00:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e102f1a5c1a1b0000012"},
+    "firstName": "Bob",
+    "lastName": "Smith",
+    "username": "bob456",
+    "email": "bob@example.com",
+    "passwordHash": "password2",
+    "role": "user",
+    "conectedAt": "2025-12-02T09:15:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e103f1a5c1a1b0000013"},
+    "firstName": "Charlie",
+    "lastName": "Williams",
+    "username": "charlie789",
+    "email": "charlie@example.com",
+    "passwordHash": "password3",
+    "role": "user",
+    "conectedAt": "2025-12-03T10:30:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e104f1a5c1a1b0000014"},
+    "firstName": "Diana",
+    "lastName": "Brown",
+    "username": "diana321",
+    "email": "diana@example.com",
+    "passwordHash": "password4",
+    "role": "user",
+    "conectedAt": "2025-12-04T11:45:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e105f1a5c1a1b0000015"},
+    "firstName": "Edward",
+    "lastName": "Davis",
+    "username": "edward654",
+    "email": "edward@example.com",
+    "passwordHash": "password5",
+    "role": "user",
+    "conectedAt": "2025-12-05T12:00:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e106f1a5c1a1b0000016"},
+    "firstName": "Fiona",
+    "lastName": "Miller",
+    "username": "fiona987",
+    "email": "fiona@example.com",
+    "passwordHash": "password6",
+    "role": "user",
+    "conectedAt": "2025-12-06T13:15:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e107f1a5c1a1b0000017"},
+    "firstName": "George",
+    "lastName": "Wilson",
+    "username": "george111",
+    "email": "george@example.com",
+    "passwordHash": "password7",
+    "role": "user",
+    "conectedAt": "2025-12-07T14:30:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e108f1a5c1a1b0000018"},
+    "firstName": "Hannah",
+    "lastName": "Moore",
+    "username": "hannah222",
+    "email": "hannah@example.com",
+    "passwordHash": "password8",
+    "role": "user",
+    "conectedAt": "2025-12-08T15:45:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e109f1a5c1a1b0000019"},
+    "firstName": "Ian",
+    "lastName": "Taylor",
+    "username": "ian333",
+    "email": "ian@example.com",
+    "passwordHash": "password9",
+    "role": "user",
+    "conectedAt": "2025-12-09T16:00:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e10af1a5c1a1b000001a"},
+    "firstName": "Julia",
+    "lastName": "Anderson",
+    "username": "julia444",
+    "email": "julia@example.com",
+    "passwordHash": "password10",
+    "role": "user",
+    "conectedAt": "2025-12-10T17:15:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e10bf1a5c1a1b000001b"},
+    "firstName": "Kevin",
+    "lastName": "Thomas",
+    "username": "kevin555",
+    "email": "kevin@example.com",
+    "passwordHash": "password11",
+    "role": "user",
+    "conectedAt": "2025-12-11T18:30:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e10cf1a5c1a1b000001c"},
+    "firstName": "Lisa",
+    "lastName": "Jackson",
+    "username": "lisa666",
+    "email": "lisa@example.com",
+    "passwordHash": "password12",
+    "role": "user",
+    "conectedAt": "2025-12-12T19:45:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e10df1a5c1a1b000001d"},
+    "firstName": "Michael",
+    "lastName": "White",
+    "username": "michael777",
+    "email": "michael@example.com",
+    "passwordHash": "password13",
+    "role": "user",
+    "conectedAt": "2025-12-13T20:00:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e10ef1a5c1a1b000001e"},
+    "firstName": "Nina",
+    "lastName": "Harris",
+    "username": "nina888",
+    "email": "nina@example.com",
+    "passwordHash": "password14",
+    "role": "user",
+    "conectedAt": "2025-12-14T21:15:00Z",
+    "isConnected": false
+  },
+  {
+    "_id": {"$oid": "64d7e10ff1a5c1a1b000001f"},
+    "firstName": "Oliver",
+    "lastName": "Martin",
+    "username": "oliver999",
+    "email": "oliver@example.com",
+    "passwordHash": "password15",
+    "role": "user",
+    "conectedAt": "2025-12-15T22:30:00Z",
+    "isConnected": false
+  }
+]
   

@@ -82,14 +82,14 @@ final class PostRepository
     }
    
     //Methode de Triage et Filtrage
-    public function sortBy(string $sortingChoice, int $direction = -1, string $tag = 'all')
+    public function sortBy(string $sortingChoice, int $direction = -1, string $category = 'all')
     {
         $pipeline = [];
 
-        if ($tag !== 'all') {
+        if ($category !== 'all') {
             $pipeline[] = [
                 '$match' => [
-                    'tags' => $tag
+                    'category' => ['$in' => [$category]]
                 ]
             ];
         }
