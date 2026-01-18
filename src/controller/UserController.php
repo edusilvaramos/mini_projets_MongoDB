@@ -93,7 +93,7 @@ final class UserController extends BaseController
         ];
 
         // go to home
-        $this->redirect(self::REDIRECT_HOME);
+        $this->redirect('index.php?ctrl=home&action=index');
     }
 
     public function logout(): void
