@@ -172,7 +172,7 @@
     "id": 24,
     "name": "Création de commentaires",
     "description": "Permet aux utilisateurs d’ajouter des commentaires sur les posts.",
-    "status": "Partiel / Bug",
+    "status": "Finalisée",
     "category": "Attendues dans le sujet"
   },
   {
@@ -180,7 +180,7 @@
     "id": 25,
     "name": "Comptage des commentaires par post",
     "description": "Affichage du nombre de commentaires associés à chaque post.",
-    "status": "Partiel / Bug",
+    "status": "Finalisée",
     "category": "Attendues dans le sujet"
   },
   {
@@ -268,7 +268,7 @@
     "id": 36,
     "name": "Comptage global des commentaires",
     "description": "Synchronisation et affichage du nombre total de commentaires par post.",
-    "status": "Partiel / Bug",
+    "status": "Finalisée",
     "category": "Attendues dans le sujet"
   },
   {

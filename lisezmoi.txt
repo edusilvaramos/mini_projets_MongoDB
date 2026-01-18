@@ -78,8 +78,8 @@ Posts:
 - Ordre de tri ascendant / descendant : Finalisée
 - Filtrage des posts par tag (catégorie) : Finalisée
 - Ajout de tags (catégorie) aux posts : Finalisée
-- Création de commentaires : Partiel/Bug
-- Comptage des commentaires par post : Partiel/Bug
+- Création de commentaires : Finalisée
+- Comptage des commentaires par post : Finalisée
 - Affichage de la liste des posts : Finalisée
 - Affichage des posts d'un usager : Finalisée
 - Affichage d’un post individuel (page dédiée) : Finalisée
@@ -90,6 +90,6 @@ Posts:
 - Incrémentation automatique des vues lors de l’ouverture d’un post : Finalisée
 - Gestion des likes (ajout) : Finalisée
 - Gestion des likes (retrait) : Partiel/Bug
-- Comptage du nombre de commentaires : Partiel/Bug
+- Comptage du nombre de commentaires : Finalisée
 
 - Suppression et Modification d'un post : Partiel/Bug

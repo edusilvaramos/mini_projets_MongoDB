@@ -61,11 +61,14 @@
                         echo "<p>No posts to see here</p>";
                     }
                     else {
+                        $currentPost = $post;
                         $limit = min(5, count($recentPosts));
                         for ($i = 0; $i < $limit; $i++) {
                             $recentPost = $recentPosts[$i];
+                            $post = $recentPost;
                             include __DIR__ . "/../post/postPreview.php";
                         }
+                        $post = $currentPost;
                     }
                 ?>
             </div>
