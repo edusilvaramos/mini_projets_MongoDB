@@ -3,6 +3,8 @@ Binôme : Eduardo Ramos / Henrique Aragão
 Sujet choisi : Forum
 Architecture : MVC
 Base de données : MongoDB
+
+ps: le ficheir assets/Fixtures/ contient les fixtures de la base de données. Elles on ete crées pour faire le travail de test.
 ===============================================================================================
 ATTENDUES DANS LE SUJET
 - Inscription
@@ -27,7 +29,7 @@ FONCTIONNALITÉS PERSONNELLES
 - Modification utilisateur (admin)
 - Suppression utilisateur (admin)
 - Panneau d’administration
-- Ajouter une fonctionnalité
+- Ajouter une fonctionnalité -> functionnalité dediée au prof**
 
 --------------------------------------------------
 
