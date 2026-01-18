@@ -30,7 +30,7 @@ final class CommentsRepository
 
     public function findByPost(string $postId)
     {
-        $comments = $this->collection->find(['postId' => new ObjectId($postId)])->toArray();;
+        $comments = $this->collection->find(['postId' => new ObjectId($postId)])->toArray();
         return $comments;
     }
 
@@ -48,14 +48,14 @@ final class CommentsRepository
         $this->collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $set]);
     }
 
-    public function create(): string
+    public function create(array $data): string
     {
         $res = $this->collection->insertOne([
-            "content" => $_POST['content'],
+            "content" => $data['content'],
             "createdAt" => new UTCDateTime(),
-            "userId" => new ObjectId($_POST['userId']),
-            "postId" => new ObjectId($_POST['postId']),
-            'parentId' => isset($_POST['parentId']) ? new ObjectId($_POST['parentId']) : null,
+            "userId" => new ObjectId($data['userId']),
+            "postId" => new ObjectId($data['postId']),
+            'parentId' => isset($data['parentId']) && $data['parentId'] ? new ObjectId($data['parentId']) : null,
             'likes' => 0,
         ]);
         return (string)$res->getInsertedId();
@@ -66,7 +66,7 @@ final class CommentsRepository
         $this->collection->updateOne(['_id' => new ObjectId($id)], ['$inc' => ['likes' => 1]]);
     }
 
-    // fix somente autor pode deletar ou editar 
+    // fix somente autor pode deletar ou editar
     public function delete(string $id): void
     {
         $this->collection->deleteOne(['_id' => new ObjectId($id)]);
@@ -74,6 +74,6 @@ final class CommentsRepository
 
     // add get repilies
 
-    // add likes 
+    // add likes
 
 }

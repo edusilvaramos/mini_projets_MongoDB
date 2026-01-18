@@ -1,6 +1,4 @@
-<?php
-require __DIR__ . '/../comment/comment.php';
-?>
+<?php ?>
 
 </br>
 <div class="gridhome">
@@ -14,27 +12,30 @@ require __DIR__ . '/../comment/comment.php';
             </div>
             <div id="comments" class="commentContainer postsContainer">
                 <div class="commentContainer">
-                <?php 
-                    /*.*var_dump(array_keys($comments));
-                    
-                    function renderComments($comments, $usersById, $parentId = null) {
-                        if (!isset($comments[$parentId])) return;
-                
-                        foreach ($comments[$parentId] as $comment) {
-                            $author = $usersById[$comment['authorId']] ?? ['firstName'=>'Anonymous','lastName'=>''];
-                            $authorName = htmlspecialchars($author['firstName'] . ' ' . $author['lastName']);
-                            $timestamp = dateToTimestamp($comment['createdAt']);
-                
-                            //$author = $usersById[(string) $comment['userId']];
-                            include __DIR__ . '/../comment/comment.php';
-                        
-                            // recursive call for replies
-                            renderComments($comments, $usersById, oidToString($comment['_id']));
-                        }
-                    }
-
-                    renderComments($nestedComments, $usersById);*/
-                ?>
+                <?php if (!empty($comments ?? [])) : ?>
+                    <?php foreach ($comments as $comment) : ?>
+                        <?php
+                            $createdAt = $comment['createdAt'] ?? null;
+                            if ($createdAt instanceof MongoDB\BSON\UTCDateTime) {
+                                $createdAt = $createdAt->toDateTime()->format('d-m-Y H:i');
+                            } elseif (is_array($createdAt) && isset($createdAt['$date']['$numberLong'])) {
+                                $createdAt = date('d-m-Y H:i', ((int) $createdAt['$date']['$numberLong']) / 1000);
+                            } else {
+                                $createdAt = '';
+                            }
+                        ?>
+                        <div class="postCard">
+                            <div class="postCard__top comments">
+                                <div class="">
+                                    <span class="datePosted"><?= htmlspecialchars($createdAt) ?></span>
+                                </div>
+                            </div>
+                            <p><?= htmlspecialchars((string) ($comment['content'] ?? '')) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <p>No comments yet.</p>
+                <?php endif; ?>
 
                 </div>
             </div> 
@@ -52,7 +53,7 @@ require __DIR__ . '/../comment/comment.php';
                         $limit = min(5, count($recentPosts));
                         for ($i = 0; $i < $limit; $i++) {
                             $recentPost = $recentPosts[$i];
-                            include __DIR__ . "/../post/postPreview2.php";
+                            include __DIR__ . "/../post/postPreview.php";
                         }
                     }
                 ?>

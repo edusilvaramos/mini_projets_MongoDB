@@ -3,16 +3,21 @@
 namespace App\Controller;
 
 use App\Repository\CommentsRepository;
-use App\Controller\UserController;
 use App\Connection\Connection;
 
 class CommentsController extends BaseController
 {
     private CommentsRepository $commentRepository;
 
-    public function __construct()
+    private static function isValidObjectId(string $value): bool
     {
-        $this->commentRepository = new CommentsRepository();
+        return (bool) preg_match('/^[a-f0-9]{24}$/i', $value);
+    }
+
+    public function __construct(Connection $connection)
+    {
+        parent::__construct($connection);
+        $this->commentRepository = new CommentsRepository($connection);
         if (empty($_SESSION['user'])) {
             $this->redirect('ctrl=user&action=login');
         }
@@ -25,20 +30,33 @@ class CommentsController extends BaseController
 
     public function create()
     {
-        $connection = new Connection();
-        $security = new UserController($connection);
-        $security->securityUser();
+        $postId = trim((string) ($_POST['postId'] ?? ''));
+        $content = trim((string) ($_POST['content'] ?? ''));
+        $userId = (string) ($_SESSION['user']['id'] ?? '');
+        $parentId = isset($_POST['parentId']) ? trim((string) $_POST['parentId']) : null;
 
-        $postId = $_POST['postId'] ?? '';
+        if (!self::isValidObjectId($postId)) {
+            $this->redirect('ctrl=home&action=index');
+        }
 
-        $this->commentRepository->create([
-            'postId' => $postId,
-            'content' => $_POST['content'] ?? '',
-            'userId' => $_SESSION['user']['id'] ?? '',
-            'parentId' => $_POST['parentId'] ?? null
-        ]);
+        if (!self::isValidObjectId($userId)) {
+            $this->redirect('ctrl=user&action=login');
+        }
 
-        $this->redirect("index.php?ctrl=post&action=show&id=$postId");
+        if ($parentId !== null && $parentId !== '' && !self::isValidObjectId($parentId)) {
+            $parentId = null;
+        }
+
+        if ($content !== '') {
+            $this->commentRepository->create([
+                'postId' => $postId,
+                'content' => $content,
+                'userId' => $userId,
+                'parentId' => $parentId,
+            ]);
+        }
+
+        $this->redirect("ctrl=post&action=show&id=$postId");
 
     }
 

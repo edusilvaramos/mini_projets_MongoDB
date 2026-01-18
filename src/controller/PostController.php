@@ -53,18 +53,12 @@ final class PostController extends BaseController
 
         $recentPosts = $this->postRepository->sortBy('createdAt', -1);
 
-        /*$comments = $this->commentsRepository->findByPost($id);
-        $nestedComments = [];
-        
-        foreach ($comments as $comment) {
-            $parent = $this->oidToString($comment['parentId'] ?? null);
-            $nestedComments[$parent][] = $comment;
-        }*/
+        $comments = $this->commentsRepository->findByPost($id);
 
         $this->render('post/readPost', [
             'post' => $post,
-            'recentPosts' => $recentPosts
-            //'comments' => $nestedComments
+            'recentPosts' => $recentPosts,
+            'comments' => $comments,
         ]);
         
 
