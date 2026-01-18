@@ -54,6 +54,31 @@ final class UserRepository
         return $this->hydrateUser($doc);
     }
 
+    /**
+     * @param string[] $ids ObjectId hex strings
+     * @return array<string, User> Map of id => User
+     */
+    public function findManyByIds(array $ids): array
+    {
+        $ids = array_values(array_unique(array_filter($ids, fn ($v) => is_string($v) && $v !== '')));
+        if ($ids === []) {
+            return [];
+        }
+
+        $objectIds = array_map(fn (string $id) => new ObjectId($id), $ids);
+        $cursor = $this->collection->find(['_id' => ['$in' => $objectIds]]);
+
+        $map = [];
+        foreach ($cursor as $doc) {
+            $user = $this->hydrateUser($doc);
+            if ($user->id) {
+                $map[$user->id] = $user;
+            }
+        }
+
+        return $map;
+    }
+
     public function findByEmail(string $email): ?User
     {
         $doc = $this->collection->findOne(['email' => mb_strtolower($email)]);

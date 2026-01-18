@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Repository\CommentsRepository;
+use App\Repository\PostRepository;
 use App\Connection\Connection;
 
 class CommentsController extends BaseController
 {
     private CommentsRepository $commentRepository;
+    private PostRepository $postRepository;
 
     private static function isValidObjectId(string $value): bool
     {
@@ -18,6 +20,7 @@ class CommentsController extends BaseController
     {
         parent::__construct($connection);
         $this->commentRepository = new CommentsRepository($connection);
+        $this->postRepository = new PostRepository($connection);
         if (empty($_SESSION['user'])) {
             $this->redirect('ctrl=user&action=login');
         }
@@ -54,6 +57,8 @@ class CommentsController extends BaseController
                 'userId' => $userId,
                 'parentId' => $parentId,
             ]);
+
+            $this->postRepository->increaseCommentsCounter($postId);
         }
 
         $this->redirect("ctrl=post&action=show&id=$postId");

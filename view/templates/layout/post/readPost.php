@@ -23,10 +23,21 @@
                             } else {
                                 $createdAt = '';
                             }
+
+                            $uid = $comment['userId'] ?? null;
+                            if ($uid instanceof MongoDB\BSON\ObjectId) {
+                                $uid = (string) $uid;
+                            } elseif (is_array($uid) && isset($uid['$oid'])) {
+                                $uid = (string) $uid['$oid'];
+                            } else {
+                                $uid = (string) $uid;
+                            }
+                            $username = isset($usersById[$uid]) ? ($usersById[$uid]->username ?? 'Anonymous') : 'Anonymous';
                         ?>
                         <div class="postCard">
                             <div class="postCard__top comments">
                                 <div class="">
+                                    <span class="name"><?= htmlspecialchars((string) $username) ?></span></br>
                                     <span class="datePosted"><?= htmlspecialchars($createdAt) ?></span>
                                 </div>
                             </div>

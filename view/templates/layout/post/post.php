@@ -26,7 +26,7 @@
             </div>
             <div class="flex">
                 <object type="image/svg+xml" data="/projet/assets/SVG/comment_outline.svg"></object>
-                <span class="active"><?= htmlspecialchars($post["commentsCounter"]) ?> Comments</span>
+                <span class="active"><?= htmlspecialchars((string) ($commentsCount ?? ($post["commentsCounter"] ?? 0))) ?> Comments</span>
             </div>
         </div>
         <a href="#comments">

@@ -6,6 +6,7 @@ use App\Repository\PostRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\UserRepository;
 use App\Connection\Connection;
+use MongoDB\BSON\ObjectId;
 
 final class PostController extends BaseController
 {
@@ -25,11 +26,13 @@ final class PostController extends BaseController
      */
     private PostRepository $postRepository;
     private CommentsRepository $commentsRepository;
+    private UserRepository $userRepository;
 
     public function __construct($connection)
     {
         $this->postRepository = new PostRepository($connection);
         $this->commentsRepository = new CommentsRepository($connection);
+        $this->userRepository = new UserRepository($connection);
     }
 
     //Show one post (GET /posts/{id})
@@ -55,10 +58,21 @@ final class PostController extends BaseController
 
         $comments = $this->commentsRepository->findByPost($id);
 
+        $commentUserIds = [];
+        foreach ($comments as $comment) {
+            $uid = $this->oidToString($comment['userId'] ?? null);
+            if ($uid) {
+                $commentUserIds[] = $uid;
+            }
+        }
+        $usersById = $this->userRepository->findManyByIds($commentUserIds);
+
         $this->render('post/readPost', [
             'post' => $post,
             'recentPosts' => $recentPosts,
             'comments' => $comments,
+            'usersById' => $usersById,
+            'commentsCount' => count($comments),
         ]);
         
 
@@ -219,7 +233,7 @@ final class PostController extends BaseController
     }
 
     function oidToString($value): ?string {
-        if ($value instanceof MongoDB\BSON\ObjectId) {
+        if ($value instanceof ObjectId) {
             return (string) $value;
         }
         if (is_array($value) && isset($value['$oid'])) {
