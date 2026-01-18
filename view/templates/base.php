@@ -9,7 +9,7 @@
     <link href="assets/styles/styles.css" rel="stylesheet" />
     <link href="assets/styles/typo.css" rel="stylesheet" />
 </head>
-<body class="gridBody">
+<body>
     <?php include __DIR__ . '/layout/components/nav.php'; ?>
     <!-- content da view -->
     
