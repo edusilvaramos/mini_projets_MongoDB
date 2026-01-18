@@ -1,5 +1,5 @@
 <div class="admin-user-profile">
-    <h1>User profile: <?= htmlspecialchars($user->userName) ?></h1>
+    <h1>User profile: <?= htmlspecialchars($user->username) ?></h1>
     <p class="subtitle">Admin view – statistics for this account.</p>
 
     <section>

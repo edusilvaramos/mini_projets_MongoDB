@@ -96,7 +96,7 @@ class AdminController extends BaseController
         $data = [
             'firstName' => trim($_POST['firstName'] ?? ''),
             'lastName'  => trim($_POST['lastName'] ?? ''),
-            'userName'  => trim($_POST['userName'] ?? ''),
+            'username'  => trim($_POST['username'] ?? ''),
             'email'     => trim($_POST['email'] ?? ''),
             'passwordHash'  => $_POST['passwordHash'] ?? '',
         ];
