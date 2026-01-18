@@ -13,11 +13,11 @@
         
         <div class="flex">
             <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
-            <?= $post['likes'] ?>
+            <?= $post['likes'] ?? 0 ?>
         </div>
         <div class="flex">
             <object type="image/svg+xml" data="/projet/assets/SVG/comment_outline.svg"></object>
-            <span><?=$post['commentsCounter']?></span>
+            <span><?=$post['commentsCounter'] ?? 0 ?></span>
         </div>
         <div class="flex">
             <div class="userProfilePhoto smallUserProfilePhoto">J</div>
