@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+use MongoDB\BSON\UTCDateTime;
 
 class Post
 {

@@ -18,7 +18,7 @@
 
     <?php else: ?>
         <div class="flex spaceBetween">
-            <a href="index.php?ctrl=post&action=createPostPage">
+            <a href="index.php?ctrl=post&action=create">
                 <button class="button primaryButton">Create Post</button>
             </a>
             <div class="conectedUser">

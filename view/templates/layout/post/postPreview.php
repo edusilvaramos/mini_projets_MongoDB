@@ -1,30 +1,19 @@
-<?php /*
-TACHES
-    -ajouter la premiere lettre du user dans le userProfilePhoto
-    -ajouter infos du user
-    -ajouter likes
-*/
-?>
-
 <div class="postCard">
     <div class="postCard__top">
-        <div class="userProfilePhoto">J</div>
+        <div class="userProfilePhoto"><?= htmlspecialchars(ucfirst($post['author']['username'][0]) ?? 'Unknown')?></div>
         <div class="">
-            <h1 class="postTitle"><?= htmlspecialchars($post['title'])?></h1>
-            <h6>John Smith</h6>
+            <a href="index.php?ctrl=post&action=show&id=<?= (string)$post['_id'] ?>">
+                <h1 class="postTitle"><?= htmlspecialchars($post['title'])?></h1>
+            </a>
+            <h6><?= htmlspecialchars($post['author']['username'] ?? 'Unknown author') ?></h6>
         </div>
     </div>
-    <p><?= nl2br(htmlspecialchars($post['content']))?></p>
+    <p><?= htmlspecialchars(substr($post['content'], 0, 180))?>...</p>
     <div class="postCard__bottom flex">
-        <div class="flex">  
-        <form method="post" action="like.php">
-            <input type="hidden" name="postId" value="<?= $post['_id'] ?>">
-            <button type="submit">
-                <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
-                <?= $post['likes'] ?>
-            </button>
-        </form>
-            
+        
+        <div class="flex">
+            <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
+            <?= $post['likes'] ?>
         </div>
         <div class="flex">
             <object type="image/svg+xml" data="/projet/assets/SVG/comment_outline.svg"></object>

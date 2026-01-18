@@ -7,7 +7,7 @@
                     <h3 class="leaveComment">Leave a Comment</h3>
                     <?php include __DIR__ . "../comment/leaveCommentForm.php";?>
                 </div>
-                <div class="commentContainer postsContainer">
+                <div id="comments" class="commentContainer postsContainer">
                     <div class="commentContainer">
                         <?php include __DIR__ . "/components/comment.php";?>
                     </div>

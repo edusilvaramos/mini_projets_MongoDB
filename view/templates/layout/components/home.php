@@ -1,68 +1,68 @@
-<body class="gridBody">
-<section class="main">
-    <div class="">
-        <div class="flex spaceAround latestPosts">
-            <h2>Latest Posts</h2>
-            <a href="index.php?ctrl=post&action=createPostPage">
-                <button class="button secondaryButton">Create Post</button>
-            </a>
-        </div>
-        <div class="flex spaceAround">
-            <div class="flex spaceAround">
-                <span>Sort by</span>
-                <div class="sortingOptions">
-                    <a href="?sort=recent" class="sortingButton">Newest</a>
-                    <a href="?sort=views" class="sortingButton">Trending</a>
-                    <a href="?sort=likes" class="sortingButton">Most Liked</a>
-                    <a href="?sort=comments" class="sortingButton">Most Commented</a>
-                </div>
-            </div>
-            <?php 
-                if (isset($_GET['order']) && $_GET['order'] === "croissant"){
-                    echo "<a href='?order=decroissant' class='thinButton tertiaryButton'>Ordre Décoissante</a>";
-                }
-                else  {
-                    echo "<a href='?order=croissant' class='thinButton tertiaryButton'>Ordre Croissante</a>";
-                }
-            ?>
-                
-        </div>
-        <div class="postsContainer">
-            <?php 
-                if (!empty($posts)){
-                    foreach ($posts as $post) {
-                        include __DIR__ . "/components/postPreview.php";
-                    }
-                }
-                else {
-                    echo "<p>Aucun post à voir ici</p>";
-                }
-            ?>
-        </div>
-    </div>
-</section>
-<aside>
-    <section>
-        <h2>Tags</h2>
-        <div class="flex">
-                <?php include __DIR__ . "/tags.php"; ?>
-        </div>
-    </section>
-    <section>
-        <h2>Recent Online Users</h2>
-        <div class="flex recentOnlineUsers">
-            <?php 
-                if (!empty($onlineUsers)){
-                    foreach ($users as $user) {
-                        include __DIR__ . "/components/onlineUsers.php";
-                    }
-                }
-                else {
-                    echo "<p>Aucune personne à voir ici</p>";
-                }
-            ?>
+<?php
+    $currentOrder = $order ?? 'descending';
+    $nextOrder = ($currentOrder === 'ascending') ? 'descending' : 'ascending';
+?>
 
+<body class="gridBody">
+    <section class="main">
+        <div class="">
+            <div class="flex spaceAround latestPosts">
+                <h2>Latest Posts</h2>
+                <a class="button secondaryButton" href="index.php?ctrl=post&action=create">
+                   Create Post
+                </a>
+            </div>
+            <div class="flex spaceAround">
+                <div class="flex spaceAround">
+                    <span>Sort by</span>
+                    <div class="sortingOptions">
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=recent&order=<?= $currentOrder ?>">Newest</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=views&order=<?= $currentOrder ?>">Trending</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=liked&order=<?= $currentOrder ?>">Most Liked</a>
+                        <a class="sortingButton" href="index.php?ctrl=post&action=listPosts&sort=comments&order=<?= $currentOrder ?>">Most Commented</a>
+                    </div>
+                </div>
+                <a href="index.php?ctrl=post&action=listPosts&sort=<?= $sort ?>&order=<?= $nextOrder ?>" class="thinButton tertiaryButton">
+                    <?= ucfirst($currentOrder); ?> Order
+                </a>
+    
+            </div>
+            <div class="postsContainer">
+                <?php
+                    if (empty($posts)){
+                        echo "<p>No posts to see here</p>";
+                    }
+                    else {
+                        foreach ($posts as $index => $post) {
+                            include __DIR__ . "/../post/postPreview.php";
+                        }
+                    }
+                ?>
+            </div>
         </div>
     </section>
-</aside>
+    <aside>
+        <section>
+            <h2>Tags</h2>
+            <div class="flex">
+                    <?php include __DIR__ . "/tags.php"; ?>
+            </div>
+        </section>
+        <section>
+            <h2>Recent Online Users</h2>
+            <div class="flex recentOnlineUsers">
+                <?php 
+                    if (!empty($onlineUsers)){
+                        foreach ($users as $user) {
+                            include __DIR__ . "/components/onlineUsers.php";
+                        }
+                    }
+                    else {
+                        echo "<p>Aucune personne à voir ici</p>";
+                    }
+                ?>
+
+            </div>
+        </section>
+    </aside>
 </body>

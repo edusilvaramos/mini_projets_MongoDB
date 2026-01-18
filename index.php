@@ -7,6 +7,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Connection\Connection;
 use App\Controller\HomeController;
 use App\Repository\UserRepository;
+use App\Repository\PostRepository;
 
 $ctrl   = $_GET['ctrl']   ?? 'home';
 $action = $_GET['action'] ?? 'index';
@@ -24,6 +25,7 @@ if (!class_exists($ctrlClass)) {
 $connection = new Connection();
 $userRepository = new UserRepository($connection);
 $userRepository->ensureAdminUser();
+$postRepository = new PostRepository($connection);
 
 // create the controller
 $controller = new $ctrlClass($connection);

@@ -112,6 +112,21 @@ aside {
   background-color: white;
   color: black;
 }
+.primaryButton:hover {
+  border: solid black 1px;
+  background-color: white;
+  color: black;
+}
+.secondaryButton:hover {
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+}
+.tertiaryButton:hover {
+  border: solid #c6c6c6 1px;
+  background-color: black;
+  color: white;
+}
 .flex {
   display: flex;
   gap: 8px;

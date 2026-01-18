@@ -6,6 +6,7 @@ use App\Connection\Connection;
 use MongoDB\BSON\ObjectId;
 use \MongoDB\Collection as Collection;
 use App\Model\Post;
+use MongoDB\BSON\UTCDateTime;
 
 final class PostRepository
 {
@@ -28,11 +29,13 @@ final class PostRepository
         return $this->collection->find([])->toArray();
     }
 
-    public function find(string $id): ? array
+    
+    public function find(string $id)
     {
         $doc = $this->collection->findOne(['_id' => new ObjectId($id)]);
         return $doc ? $doc->getArrayCopy() : null;
     }
+
 
     public function findByAuthor(string $authorId): ? array
     {
@@ -47,7 +50,7 @@ final class PostRepository
             'content' => $data['content'],
             'category' => $data['category'],
             'authorId' => new ObjectId($data['authorId']),
-            'createdAt' => date('d/m/Y H:i'),
+            'createdAt' => new UTCDateTime(),
             'isPublished' => true,
             'likes' => 0,
             'views' => 0,
@@ -78,30 +81,29 @@ final class PostRepository
         //aggregation com os commentarios;
     }
    
-
     //Methodes de Triage
-    public function sortRecent() 
+    public function sortBy(string $sortingChoice, int $direction = -1)
     {
-        return $this->collection->find([])->sort(['createdAt' => -1])->toArray();
-    }
+        $pipeline = [
+            ['$sort' => [$sortingChoice => $direction]],
+            [
+                '$lookup' => [
+                    'from' => 'user',
+                    'localField' => 'authorId',
+                    'foreignField' => '_id',
+                    'as' => 'author'
+                ]
+            ],
+            [
+                '$unwind' => [
+                    'path' => '$author',
+                    'preserveNullAndEmptyArrays' => true
+                ]
+            ]
+        ];
+        $results = $this->collection->aggregate($pipeline)->toArray();
 
-    public function sortMostLiked() 
-    {
-        return $this->collection->find([])->sort(['likes' => -1])->toArray();
-    }
-    public function sortMostViewed() 
-    {
-        return $this->collection->find([])->sort(['views' => -1])->toArray();
-    }
-
-    public function sortMostCommented() 
-    {
-        return $this->collection->find([])->sort(['commentsCounter' => -1])->toArray();
-    }
-
-    public function reverse($postArray) 
-    {
-        return array_reverse($postArray);
+        return $results;
     }
 
     //Methode de Filtrage
@@ -132,4 +134,32 @@ final class PostRepository
     {
         $this->incrementValue($id, 'views');
     }
+
+    public function findWithAuthor(string $postId)
+    {
+        $pipeline = [
+            [
+                '$match' => [
+                    '_id' => new ObjectId($postId)
+                ]
+            ],
+            [
+                '$lookup' => [
+                    'from' => 'user',           // users collection
+                    'localField' => 'authorId', // post field
+                    'foreignField' => '_id',    // user field
+                    'as' => 'author'
+                ]
+            ],
+            [
+                '$unwind' => '$author'          // get single author object instead of array
+            ]
+        ];
+
+        $result = $this->collection->aggregate($pipeline)->toArray();
+        return $result[0];
+    }
+
+
+
 }

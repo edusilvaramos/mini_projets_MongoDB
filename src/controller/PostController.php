@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
-use Dba\Connection;
+use App\Connection\Connection;
 
 final class PostController extends BaseController
 {
@@ -27,93 +27,183 @@ final class PostController extends BaseController
     public function __construct($connection)
     {
         $this->postRepository = new PostRepository($connection);
-        if (empty($_SESSION['user'])) {
-            $this->redirect('ctrl=user&action=login');
-        }
     }
 
-    public function listPosts(): void
+    //Show one post (GET /posts/{id})
+    public function show(): void
     {
-        $sort = $_GET['sort'] ?? 'recent';
-        switch ($sort) {
-            case 'recent':
-                $posts = $this->postRepository->sortRecent();
-            case 'liked':
-                $posts = $this->postRepository->sortMostLiked();
-                break;
-            case 'views':
-                $posts = $this->postRepository->sortMostViewed();
-                break;
-            case 'comments':
-                $posts = $this->postRepository->sortMostCommented();
-                break;
-            default:
-                $posts = $this->postRepository->all();
-        }
-        if ($_GET['order'] === "decroissant"){
-            $posts = array_reverse($posts);
-        }
-        $this->render('home', ['post' => $posts]);
-        include __DIR__ . '/../../views/templates/components/home.php';
-    }
+        $id = $_GET['id'] ?? null;
 
-    public function createPostPage(): void
-    {
-        if (!isset($_SESSION['user'])) {
-            $this->redirect('ctrl=home&action=index');
-        }
-        $this->render('post/createPostPage');
-    }
-
-    public function readPost($postID): void
-    {
-        $id = $postID;
         if (!$id) {
-            $this->redirect('ctrl=user&action=login');
+            $this->redirect('ctrl=home&action=index');
             return;
         }
 
-        $post = $this->postRepository->find($id);
-        
+        // Increment views
+        $this->postRepository->increaseViews($id);
+
+        // Post + author
+        $post = $this->postRepository->findWithAuthor($id);
+
         if (!$post) {
-            $this->redirect('ctrl=user&action=signup');
-            return;
+            $this->redirect('ctrl=home&action=index');
         }
 
         $this->render('post/readPost', [
-            'post' => $post,
+            'post' => $post
         ]);
     }
-    
+
+    //Page de creation de post
+    public function create(): void
+    {
+        $this->ensureLoggedIn();
+        $this->render('post/createPostPage');
+    }
+
+    //Aditionner à la base de donnees
     public function add(): void
     {
+        $this->ensureLoggedIn();
+
         $data = [
             'title' => trim($_POST['title'] ?? ''),
             'content'  => trim($_POST['content'] ?? ''),
             'category' => trim($_POST['category'] ?? ''),
             'authorId'  => $_SESSION['user']['id'],
+            'tags' => $_POST['tags'] ?? [],
         ];
-        $postID = $this->postRepository->create($data);
-        $this->readPost($postID);
-        exit;
+        if ($data['title'] === '' || $data['content'] === '') {
+            $this->redirect('/posts/create');
+        }
+
+        $id = $this->postRepository->create($data);
+        $this->redirect('/posts/' . $id);
     }
 
-    public function delete(): void
-    {
-        $id = $_GET['id'] ?? ($_POST['id'] ?? '');
-        $this->postRepository->delete($id);
-        $this->redirect('ctrl=user&action=index');
+    public function like($id) {
+        $this->ensureLoggedIn();
+
+        if (!$id) {
+            $this->redirect('ctrl=home&action=index');
+            return;
+        }
+        $this->postRepository->incrementLike($id);
+
+        $this->redirect('/posts/' . $id);
     }
 
-    public function edit(): void
+    public function unlike(string $id): void
     {
-        $id = $_POST['id'] ?? '';
+        $this->ensureLoggedIn();
 
+        if (!$id) {
+            $this->redirect('ctrl=home&action=index');
+            return;
+        }
+        
+        $this->postRepository->decreaseLike($id);
+
+        $this->redirect('/posts/' . $id);
+    }
+
+    public function edit($id): void
+    {
+        $this->ensureLoggedIn();
+
+        $post = $this->postRepository->find($id);
+
+        if (!$post || (string)$post['authorId'] !== $_SESSION['user_id']) {
+            $this->redirect('ctrl=user&action=index');
+        }
         $data = [
             'title' => trim($_POST['title'] ?? ''),
             'content' => trim($_POST['content'] ?? ''),
         ];
         $this->postRepository->update($id, $data);
+        $this->redirect('ctrl=home&action=index');
+
+        $this->render('post/edit', [
+            'post' => $post
+        ]);
+    }
+
+    public function update(string $id): void
+    {
+        $this->ensureLoggedIn();
+
+        $post = $this->postRepository->find($id);
+
+        if (!$post || (string)$post['authorId'] !== $_SESSION['user_id']) {
+            $this->redirect('ctrl=user&action=index');
+        }
+
+        $data = [
+            'title'   => trim($_POST['title']),
+            'content' => trim($_POST['content']),
+            // tags later
+        ];
+
+        $this->postRepository->update($id, $data);
+
+        $this->redirect('/posts/' . $id);
+    }
+
+    //_______________________________________________________
+
+    public function listPosts(): void
+    {
+        $sort = $_GET['sort'] ?? 'recent';
+        $order = $_GET['order'] ?? 'descending';
+        $direction = ($order === 'ascending') ? 1 : -1;
+
+        switch ($sort) {
+            case 'recent':
+                $posts = $this->postRepository->sortBy('createdAt', $direction);
+                break;
+            case 'liked':
+                $posts = $this->postRepository->sortBy('likes', $direction);
+                break;
+            case 'views':
+                $posts = $this->postRepository->sortBy('views', $direction);
+                break;
+            case 'comments':
+                $posts = $this->postRepository->sortBy('commentsCounter', $direction);
+                break;
+            default:
+                $posts = $this->postRepository->all();
+        }
+
+        $this->render('components/home', [
+            'posts' => $posts,
+            'sort'  => $sort,
+            'order' => $order
+        ]);
+    }
+
+
+    
+    
+    
+
+    public function delete($id): void
+    {
+        $this->ensureLoggedIn();
+        $post = $this->postRepository->find($id);
+        $this->postRepository->delete($id);
         $this->redirect('ctrl=user&action=index');
+
+        $this->redirect('posts');
+    }
+
+    
+
+    
+
+    private function ensureLoggedIn(): void
+    {
+        if (empty($_SESSION['user'])) {
+            $this->redirect('ctrl=user&action=login');
+        }
     }
 }
