@@ -1,185 +1,262 @@
-[{
-  "_id": {
-    "$oid": "675200000000000000000101"
+[
+  {
+    "_id": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "title": "Exploring PHP MVC Best Practices",
+    "content": "Today I learned how to structure a PHP MVC project properly. Controllers should only handle logic and Views should only render HTML.",
+    "category": "Programming",
+    "tags": ["backend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e101f1a5c1a1b0000011" },
+    "createdAt": { "$date": "2026-01-10T08:30:00Z" },
+    "likes": 12,
+    "views": 150,
+    "commentsCounter": 3
   },
-  "title": "Bem-vindo ao PteroTalk Forum (TEST)",
-  "content": "Esse é o post de boas-vindas do admin no banco de TESTE.",
-  "category": "announcement",
-  "tags": [
-    "welcome",
-    "rules",
-    "test"
-  ],
-  "createdAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
+  {
+    "_id": { "$oid": "64d7e002f1a5c1a1b0000002" },
+    "title": "Top 10 JavaScript Tricks",
+    "content": "JavaScript is full of hidden gems. Here are some tricks that can make your code cleaner and faster.",
+    "category": "Programming",
+    "tags": ["frontend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e102f1a5c1a1b0000012" },
+    "createdAt": { "$date": "2026-01-11T12:45:00Z" },
+    "likes": 35,
+    "views": 300,
+    "commentsCounter": 10
   },
-  "updatedAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
+  {
+    "_id": { "$oid": "64d7e003f1a5c1a1b0000003" },
+    "title": "My First MongoDB Aggregation",
+    "content": "Aggregations in MongoDB allow you to process data in powerful ways. I created a pipeline that counts likes and comments.",
+    "category": "Database",
+    "tags": ["backend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e103f1a5c1a1b0000013" },
+    "createdAt": { "$date": "2026-01-12T09:15:00Z" },
+    "likes": 20,
+    "views": 220,
+    "commentsCounter": 5
   },
-  "status": "PUBLISHED",
-  "authorId": {
-    "$oid": "675200000000000000000001"
+  {
+    "_id": { "$oid": "64d7e004f1a5c1a1b0000004" },
+    "title": "Understanding Async/Await in JS",
+    "content": "Async/await simplifies asynchronous JavaScript code. Here's a guide on how to use it correctly.",
+    "category": "Programming",
+    "tags": ["frontend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e104f1a5c1a1b0000014" },
+    "createdAt": { "$date": "2026-01-13T14:10:00Z" },
+    "likes": 25,
+    "views": 180,
+    "commentsCounter": 7
+  },
+  {
+    "_id": { "$oid": "64d7e005f1a5c1a1b0000005" },
+    "title": "CSS Grid vs Flexbox",
+    "content": "Flexbox is great for one-dimensional layouts while Grid shines in 2D layouts. Learn when to use each.",
+    "category": "Web Design",
+    "tags": ["frontend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e105f1a5c1a1b0000015" },
+    "createdAt": { "$date": "2026-01-14T10:50:00Z" },
+    "likes": 18,
+    "views": 210,
+    "commentsCounter": 4
+  },
+  {
+    "_id": { "$oid": "64d7e006f1a5c1a1b0000006" },
+    "title": "Building REST APIs with PHP",
+    "content": "REST APIs are essential for modern applications. Here's how to structure endpoints and controllers.",
+    "category": "Programming",
+    "tags": ["backend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e106f1a5c1a1b0000016" },
+    "createdAt": { "$date": "2026-01-15T11:20:00Z" },
+    "likes": 30,
+    "views": 400,
+    "commentsCounter": 12
+  },
+  {
+    "_id": { "$oid": "64d7e007f1a5c1a1b0000007" },
+    "title": "Node.js Event Loop Explained",
+    "content": "The event loop in Node.js is the heart of its asynchronous behavior. Understanding it is crucial for performance.",
+    "category": "Programming",
+    "tags": ["backend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e107f1a5c1a1b0000017" },
+    "createdAt": { "$date": "2026-01-16T15:40:00Z" },
+    "likes": 40,
+    "views": 350,
+    "commentsCounter": 15
+  },
+  {
+    "_id": { "$oid": "64d7e008f1a5c1a1b0000008" },
+    "title": "Introduction to GraphQL",
+    "content": "GraphQL offers flexible querying for APIs. This post covers basics, queries, and mutations.",
+    "category": "API",
+    "tags": ["backend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e108f1a5c1a1b0000018" },
+    "createdAt": { "$date": "2026-01-17T13:05:00Z" },
+    "likes": 28,
+    "views": 270,
+    "commentsCounter": 8
+  },
+  {
+    "_id": { "$oid": "64d7e009f1a5c1a1b0000009" },
+    "title": "Responsive Web Design Tips",
+    "content": "Learn how to make websites look great on any device using media queries and flexible layouts.",
+    "category": "Web Design",
+    "tags": ["frontend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e109f1a5c1a1b0000019" },
+    "createdAt": { "$date": "2026-01-18T09:30:00Z" },
+    "likes": 22,
+    "views": 180,
+    "commentsCounter": 6
+  },
+  {
+    "_id": { "$oid": "64d7e00af1a5c1a1b000000a" },
+    "title": "My Experience with Vue.js",
+    "content": "Vue.js is a progressive frontend framework. I built a small project and learned about reactive data binding.",
+    "category": "Frontend",
+    "tags": ["frontend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e10af1a5c1a1b000001a" },
+    "createdAt": { "$date": "2026-01-19T11:00:00Z" },
+    "likes": 15,
+    "views": 200,
+    "commentsCounter": 3
+  },
+  {
+    "_id": { "$oid": "64d7e00bf1a5c1a1b000001b" },
+    "title": "React Hooks Deep Dive",
+    "content": "Hooks allow functional components in React to manage state and side-effects. Here’s a detailed explanation.",
+    "category": "Frontend",
+    "tags": ["frontend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e10bf1a5c1a1b000001b" },
+    "createdAt": { "$date": "2026-01-20T08:45:00Z" },
+    "likes": 38,
+    "views": 320,
+    "commentsCounter": 14
+  },
+  {
+    "_id": { "$oid": "64d7e00cf1a5c1a1b000001c" },
+    "title": "Introduction to Docker",
+    "content": "Docker simplifies deployment by containerizing applications. I learned how to build and run containers locally.",
+    "category": "DevOps",
+    "tags": ["devops"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e10cf1a5c1a1b000001c" },
+    "createdAt": { "$date": "2026-01-21T14:30:00Z" },
+    "likes": 27,
+    "views": 250,
+    "commentsCounter": 9
+  },
+  {
+    "_id": { "$oid": "64d7e00df1a5c1a1b000001d" },
+    "title": "Kubernetes Basics",
+    "content": "Kubernetes orchestrates containers at scale. This post introduces pods, services, and deployments.",
+    "category": "DevOps",
+    "tags": ["devops"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e10df1a5c1a1b000001d" },
+    "createdAt": { "$date": "2026-01-22T10:15:00Z" },
+    "likes": 31,
+    "views": 310,
+    "commentsCounter": 11
+  },
+  {
+    "_id": { "$oid": "64d7e00ef1a5c1a1b000001e" },
+    "title": "Getting Started with Tailwind CSS",
+    "content": "Tailwind is a utility-first CSS framework. I built a few components and enjoyed the rapid prototyping.",
+    "category": "Web Design",
+    "tags": ["frontend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e10ef1a5c1a1b000001e" },
+    "createdAt": { "$date": "2026-01-23T09:00:00Z" },
+    "likes": 19,
+    "views": 190,
+    "commentsCounter": 5
+  },
+  {
+    "_id": { "$oid": "64d7e00ff1a5c1a1b000001f" },
+    "title": "Understanding REST vs GraphQL",
+    "content": "REST and GraphQL are different API approaches. This post compares their pros and cons.",
+    "category": "API",
+    "tags": ["backend"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e10ff1a5c1a1b000001f" },
+    "createdAt": { "$date": "2026-01-24T12:20:00Z" },
+    "likes": 29,
+    "views": 280,
+    "commentsCounter": 10
+  },
+  {
+    "_id": { "$oid": "64d7e010f1a5c1a1b0000020" },
+    "title": "Forum Announcement: New Features!",
+    "content": "We’ve added new features to improve your experience. Check them out in the dashboard!",
+    "category": "General",
+    "tags": ["announcement"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e101f1a5c1a1b0000011" },
+    "createdAt": { "$date": "2026-01-25T09:00:00Z" },
+    "likes": 10,
+    "views": 120,
+    "commentsCounter": 2
+  },
+  {
+    "_id": { "$oid": "64d7e011f1a5c1a1b0000021" },
+    "title": "Site Maintenance Scheduled",
+    "content": "Our servers will be down for maintenance on Saturday from 2 AM to 5 AM UTC.",
+    "category": "General",
+    "tags": ["announcement"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e102f1a5c1a1b0000012" },
+    "createdAt": { "$date": "2026-01-25T10:30:00Z" },
+    "likes": 7,
+    "views": 95,
+    "commentsCounter": 1
+  },
+  {
+    "_id": { "$oid": "64d7e012f1a5c1a1b0000022" },
+    "title": "Feedback: Forum UI Improvements",
+    "content": "We want your feedback on the new forum layout. Let us know what you think!",
+    "category": "Feedback",
+    "tags": ["feedback"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e103f1a5c1a1b0000013" },
+    "createdAt": { "$date": "2026-01-25T12:00:00Z" },
+    "likes": 15,
+    "views": 180,
+    "commentsCounter": 4
+  },
+  {
+    "_id": { "$oid": "64d7e013f1a5c1a1b0000023" },
+    "title": "Feedback: Mobile App Suggestions",
+    "content": "Share your suggestions for improving our mobile app. We read every comment!",
+    "category": "Feedback",
+    "tags": ["feedback"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e104f1a5c1a1b0000014" },
+    "createdAt": { "$date": "2026-01-25T13:15:00Z" },
+    "likes": 12,
+    "views": 160,
+    "commentsCounter": 3
+  },
+  {
+    "_id": { "$oid": "64d7e014f1a5c1a1b0000024" },
+    "title": "Community Guidelines Update",
+    "content": "We updated our community guidelines to make the forum safer for everyone. Please read them carefully.",
+    "category": "General",
+    "tags": ["announcement"],
+    "status": "published",
+    "authorId": { "$oid": "64d7e105f1a5c1a1b0000015" },
+    "createdAt": { "$date": "2026-01-25T14:30:00Z" },
+    "likes": 20,
+    "views": 200,
+    "commentsCounter": 5
   }
-},
-{
-  "_id": {
-    "$oid": "675200000000000000000102"
-  },
-  "title": "Regras do Fórum (TEST)",
-  "content": "Respeito, nada de spam, use títulos claros e marque bem as categorias.",
-  "category": "announcement",
-  "tags": [
-    "rules",
-    "moderation"
-  ],
-  "createdAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "updatedAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "status": "PUBLISHED",
-  "authorId": {
-    "$oid": "675200000000000000000002"
-  }
-},
-{
-  "_id": {
-    "$oid": "675200000000000000000103"
-  },
-  "title": "Dúvidas sobre MongoDB + PHP",
-  "content": "Estou fazendo um mini projeto em PHP com MongoDB e quero testar repositórios, controllers e views.",
-  "category": "backend",
-  "tags": [
-    "php",
-    "mongodb",
-    "driver",
-    "tests"
-  ],
-  "createdAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "updatedAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "status": "PUBLISHED",
-  "authorId": {
-    "$oid": "675200000000000000000003"
-  }
-},
-{
-  "_id": {
-    "$oid": "675200000000000000000104"
-  },
-  "title": "Design do fórum e CSS simples",
-  "content": "Quero exemplos de layout mais clean, com poucos estilos e botões simples.",
-  "category": "frontend",
-  "tags": [
-    "css",
-    "ui",
-    "design"
-  ],
-  "createdAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "updatedAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "status": "PUBLISHED",
-  "authorId": {
-    "$oid": "675200000000000000000004"
-  }
-},
-{
-  "_id": {
-    "$oid": "675200000000000000000105"
-  },
-  "title": "Off-topic: séries tech para devs",
-  "content": "Mr. Robot, Silicon Valley, Devs... o que mais vocês recomendam?",
-  "category": "offtopic",
-  "tags": [
-    "series",
-    "tv",
-    "lifestyle"
-  ],
-  "createdAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "updatedAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "status": "PUBLISHED",
-  "authorId": {
-    "$oid": "675200000000000000000005"
-  }
-},
-{
-  "_id": {
-    "$oid": "675200000000000000000106"
-  },
-  "title": "Autenticação, sessão e segurança básica",
-  "content": "Estou testando login, logout, session_regenerate_id e proteção de páginas admin.",
-  "category": "backend",
-  "tags": [
-    "auth",
-    "session",
-    "security",
-    "php"
-  ],
-  "createdAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "updatedAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "status": "PUBLISHED",
-  "authorId": {
-    "$oid": "675200000000000000000003"
-  }
-},
-{
-  "_id": {
-    "$oid": "675200000000000000000107"
-  },
-  "title": "Hospedagem baratinha para projetos PHP",
-  "content": "Quais provedores vocês usam para projetos de estudo? Alguma dica de deploy simples?",
-  "category": "devops",
-  "tags": [
-    "hosting",
-    "deploy",
-    "php"
-  ],
-  "createdAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "updatedAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "status": "PUBLISHED",
-  "authorId": {
-    "$oid": "675200000000000000000006"
-  }
-},
-{
-  "_id": {
-    "$oid": "675200000000000000000108"
-  },
-  "title": "Feedback sobre o PteroTalk (TEST)",
-  "content": "Esse post é só para coletar feedback sobre o fórum de teste.",
-  "category": "feedback",
-  "tags": [
-    "feedback",
-    "ux",
-    "test"
-  ],
-  "createdAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "updatedAt": {
-    "$date": "2025-11-26T17:13:42.165Z"
-  },
-  "status": "PUBLISHED",
-  "authorId": {
-    "$oid": "675200000000000000000007"
-  }
-}]
+]

@@ -1,0 +1,95 @@
+[
+  {
+    "_id": { "$oid": "64e00001f1a5c1a1b1000001" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e101f1a5c1a1b0000011" },
+    "parentId": null,
+    "content": "Great explanation of MVC! This helped me clean up my controllers a lot.",
+    "likes": 4,
+    "createdAt": { "$date": "2026-01-11T09:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "64e00002f1a5c1a1b1000002" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e102f1a5c1a1b0000012" },
+    "parentId": null,
+    "content": "I always struggled separating logic from views. This post makes it clearer.",
+    "likes": 2,
+    "createdAt": { "$date": "2026-01-11T09:15:00Z" }
+  },
+  {
+    "_id": { "$oid": "64e00003f1a5c1a1b1000003" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e103f1a5c1a1b0000013" },
+    "parentId": null,
+    "content": "Do you have recommendations for structuring repositories in MVC?",
+    "likes": 1,
+    "createdAt": { "$date": "2026-01-11T09:30:00Z" }
+  },
+
+  {
+    "_id": { "$oid": "64e00004f1a5c1a1b1000004" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e104f1a5c1a1b0000014" },
+    "parentId": { "$oid": "64e00001f1a5c1a1b1000001" },
+    "content": "Same here! Once I moved DB logic out of controllers everything felt cleaner.",
+    "likes": 3,
+    "createdAt": { "$date": "2026-01-11T10:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "64e00005f1a5c1a1b1000005" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e105f1a5c1a1b0000015" },
+    "parentId": { "$oid": "64e00003f1a5c1a1b1000003" },
+    "content": "Repositories should only talk to the database. Controllers should never query directly.",
+    "likes": 5,
+    "createdAt": { "$date": "2026-01-11T10:20:00Z" }
+  },
+
+  {
+    "_id": { "$oid": "64e00006f1a5c1a1b1000006" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e106f1a5c1a1b0000016" },
+    "parentId": null,
+    "content": "Nice article. MVC really shines when projects grow larger.",
+    "likes": 2,
+    "createdAt": { "$date": "2026-01-11T10:45:00Z" }
+  },
+  {
+    "_id": { "$oid": "64e00007f1a5c1a1b1000007" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e107f1a5c1a1b0000017" },
+    "parentId": { "$oid": "64e00006f1a5c1a1b1000006" },
+    "content": "Totally agree. MVC saved me when my forum project exploded in size.",
+    "likes": 1,
+    "createdAt": { "$date": "2026-01-11T11:00:00Z" }
+  },
+
+  {
+    "_id": { "$oid": "64e00008f1a5c1a1b1000008" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e108f1a5c1a1b0000018" },
+    "parentId": null,
+    "content": "How do you usually handle validation in MVC?",
+    "likes": 0,
+    "createdAt": { "$date": "2026-01-11T11:15:00Z" }
+  },
+  {
+    "_id": { "$oid": "64e00009f1a5c1a1b1000009" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e109f1a5c1a1b0000019" },
+    "parentId": { "$oid": "64e00008f1a5c1a1b1000008" },
+    "content": "I usually validate in the controller, then pass clean data to services.",
+    "likes": 2,
+    "createdAt": { "$date": "2026-01-11T11:30:00Z" }
+  },
+  {
+    "_id": { "$oid": "64e0000af1a5c1a1b100000a" },
+    "postId": { "$oid": "64d7e001f1a5c1a1b0000001" },
+    "authorId": { "$oid": "64d7e10ff1a5c1a1b000001f" },
+    "parentId": { "$oid": "64e00009f1a5c1a1b1000009" },
+    "content": "Same, or sometimes in a dedicated validator class to keep controllers thin.",
+    "likes": 3,
+    "createdAt": { "$date": "2026-01-11T11:45:00Z" }
+  }
+]
