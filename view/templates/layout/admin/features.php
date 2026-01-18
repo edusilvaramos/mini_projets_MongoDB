@@ -21,10 +21,6 @@
         <input type="text" name="description" required>
       </div>
       <div>
-        <label>Auteur</label>
-        <input type="text" name="author">
-      </div>
-      <div>
         <label>Catégorie</label>
         <select name="category" required>
           <option value="" disabled selected>Choisir une catégorie</option>
@@ -50,7 +46,6 @@
         <th>ID</th>
         <th>Fonctionnalité</th>
         <th>Description</th>
-        <th>Auteur</th>
         <th>Catégorie</th>
         <th>Statut</th>
         <th>Actions</th>
@@ -62,7 +57,6 @@
           <td><?= $feature['id'] ?></td>
           <td><?= htmlspecialchars($feature['name']) ?></td>
           <td><?= htmlspecialchars($feature['description']) ?></td>
-          <td><?= htmlspecialchars($feature['author']) ?></td>
           <td><?= htmlspecialchars($feature['category'] ?? '-') ?></td>
           <td><?= htmlspecialchars($feature['status']) ?></td>
           <td>

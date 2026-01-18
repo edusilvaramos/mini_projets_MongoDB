@@ -29,7 +29,6 @@ class FeaturesRepository
             'id' => $nextId,
             'name' => $data['name'] ?? '',
             'description' => $data['description'] ?? '',
-            'author' => $data['author'] ?? 'Eduardo',
             'category' => $data['category'] ?? '',
             'status' => $data['status'] ?? 'Non développée',
         ]);
