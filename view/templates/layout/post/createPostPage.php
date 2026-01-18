@@ -14,8 +14,8 @@
         <section>
             <h2>Recent Online Users</h2>
             <div class="flex recentOnlineUsers">
-                <?php include __DIR__ . "../user/onlineUsers.php";?>
-                <?php include __DIR__ . "../user/onlineUsers.php";?>
+                <?php include __DIR__ . "/../user/onlineUsers.php";?>
+                <?php include __DIR__ . "/../user/onlineUsers.php";?>
             </div>
         </section>
     </aside>
