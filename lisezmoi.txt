@@ -5,6 +5,7 @@ Architecture : MVC
 Base de données : MongoDB
 
 ps: le ficheir assets/Fixtures/ contient les fixtures de la base de données. Elles on ete crées pour faire le travail de test.
+
 ===============================================================================================
 ATTENDUES DANS LE SUJET
 - Inscription
@@ -17,10 +18,11 @@ ATTENDUES DANS LE SUJET
 - Statistiques globales
 - Statistiques posts par utilisateur
 - Affichages différents de la même page
+- Affichage des posts d'un usager
 
 --------------------------------------------------
-
 FONCTIONNALITÉS PERSONNELLES
+Usagers :
 - Profil personnel
 - Profil utilisateur (admin)
 - Modification du profil
@@ -31,9 +33,25 @@ FONCTIONNALITÉS PERSONNELLES
 - Panneau d’administration
 - Ajouter une fonctionnalité -> functionnalité dediée au prof**
 
---------------------------------------------------
+Posts :
+- Gestion des statuts de post (publié / brouillon)
+- Comptage du nombre de vues
+- Incrémentation automatique des vues lors de l’ouverture d’un post
+- Gestion des likes (ajout)
+- Gestion des likes (retrait)
+- Tri des posts par : date de création (récent / ancien) ; nombre de likes, vues et commentaires
+- Ordre de tri ascendant / descendant
+- Filtrage des posts par tag (catégorie)
+- Ajout de tags (catégorie) aux posts
 
+--------------------------------------------------
 NIVEAU DE FINALISATION DES FONCTIONNALITÉS
+
+Géneral:
+- Mise en page en CSS Grid : Finalisée
+- Génération de données de test (posts, utilisateurs, commentaires) : Finalisée
+
+Usagers:
 - Inscription : Finalisée
 - Connexion : Finalisée
 - Déconnexion : Finalisée
@@ -53,3 +71,25 @@ NIVEAU DE FINALISATION DES FONCTIONNALITÉS
 - Suppression utilisateur (admin) : Finalisée
 - Panneau d’administration : Finalisée
 - Ajouter une fonctionnalité : Finalisée
+
+Posts:
+- Création de posts : Finalisée
+- Tri des posts par : date de création (récent / ancien) ; nombre de likes, vues et commentaires : Finalisée
+- Ordre de tri ascendant / descendant : Finalisée
+- Filtrage des posts par tag (catégorie) : Finalisée
+- Ajout de tags (catégorie) aux posts : Finalisée
+- Création de commentaires : Partiel/Bug
+- Comptage des commentaires par post : Partiel/Bug
+- Affichage de la liste des posts : Finalisée
+- Affichage des posts d'un usager : Finalisée
+- Affichage d’un post individuel (page dédiée) : Finalisée
+- Association d’un post à un auteur : Finalisée
+- Gestion des statuts de post (publié / brouillon) : Partiel
+- Affichage de la date de création : Finalisée
+- Comptage du nombre de vues : Finalisée
+- Incrémentation automatique des vues lors de l’ouverture d’un post : Finalisée
+- Gestion des likes (ajout) : Finalisée
+- Gestion des likes (retrait) : Partiel/Bug
+- Comptage du nombre de commentaires : Partiel/Bug
+
+- Suppression et Modification d'un post : Partiel/Bug
