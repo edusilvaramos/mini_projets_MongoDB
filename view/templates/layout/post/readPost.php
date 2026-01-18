@@ -48,12 +48,10 @@ require __DIR__ . '/../comment/comment.php';
                         echo "<p>No posts to see here</p>";
                     }
                     else {
-                        for ($i = 0; $i < 5; $i++) {
+                        $limit = min(5, count($recentPosts));
+                        for ($i = 0; $i < $limit; $i++) {
                             $recentPost = $recentPosts[$i];
                             include __DIR__ . "/../post/postPreview2.php";
-                        }
-                        foreach ($recentPosts as $index => $recentPost) {
-                            
                         }
                     }
                 ?>
@@ -67,7 +65,7 @@ require __DIR__ . '/../comment/comment.php';
             <h2>Recent Online Users</h2>
             <div class="flex recentOnlineUsers">
                 <?php 
-                    include __DIR__ . "/components/onlineUsers.php";
+                    include __DIR__ . "/../user/onlineUsers.php";
                 ?>
             </div>
         </section>
