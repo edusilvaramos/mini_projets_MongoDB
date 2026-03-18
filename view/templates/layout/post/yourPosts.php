@@ -11,11 +11,11 @@
     <div class="flex flexSpaceBetween">
         <div class="flex postCard__bottom">
             <div class="flex">
-                <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
+                <object type="image/svg+xml" data="assets/SVG/like_outline.svg"></object>
                 <span><?= $userPost['likes'] ?></span>
             </div>
             <div class="flex">
-                <object type="image/svg+xml" data="/projet/assets/SVG/comment_outline.svg"></object>
+                <object type="image/svg+xml" data="assets/SVG/comment_outline.svg"></object>
                 <span class="active"><?= $userPost['commentsCounter'] ?></span>
             </div>
         </div>

@@ -16,7 +16,7 @@ class AdminRepository
     public function __construct(Connection $connection)
     {
         // get the collections from mongo
-        $this->user = $connection->selectCollection('user');
+        $this->user = $connection->selectCollection('users');
         $this->posts = $connection->selectCollection('posts');
         $this->comments = $connection->selectCollection('comments');
         $this->likes = $connection->selectCollection('likes');

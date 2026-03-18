@@ -74,7 +74,7 @@
             </div>
             <a href="index.php?ctrl=home&action=index" class="flex blueLink">
                 View more
-                <object type="image/svg+xml" data="/projet/assets/SVG/arrow_right_blue.svg"></object>
+                <object type="image/svg+xml" data="assets/SVG/arrow_right_blue.svg"></object>
             </a>
         </section>
         <section>

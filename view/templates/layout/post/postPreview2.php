@@ -20,11 +20,11 @@ TACHES
     <div class="flex flexSpaceBetween">
         <div class="flex postCard__bottom">
             <div class="flex">
-                <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
+                <object type="image/svg+xml" data="assets/SVG/like_outline.svg"></object>
                 <span><?=$recentPost['likes']?></span>
             </div>
             <div class="flex">
-                <object type="image/svg+xml" data="/projet/assets/SVG/comment_outline.svg"></object>
+                <object type="image/svg+xml" data="assets/SVG/comment_outline.svg"></object>
                 <span class="active"><?=$recentPost['commentsCounter']?></span>
             </div>
         </div>
@@ -33,7 +33,7 @@ TACHES
             <span>Read more</span>
             </a>
             
-            <object type="image/svg+xml" data="/projet/assets/SVG/arrow_right.svg"></object>
+            <object type="image/svg+xml" data="assets/SVG/arrow_right.svg"></object>
         </div>
     </div>
 </div>

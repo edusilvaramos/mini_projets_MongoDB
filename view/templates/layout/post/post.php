@@ -1,7 +1,7 @@
 <div class="postCard">
     <a href="index.php?ctrl=home&action=index">
         <div class="flex flexCenter marginBottom">
-            <object class="rotate180" type="image/svg+xml" data="/projet/assets/SVG/arrow_right.svg"></object>
+            <object class="rotate180" type="image/svg+xml" data="assets/SVG/arrow_right.svg"></object>
             <span class="thinText">Posted by <?= htmlspecialchars($post['author']['username'] ?? 'Unknown')?></span>
         </div>
     </a>
@@ -20,18 +20,18 @@
         <div class="flex postCard__bottom">
             <div class="flex">
                 <a href="index.php?ctrl=post&action=like&id=<?= $post['_id'] ?>">
-                    <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
+                    <object type="image/svg+xml" data="assets/SVG/like_outline.svg"></object>
                     <span><?= htmlspecialchars($post["likes"]) ?> Likes</span>
                 </a>
             </div>
             <div class="flex">
-                <object type="image/svg+xml" data="/projet/assets/SVG/comment_outline.svg"></object>
+                <object type="image/svg+xml" data="assets/SVG/comment_outline.svg"></object>
                 <span class="active"><?= htmlspecialchars((string) ($commentsCount ?? ($post["commentsCounter"] ?? 0))) ?> Comments</span>
             </div>
         </div>
         <a href="#comments">
             <div class="flex">
-                <object type="image/svg+xml" data="/projet/assets/SVG/reply.svg"></object>
+                <object type="image/svg+xml" data="assets/SVG/reply.svg"></object>
                 <span>Reply</span>
             </div>
         </a>

@@ -12,12 +12,12 @@
     <div class="flex flexSpaceBetween">
         <div class="flex postCard__bottom">
             <div class="flex">
-                <object type="image/svg+xml" data="/projet/assets/SVG/like_outline.svg"></object>
+                <object type="image/svg+xml" data="assets/SVG/like_outline.svg"></object>
                 <span><?=htmlspecialchars($comment['likes'])?> Likes</span>
             </div>
         </div>
         <div class="flex">
-            <object type="image/svg+xml" data="/projet/assets/SVG/reply.svg"></object>
+            <object type="image/svg+xml" data="assets/SVG/reply.svg"></object>
             <span>Reply</span>
         </div>
     </div>

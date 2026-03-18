@@ -20,7 +20,7 @@ final class PostRepository
 
     public function __construct(Connection $connection)
     {
-        $this->collection = $connection->selectCollection('post');
+        $this->collection = $connection->selectCollection('posts');
         $this->collection->createIndex(['authorId' => 1, 'createdAt' => -1]);
     }
 
@@ -101,7 +101,7 @@ final class PostRepository
             ['$sort' => [$sortingChoice => $direction]],
             [
                 '$lookup' => [
-                    'from' => 'user',
+                    'from' => 'users',
                     'localField' => 'authorId',
                     'foreignField' => '_id',
                     'as' => 'author'
@@ -152,7 +152,7 @@ final class PostRepository
             ],
             [
                 '$lookup' => [
-                    'from' => 'user',           // users collection
+                    'from' => 'users',          // users collection
                     'localField' => 'authorId', // post field
                     'foreignField' => '_id',    // user field
                     'as' => 'author'

@@ -13,7 +13,7 @@ final class UserRepository
 
     public function __construct(Connection $connection)
     {
-        $this->collection = $connection->selectCollection('user');
+        $this->collection = $connection->selectCollection('users');
     }
 
     private function hydrateUser($doc): User

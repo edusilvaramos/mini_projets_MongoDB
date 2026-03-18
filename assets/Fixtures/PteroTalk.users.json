@@ -254,6 +254,19 @@
     "role": "user",
     "conectedAt": "2025-12-15T22:30:00Z",
     "isConnected": false
-  }
+  },
+  {
+  "_id": {
+    "$oid": "69af282baa1af142de03a5d2"
+  },
+  "firstName": "PteroTalk",
+  "lastName": "PteroTalk",
+  "username": "PteroTalk",
+  "email": "admin@pterotalk.com",
+  "passwordHash": "$2y$12$IR3AuTk5y9KM78U1KYZgbeblrw.PDrFcf8Nl0jqwRpEsplfRmhrKW",
+  "role": "ROLE_ADMIN",
+  "conectedAt": "09/03/2026 20:06",
+  "isConnected": true
+}
 ]
   
